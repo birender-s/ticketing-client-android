@@ -38,7 +38,6 @@ public class CustomPagerAdapter extends PagerAdapter {
         this.dataObjectList = branchesModelArrayList;
         imageLoader = ImageLoader.getInstance();
         imageLoader.init(ImageLoaderConfiguration.createDefault(context));
-
     }
 
     @Override
@@ -63,7 +62,7 @@ public class CustomPagerAdapter extends PagerAdapter {
         CircleImageView circleImageView = (CircleImageView) view.findViewById(R.id.departmentiv);
         tvBranchName.setText(dataObjectList.get(position).getName());
         if (dataObjectList.get(position).getLogo() != null && dataObjectList.get(position).getLogo().getPathname() != null)
-            imageLoader.displayImage("http://95.85.55.146" + dataObjectList.get(position).getLogo().getPathname(), circleImageView);
+            imageLoader.displayImage("http://35.202.56.111" + dataObjectList.get(position).getLogo().getPathname(), circleImageView);
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
