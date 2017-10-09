@@ -8,7 +8,8 @@ import android.text.TextUtils;
 import android.widget.Toast;
 
 public class Constant {
-    public static final String USERNAME = "admin";
+    public static final String USERNAME = "diamantedesk";
+  //  public static final String USERNAME = "admin";
     public static final String WHITE_SPACE = " ";
     public static final String INPUT_USER = "username";
     public static final String INPUT_EMAIL = "email";
@@ -16,9 +17,11 @@ public class Constant {
     public static final String INPUT_CTICKET_DATA = "cticket_data";
     public static final String SELECTED_LOCALE = "selected_locale";
     public static final String SELECTED_LOCALE_LANGUAGE = "selected_locale_language";
-    public static final String BASE = "http://35.202.56.111/api/rest/latest/desk/";
-    public static final String PASSWORD = "ee47ba573ef6205fa11b0bcb5e0d959db02f36a5";
-    public static final String PASSWORDH = "545a02153193941c486d9a083d0e0f260711a5aa";
+  //  public static final String BASE = "http://35.202.56.111/api/rest/latest/desk/";
+    public static final String BASE = "http://104.154.217.246/api/rest/latest/desk/";
+  //  public static final String PASSWORD = "ee47ba573ef6205fa11b0bcb5e0d959db02f36a5";
+   // public static final String PASSWORDH = "545a02153193941c486d9a083d0e0f260711a5aa";
+    public static final String PASSWORDH = "7c19496a1a40bcee51ebeefbaaed9d115d304d81";
     public static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
     public static final String AI_CONFIGURATION_TOKEN="0882e9aa21ef450694115050513f3822";

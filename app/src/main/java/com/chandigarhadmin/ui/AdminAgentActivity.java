@@ -26,9 +26,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.inputmethod.EditorInfo;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.chandigarhadmin.App;
@@ -91,6 +93,7 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
     private TextToSpeech textToSpeech;
     private CreateTicketResponse createTicketResponse;
     private String branchName;
+    List<BranchesModel> branches;
 
 
     @OnClick(R.id.btn_chat_search)
@@ -397,11 +400,11 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
     /**
      * saving ticket
      */
-    private void createTicket(Result result) {
+    private void createTicket(String branchId, String subject, String description) {
         CreateTicketModel model = new CreateTicketModel();
-        model.setBranch(result.getParameters().get("department").toString().replaceAll("\"", "").replaceAll("\"", "").replaceAll("\\[", "").replaceAll("\\]", ""));
-        model.setSubject(result.getParameters().get("ticketsubject").toString().replaceAll("\"", "").replaceAll("\\[", "").replaceAll("\\]", ""));
-        model.setDescription(result.getParameters().get("ticketdesc").toString().replaceAll("\"", "").replaceAll("\\[", "").replaceAll("\\]", ""));
+        model.setBranch(branchId);
+        model.setSubject(subject);
+        model.setDescription(description);
         model.setStatus("new");
         model.setPriority("high");
         model.setSource("email");
@@ -476,45 +479,77 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
     }
 
     private void previewTicket(final Result result) {
-        final Dialog dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCancelable(false);
-        dialog.setContentView(R.layout.ticket_preview);
-        DisplayMetrics metrics = new DisplayMetrics(); //get metrics of screen
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        int height = (int) (metrics.heightPixels * 0.7); //set height to 80% of total
-        int width = (int) (metrics.widthPixels * 0.8); //set width to 90% of total
-        dialog.getWindow().setLayout(width, height);
-        TextView textViewDepartment = (TextView) dialog.findViewById(R.id.tvdepartment_value);
-        if (null != branchName) {
-            textViewDepartment.setText(branchName);
+        if (null != branches && !branches.isEmpty()) {
+            final Dialog dialog = new Dialog(this);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setCancelable(false);
+            dialog.setContentView(R.layout.ticket_preview);
+            DisplayMetrics metrics = new DisplayMetrics(); //get metrics of screen
+            getWindowManager().getDefaultDisplay().getMetrics(metrics);
+            int height = (int) (metrics.heightPixels * 0.8); //set height to 80% of total
+            int width = (int) (metrics.widthPixels * 0.9); //set width to 90% of total
+            dialog.getWindow().setLayout(width, height);
+            final Spinner spinnerBranches = (Spinner) dialog.findViewById(R.id.spdepartment);
+            List<String> branchNames = new ArrayList<>();
+            final List<String> branchId = new ArrayList<>();
+            int indexbranch = -1;
+
+            for (int i = 0; i < branches.size(); i++) {
+                if (!branches.get(i).getName().trim().equalsIgnoreCase("Default branch")) {
+                    if (result.getParameters().get("department").toString().replaceAll("\"", "").replaceAll("\"", "").replaceAll("\\[", "").replaceAll("\\]", "").equals(branches.get(i).getId())) {
+                        indexbranch = i;
+                    }
+                    branchNames.add(branches.get(i).getName());
+                    branchId.add(branches.get(i).getId());
+                }
+            }
+            // Creating adapter for spinner
+            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, branchNames);
+
+            // Drop down layout style - list view with radio button
+            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+            // attaching data adapter to spinner
+            spinnerBranches.setAdapter(dataAdapter);
+            spinnerBranches.setSelection(indexbranch - 1);
+            final EditText textViewSubject = (EditText) dialog.findViewById(R.id.tvsubject_value);
+            textViewSubject.setText(result.getParameters().get("ticketsubject").toString().replaceAll("\"", "").replaceAll("\"", "").replaceAll("\\[", "").replaceAll("\\]", ""));
+            final EditText textViewDescription = (EditText) dialog.findViewById(R.id.tvdescription_value);
+            textViewDescription.setText(result.getParameters().get("ticketdesc").toString().replaceAll("\"", "").replaceAll("\"", "").replaceAll("\\[", "").replaceAll("\\]", ""));
+
+            Button okButton = (Button) dialog.findViewById(R.id.createbtn);
+            ImageView crossImg = (ImageView) dialog.findViewById(R.id.crossicon);
+            okButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    if (textViewSubject.getText().toString().length() > 0) {
+                        if (textViewDescription.getText().toString().length() > 0) {
+                            dialog.dismiss();
+                            setChatInputs("Creating ticket...", false);
+                            createTicket(branchId.get(spinnerBranches.getSelectedItemPosition()), textViewSubject.getText().toString(), textViewDescription.getText().toString());
+                            Log.e("result", "Saved");
+                        } else {
+                            textViewDescription.setError(getResources().getString(R.string.error_desc));
+                        }
+
+                    } else {
+                        textViewSubject.setError(getResources().getString(R.string.error_subject));
+                    }
+
+                }
+            });
+            crossImg.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+
+            dialog.show();
         } else {
-            textViewDepartment.setText(result.getParameters().get("department").toString().replaceAll("\"", "").replaceAll("\"", "").replaceAll("\\[", "").replaceAll("\\]", ""));
+            App.getApiController().getBranches(this, RequestParams.TYPE_GET_BRANCHES);
         }
-        TextView textViewSubject = (TextView) dialog.findViewById(R.id.tvsubject_value);
-        textViewSubject.setText(result.getParameters().get("ticketsubject").toString().replaceAll("\"", "").replaceAll("\"", "").replaceAll("\\[", "").replaceAll("\\]", ""));
-        TextView textViewDescription = (TextView) dialog.findViewById(R.id.tvdescription_value);
-        textViewDescription.setText(result.getParameters().get("ticketdesc").toString().replaceAll("\"", "").replaceAll("\"", "").replaceAll("\\[", "").replaceAll("\\]", ""));
-
-        Button okButton = (Button) dialog.findViewById(R.id.createbtn);
-        ImageView crossImg = (ImageView) dialog.findViewById(R.id.crossicon);
-        okButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-                setChatInputs("Creating ticket...", false);
-                createTicket(result);
-                Log.e("result", "Saved");
-            }
-        });
-        crossImg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-
-        dialog.show();
 
     }
 
@@ -522,7 +557,7 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
     public void onResponse(Response response, String type) {
         if (response.isSuccessful()) {
             if (type.equalsIgnoreCase(RequestParams.TYPE_GET_BRANCHES)) {
-                List<BranchesModel> branches = (List<BranchesModel>) response.body();
+                branches = (List<BranchesModel>) response.body();
                 setChatInputs("Okay!! Please select a department for which you want to create a ticket.", false);
                 parseBranches(branches);
             } else if (type.equalsIgnoreCase(RequestParams.TYPE_GET_ALL_TICKET)) {

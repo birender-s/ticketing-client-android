@@ -42,5 +42,7 @@
     <string name="ticket_preview">Ticket Preview</string>
     <string name="email_exist">Email already exists</string>
     <string name="womething_wrong">Something went wrong</string>
+    <string name="error_subject">Enter Subject</string>
+    <string name="error_desc">Enter Description</string>
 
 </resources>

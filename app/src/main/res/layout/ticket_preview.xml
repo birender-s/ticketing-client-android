@@ -18,8 +18,8 @@
             android:layout_centerVertical="true"
             android:layout_gravity="center"
             android:padding="10dp"
-            android:textColor="@color/aidialog_background"
             android:text="@string/ticket_preview"
+            android:textColor="@color/aidialog_background"
             android:textSize="25sp" />
 
         <ImageView
@@ -56,19 +56,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:layout_marginLeft="10dp"
                 android:text="Department:"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/tvdepartment_value"
+
+            <Spinner
+                android:id="@+id/spdepartment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
                 android:layout_marginLeft="10dp"
-                android:textSize="12sp"
-                android:textStyle="normal" />
+                android:layout_marginRight="10dp"></Spinner>
+
 
             <TextView
                 android:id="@+id/tvsubject"
@@ -80,13 +79,13 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <TextView
+            <EditText
                 android:id="@+id/tvsubject_value"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_marginLeft="10dp"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:textStyle="normal" />
 
             <TextView
@@ -99,13 +98,13 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <TextView
+            <EditText
                 android:id="@+id/tvdescription_value"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_marginLeft="10dp"
-                android:textSize="12sp"
+                android:textSize="14sp"
                 android:textStyle="italic" />
 
         </LinearLayout>
