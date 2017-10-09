@@ -1,6 +1,8 @@
 # Grievance Reporting Android App 
 Android Chatbot application (looks pretty much like Google Assistant App) which interacts with user using natural language /voice interaction by leveraging Google’s [api.ai](https://api.ai/) NLP platform to auto populate request attributes and then asks users to provide missing details using speech /chat interaction and finally creates ticket into [Diamantedesk](https://diamantedesk.com/getting-started/) Ticketing system. 
 
+<<<short VIDEO HERE>>>
+
 This solution won Hackathon 2017 @ Infosys Chandigarh (India) help in collaboration with Chandigarh Administration.
 
 ## Features
@@ -31,37 +33,18 @@ You would need to do following steps:
 * Setup API.AI App as explained here
 * Modify Android app configuration to point to DiamanteDesk and API.AI backends
 
-
-### Generating your client
-- Create your own [Api.ai](https://api.ai/) client as per need from below link
-- Set up your [Diamantedesk](https://diamantedesk.com/getting-started/)
-- Use the Ticketing-Client-Android sample
-
 ### Contributing  
 Please raise an issue of the requirement so that a discussion can take before any code is written, 
 even if you intend to raise a pull request.
 
 Please see Sample app for full example.
 
-### MIT License
+## To-Do
 
-Copyright (c) [2017] [Birender,Kamal,Bimal,Harendra]
+* The app currently doesn't support OTP verification so requires SMS gateway and backend integration
+* The bot is currently not multi-lingual
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+## License
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+MIT
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
