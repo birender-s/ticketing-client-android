@@ -24,7 +24,7 @@ public class Constant {
     public static final String PASSWORDH = "7c19496a1a40bcee51ebeefbaaed9d115d304d81";
     public static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
-    public static final String AI_CONFIGURATION_TOKEN="0882e9aa21ef450694115050513f3822";
+    public static final String AI_CONFIGURATION_TOKEN="04fcf37688c1491bbc1aa39128923365";
     public static ProgressDialog createDialog(Context context, String message) {
         ProgressDialog progressDialog = new ProgressDialog(context);
         if (null != message) {

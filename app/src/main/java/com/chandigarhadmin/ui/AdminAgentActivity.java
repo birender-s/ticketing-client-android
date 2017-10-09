@@ -204,7 +204,7 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
         chatBotResponseList = new ArrayList<>();
         mAdapter = new ChatAdapter(this, chatBotResponseList, this);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        mLayoutManager.setStackFromEnd(true);
+       // mLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
@@ -251,7 +251,7 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
         recognitionProgressView.play();
 
         //making code to autoscroll when layout changes
-        recyclerView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+      /*  recyclerView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
             @Override
             public void onLayoutChange(View v,
                                        int left, int top, int right, int bottom,
@@ -264,7 +264,7 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
                     }
                 }, 1);
             }
-        });
+        });*/
     }
 
     //AIRequest should have query OR event
@@ -362,6 +362,7 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
         mAdapter.notifyDataSetChanged();
         if (!align)
             textToSpeech.speak(input, TextToSpeech.QUEUE_FLUSH, null);
+        recyclerView.smoothScrollToPosition(mAdapter.getItemCount() - 1);
     }
 
     private void parseBranches(List<BranchesModel> branchesModels) {
@@ -369,7 +370,9 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
         chatPojoModel.setAlignRight(false);
         chatPojoModel.setDepartmentResponse(branchesModels);
         chatBotResponseList.add(chatPojoModel);
+
         mAdapter.notifyDataSetChanged();
+        recyclerView.smoothScrollToPosition(mAdapter.getItemCount() - 1);
     }
 
     private void parseTickets(List<GetTicketResponse> ticketResponseList) {
@@ -378,6 +381,7 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
         chatPojoModel.setGetTicketResponse(ticketResponseList);
         chatBotResponseList.add(chatPojoModel);
         mAdapter.notifyDataSetChanged();
+        recyclerView.smoothScrollToPosition(mAdapter.getItemCount() - 1);
     }
 
     private void showResults(Bundle results) {
