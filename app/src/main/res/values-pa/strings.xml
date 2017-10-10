@@ -37,5 +37,17 @@
     <string name="resend_otp">OTP ਦੁਬਾਰਾ ਭੇਜੋ</string>
     <string name="out_of_scope">ਹੈਕਟੇਨ 2017 ਲਈ ਸਕੋਪ ਤੋਂ ਬਾਹਰ</string>
     <string name="view_tickets">ਵੇਖੋ ਟਿਕਟ</string>
+    <string name="ok_btn">ਫੀਡਬੈਕ ਬਣਾਓ</string>
+    <string name="cancel_btn">ਰੱਦ ਕਰੋ</string>
+    <string name="ticket_preview">ਫੀਡਬੈਕ ਪ੍ਰੀਵਿਊ</string>
+    <string name="email_exist">ਈਮੇਲ ਪਹਿਲਾਂ ਤੋਂ ਮੌਜੂਦ ਹੈ</string>
+    <string name="something_wrong">ਕੁਝ ਗਲਤ ਹੋ ਗਿਆ</string>
+    <string name="error_subject">ਵਿਸ਼ਾ ਦਿਓ</string>
+    <string name="error_desc">ਵੇਰਵਾ ਦਿਓ</string>
+    <string name="select_department">ਠੀਕ ਹੈ !! ਕਿਰਪਾ ਕਰਕੇ ਉਸ ਵਿਭਾਗ ਦਾ ਚੋਣ ਕਰੋ ਜਿਸ ਲਈ ਤੁਸੀਂ ਕੋਈ ਫੀਡਬੈਕ ਬਣਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ.</string>
+    <string name="feedback_created">ਇੱਕ ਸੰਦਰਭ ID ਨਾਲ ਪ੍ਰਤੀਕਰਮ ਬਣਾਇਆ ਗਿਆ:</string>
+    <string name="creating_feedback">ਫੀਡਬੈਕ ਬਣਾ ਰਿਹਾ ਹੈ ...</string>
+
+    <string name="here_go">ਜਾਓ...</string>
 
 </resources>
