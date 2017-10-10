@@ -19,7 +19,7 @@
             android:background="@color/aidialog_background"
             android:gravity="center_horizontal"
             android:padding="15dp"
-            android:text="Tickets"
+            android:text="@string/feedbacks"
             android:textSize="20sp"
             android:textStyle="normal" />
 

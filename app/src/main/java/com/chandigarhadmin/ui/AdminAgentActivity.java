@@ -150,7 +150,7 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
         sessionManager = new SessionManager(this);
         initializeAI();
         initializeViews();
-        setChatInputs("Hi, How may i Assist you ?", false);
+        setChatInputs(getResources().getString(R.string.assistance), false);
     }
 
     public void showPopup(View v) {
@@ -204,7 +204,7 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
         chatBotResponseList = new ArrayList<>();
         mAdapter = new ChatAdapter(this, chatBotResponseList, this);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-       // mLayoutManager.setStackFromEnd(true);
+        // mLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
@@ -250,21 +250,7 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
         recognitionProgressView.setBarMaxHeightsInDp(heights);
         recognitionProgressView.play();
 
-        //making code to autoscroll when layout changes
-      /*  recyclerView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
-            @Override
-            public void onLayoutChange(View v,
-                                       int left, int top, int right, int bottom,
-                                       int oldLeft, int oldTop, int oldRight, int oldBottom) {
-                recyclerView.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        recyclerView.scrollToPosition(
-                                recyclerView.getAdapter().getItemCount() - 1);
-                    }
-                }, 1);
-            }
-        });*/
+
     }
 
     //AIRequest should have query OR event
@@ -303,20 +289,20 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
     public void onResult(AIResponse response) {
         Result result = response.getResult();
         if (Constant.isNetworkAvailable(AdminAgentActivity.this)) {
-            if (result.getAction().equalsIgnoreCase("createticket")) {
+            if (result.getAction().equalsIgnoreCase(getResources().getString(R.string.createticket))) {
 
-                if (result.getParameters().get("department").toString().equalsIgnoreCase("[]")) {
+                if (result.getParameters().get(getResources().getString(R.string.department)).toString().equalsIgnoreCase("[]")) {
                     App.getApiController().getBranches(this, RequestParams.TYPE_GET_BRANCHES);
-                } else if (result.getParameters().get("ticketsubject").toString().equalsIgnoreCase("[]")) {
+                } else if (result.getParameters().get(getResources().getString(R.string.ticketsubject)).toString().equalsIgnoreCase("[]")) {
                     setChatInputs(response.getResult().getFulfillment().getSpeech(), false);
-                } else if (result.getParameters().get("ticketdesc").toString().equalsIgnoreCase("[]")) {
+                } else if (result.getParameters().get(getResources().getString(R.string.ticketdesc)).toString().equalsIgnoreCase("[]")) {
                     setChatInputs(response.getResult().getFulfillment().getSpeech(), false);
-                } else if (result.getFulfillment().getSpeech().equalsIgnoreCase("save ticket")) {
+                } else if (result.getFulfillment().getSpeech().equalsIgnoreCase(getResources().getString(R.string.save_ticket))) {
                     // TODO: 29/09/17 need to show the preview
                     previewTicket(result);
 
                 }
-            } else if (result.getAction().equalsIgnoreCase("fetchalltickets")) {
+            } else if (result.getAction().equalsIgnoreCase(getResources().getString(R.string.fetchalltickets))) {
                 getTickets();
             } else {
                 setChatInputs(response.getResult().getFulfillment().getSpeech(), false);
@@ -362,6 +348,7 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
         mAdapter.notifyDataSetChanged();
         if (!align)
             textToSpeech.speak(input, TextToSpeech.QUEUE_FLUSH, null);
+        //making code to autoscroll when layout changes
         recyclerView.smoothScrollToPosition(mAdapter.getItemCount() - 1);
     }
 
@@ -372,6 +359,7 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
         chatBotResponseList.add(chatPojoModel);
 
         mAdapter.notifyDataSetChanged();
+        //making code to autoscroll when layout changes
         recyclerView.smoothScrollToPosition(mAdapter.getItemCount() - 1);
     }
 
@@ -381,6 +369,7 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
         chatPojoModel.setGetTicketResponse(ticketResponseList);
         chatBotResponseList.add(chatPojoModel);
         mAdapter.notifyDataSetChanged();
+        //making code to autoscroll when layout changes
         recyclerView.smoothScrollToPosition(mAdapter.getItemCount() - 1);
     }
 
@@ -517,9 +506,9 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
             spinnerBranches.setAdapter(dataAdapter);
             spinnerBranches.setSelection(indexbranch - 1);
             final EditText textViewSubject = (EditText) dialog.findViewById(R.id.tvsubject_value);
-            textViewSubject.setText(result.getParameters().get("ticketsubject").toString().replaceAll("\"", "").replaceAll("\"", "").replaceAll("\\[", "").replaceAll("\\]", ""));
+            textViewSubject.setText(result.getParameters().get(getResources().getString(R.string.ticketsubject)).toString().replaceAll("\"", "").replaceAll("\"", "").replaceAll("\\[", "").replaceAll("\\]", ""));
             final EditText textViewDescription = (EditText) dialog.findViewById(R.id.tvdescription_value);
-            textViewDescription.setText(result.getParameters().get("ticketdesc").toString().replaceAll("\"", "").replaceAll("\"", "").replaceAll("\\[", "").replaceAll("\\]", ""));
+            textViewDescription.setText(result.getParameters().get(getResources().getString(R.string.ticketdesc)).toString().replaceAll("\"", "").replaceAll("\"", "").replaceAll("\\[", "").replaceAll("\\]", ""));
 
             Button okButton = (Button) dialog.findViewById(R.id.createbtn);
             ImageView crossImg = (ImageView) dialog.findViewById(R.id.crossicon);
@@ -530,7 +519,7 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
                     if (textViewSubject.getText().toString().length() > 0) {
                         if (textViewDescription.getText().toString().length() > 0) {
                             dialog.dismiss();
-                            setChatInputs("Creating ticket...", false);
+                            setChatInputs(getResources().getString(R.string.creating_feedback), false);
                             createTicket(branchId.get(spinnerBranches.getSelectedItemPosition()), textViewSubject.getText().toString(), textViewDescription.getText().toString());
                             Log.e("result", "Saved");
                         } else {
@@ -562,15 +551,15 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
         if (response.isSuccessful()) {
             if (type.equalsIgnoreCase(RequestParams.TYPE_GET_BRANCHES)) {
                 branches = (List<BranchesModel>) response.body();
-                setChatInputs("Okay!! Please select a department for which you want to create a ticket.", false);
+                setChatInputs(getResources().getString(R.string.select_department), false);
                 parseBranches(branches);
             } else if (type.equalsIgnoreCase(RequestParams.TYPE_GET_ALL_TICKET)) {
                 List<GetTicketResponse> tickets = (List<GetTicketResponse>) response.body();
-                setChatInputs("Here you go...", false);
+                setChatInputs(getResources().getString(R.string.here_go), false);
                 parseTickets(tickets);
             } else if (type.equalsIgnoreCase(RequestParams.TYPE_CREATE_TICKET)) {
                 createTicketResponse = (CreateTicketResponse) response.body();
-                setChatInputs("Ticket created " + "with a Reference ID: " + createTicketResponse.getId(), false);
+                setChatInputs(getResources().getString(R.string.feedback_created) + createTicketResponse.getId(), false);
             }
         } else {
             try {
@@ -579,7 +568,7 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
                     Constant.showToastMessage(AdminAgentActivity.this, jObjError.getString("error"));
                 }
             } catch (Exception e) {
-                Constant.showToastMessage(AdminAgentActivity.this, "Something went wrong");
+                Constant.showToastMessage(AdminAgentActivity.this, getResources().getString(R.string.something_wrong));
             }
         }
 

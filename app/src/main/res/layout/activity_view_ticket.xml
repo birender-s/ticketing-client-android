@@ -18,7 +18,7 @@
             android:layout_centerVertical="true"
             android:layout_gravity="center"
             android:padding="10dp"
-            android:text="Ticket Details"
+            android:text="@string/feedback_details"
             android:textSize="20sp" />
 
         <ImageView

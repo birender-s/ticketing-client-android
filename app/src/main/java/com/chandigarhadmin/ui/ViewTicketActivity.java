@@ -97,26 +97,26 @@ public class ViewTicketActivity extends AppCompatActivity implements ResponseCal
             }
         }
         if (null == getTicketResponse.getStatus()) {
-            getTicketResponse.setStatus("NA");
+            getTicketResponse.setStatus(getResources().getString(R.string.feedback_na));
         }
 
-        textViewStatus.setText(" Ticket Status :" + getTicketResponse.getStatus());
+        textViewStatus.setText(getResources().getString(R.string.feedback_status) + getTicketResponse.getStatus());
         if (null == getTicketResponse.getId()) {
-            textViewTicketId.setText("Ticket Refrence: NA");
+            textViewTicketId.setText(getResources().getString(R.string.feedback_status)+getResources().getString(R.string.feedback_na));
         } else {
-            textViewTicketId.setText("Ticket Refrence: " + getTicketResponse.getId());
+            textViewTicketId.setText(getResources().getString(R.string.feedback_status) + getTicketResponse.getId());
         }
 
         if (null == ticketAssignee) {
-            ticketAssignee = "NA";
+            ticketAssignee = getResources().getString(R.string.feedback_na);
         }
         //  textViewAssignee.setText(ticketAssignee);
         if (null == getTicketResponse.getSubject()) {
-            getTicketResponse.setSubject("NA");
+            getTicketResponse.setSubject(getResources().getString(R.string.feedback_na));
         }
         textViewSubject.setText(getTicketResponse.getSubject());
         if (null == getTicketResponse.getDescription()) {
-            getTicketResponse.setDescription("NA");
+            getTicketResponse.setDescription(getResources().getString(R.string.feedback_na));
         }
         textViewDescription.setText(Html.fromHtml(getTicketResponse.getDescription()));
     }
@@ -145,7 +145,7 @@ public class ViewTicketActivity extends AppCompatActivity implements ResponseCal
                         Constant.showToastMessage(ViewTicketActivity.this, jObjError.getString("error"));
                     }
                 } catch (Exception e) {
-                    Constant.showToastMessage(ViewTicketActivity.this, "Something went wrong");
+                    Constant.showToastMessage(ViewTicketActivity.this, getResources().getString(R.string.something_wrong));
                 }
 
             }

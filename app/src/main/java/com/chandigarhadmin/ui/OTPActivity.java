@@ -115,7 +115,7 @@ public class OTPActivity extends AppCompatActivity implements ResponseCallback {
                     navigateToConfirmOtp();
                 }
             } catch (Exception e) {
-                Constant.showToastMessage(OTPActivity.this, getString(R.string.womething_wrong));
+                Constant.showToastMessage(OTPActivity.this, getString(R.string.something_wrong));
             }
         }
 

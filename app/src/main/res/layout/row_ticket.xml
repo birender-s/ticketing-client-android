@@ -61,7 +61,7 @@
                 android:padding="10dp"
                 android:text="Subject"
                 android:textColor="@android:color/black"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView

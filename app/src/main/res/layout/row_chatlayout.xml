@@ -185,7 +185,7 @@
                     android:layout_toRightOf="@+id/dividerview"
                     android:background="@drawable/rounded_corner1"
                     android:padding="5dp"
-                    android:text="View Ticket"
+                    android:text="@string/view_tickets"
                     android:textColor="#000"
                     android:textSize="12sp" />
             </LinearLayout>
