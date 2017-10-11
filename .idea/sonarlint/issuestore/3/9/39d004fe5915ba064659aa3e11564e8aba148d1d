@@ -1,0 +1,9 @@
+
+usquid:S1450"`Remove the "getTicketResponse" field and declare it as a local variable in the relevant methods.(¦ò
+lsquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„À¼Íÿÿÿÿÿ
+esquid:S1226"KIntroduce a new variable instead of reusing the parameter "ticketAssignee".(÷Ñ¸’üÿÿÿÿ
+Fsquid:S1659",Declare "ticketAssignee" on a separate line.(ìÃÔÌùÿÿÿÿ
+=squid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿ
+}squid:S1450"cRemove the "createTicketResponse" field and declare it as a local variable in the relevant methods.(êÚøÿÿÿÿ
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Ë°ÆØÿÿÿÿÿ8ï»©€ï+
+csquid:S1854"BRemove this useless assignment to local variable "ticketAssignee".(÷Ñ¸’üÿÿÿÿ8ï»©€ï+

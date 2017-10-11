@@ -15,6 +15,7 @@ public class SessionManager {
     public static final String KEY_USER_NAME = "userNAME";
     public static final String KEY_PHONE_NUMBER = "phone_no";
     public static final String KEY_USER_EMAIL = "email";
+    public static final String KEY_USER_ACTIVE = "is_active";
     // Sharedpref file name
     private static final String PREF_NAME = "chdadmin";
     // All Shared Preferences Keys
@@ -38,7 +39,7 @@ public class SessionManager {
     /**
      * Create login session
      */
-    public void createLoginSession(String username, String phone, String email) {
+    public void createLoginSession(String username, String phone, String email, boolean isActive) {
         // Storing login value as TRUE
         editor.putBoolean(IS_LOGIN, true);
         ;
@@ -47,6 +48,7 @@ public class SessionManager {
         editor.putString(KEY_PHONE_NUMBER, phone);
 
         editor.putString(KEY_USER_NAME, username);
+        editor.putBoolean(KEY_USER_ACTIVE, isActive);
 
         // commit changes
         editor.apply();
@@ -132,6 +134,10 @@ public class SessionManager {
     public void saveLanguage(String key, String value) {
         editor.putString(key, value);
         editor.apply();
+    }
+    // is user is a valid user or email confirmed ?
+    private boolean getUserActive(){
+        return pref.getBoolean(KEY_USER_ACTIVE, false);
     }
 
 }

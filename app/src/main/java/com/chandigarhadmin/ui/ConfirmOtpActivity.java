@@ -176,7 +176,7 @@ public class ConfirmOtpActivity extends Activity implements ResponseCallback {
             } else {
                 email = getIntent().getStringExtra("phone").trim() + "@gmail.com";
             }
-        LoginUserModel user = new LoginUserModel(email, getIntent().getStringExtra(Constant.INPUT_USER), getIntent().getStringExtra("phone").trim());
+        LoginUserModel user = new LoginUserModel(email, getIntent().getStringExtra(Constant.INPUT_FIRST_NAME), getIntent().getStringExtra("phone").trim());
         if(Constant.isNetworkAvailable(ConfirmOtpActivity.this)) {
             App.getApiController().confirmOtp(this, user, RequestParams.TYPE_CREATE_USER);
         } else {
@@ -192,7 +192,7 @@ public class ConfirmOtpActivity extends Activity implements ResponseCallback {
             if (result.isSuccessful()) {
                 CreateUserResponse response = (CreateUserResponse) result.body();
                 if (null != response && !Constant.checkString(response.getError())) {
-                    sessionManager.createLoginSession(response.getFirstName(), response.getLastName(), response.getEmail());
+                    sessionManager.createLoginSession(response.getFirstName(), response.getLastName(), response.getEmail(),response.getApiUser().getIsActive());
                     sessionManager.setKeyUserId(response.getId());
                     navigateToDashBoard();
                 } else if (null != response) {

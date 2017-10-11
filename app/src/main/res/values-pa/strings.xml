@@ -5,6 +5,8 @@
     <string name="hindi">हिंदी</string>
     <string name="punjabi">ਪੰਜਾਬੀ</string>
     <string name="continue_text">ਜਾਰੀ ਰੱਖੋ</string>
+    <string name="enter_first_name"> First Name</string>
+    <string name="enter_last_name"> Last Name</string>
     <string name="enter_username">ਨਾਮ</string>
     <string name="your_email_address">ਤੁਹਾਡਾ ਈਮੇਲ ਪਤਾ</string>
     <string name="proceed">ਅੱਗੇ ਵਧੋ</string>
@@ -16,6 +18,7 @@
     <string name="phone_error">ਸਹੀ ਫੋਨ ਨੰਬਰ ਦਾਖਲ ਕਰੋ</string>
     <string name="second">ਸਕਿੰਟ</string>
     <string name="enter_your_phone_number">ਆਪਣਾ ਫੋਨ ਨੰਬਰ ਦਰਜ ਕਰੋ</string>
+    <string name="enter_your_email">ਆਪਣਾ ਈ - ਮੇਲ ਭਰੋ</string>
     <string name="phone_number">ਫੋਨ ਨੰਬਰ</string>
     <string name="enter_otp_here">ਇੱਥੇ ਓ ਟੀ ਪੀ ਐਂਟਰ ਕਰੋ</string>
     <string name="waiting_1_sec">1 ਸਕਿੰਟ ਦੀ ਉਡੀਕ ਕਰ ਰਿਹਾ ਹੈ</string>

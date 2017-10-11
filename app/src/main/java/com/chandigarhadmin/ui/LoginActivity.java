@@ -24,18 +24,17 @@ public class LoginActivity extends Activity {
     @BindView(R.id.proceedbtn)
     Button btnProceed;
 
-    @BindView(R.id.et_email)
-    EditText etEmailInput;
+    @BindView(R.id.etlastname)
+    EditText etlastname;
     @BindView(R.id.etusername)
     EditText etUserName;
+
     @OnClick(R.id.proceedbtn)
     public void clickProceedButton() {
         if (validateInputs()) {
             Intent it = new Intent(LoginActivity.this, OTPActivity.class);
-            it.putExtra(Constant.INPUT_USER, etUserName.getText().toString());
-            if (!TextUtils.isEmpty(etEmailInput.getText().toString().trim())) {
-                it.putExtra(Constant.INPUT_EMAIL, etEmailInput.getText());
-            }
+            it.putExtra(Constant.INPUT_FIRST_NAME, etUserName.getText().toString());
+            it.putExtra(Constant.INPUT_LAST_NAME, etlastname.getText().toString());
             startActivity(it);
         }
     }
@@ -52,19 +51,18 @@ public class LoginActivity extends Activity {
 
         if (!TextUtils.isEmpty(etUserName.getText().toString().trim()) && etUserName.getText().length() > 3) {
 
-            return validateEmail();
+            return validateLastName();
         } else {
             etUserName.setError(getString(R.string.username_error));
         }
         return false;
     }
 
-    private boolean validateEmail() {
-        if (!TextUtils.isEmpty(etEmailInput.getText().toString().trim()) && etEmailInput.getText().toString().matches(Constant.EMAIL_PATTERN)) {
+    private boolean validateLastName() {
+        if (!TextUtils.isEmpty(etlastname.getText().toString().trim()) && etlastname.getText().length() > 3) {
             return true;
-        } else if (TextUtils.isEmpty(etEmailInput.getText().toString().trim())) {
-            etEmailInput.setError(getString(R.string.email_error));
-            return true;
+        } else {
+            etlastname.setError(getString(R.string.username_error));
         }
         return false;
     }

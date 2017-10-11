@@ -11,7 +11,8 @@ public class Constant {
     public static final String USERNAME = "diamantedesk";
   //  public static final String USERNAME = "admin";
     public static final String WHITE_SPACE = " ";
-    public static final String INPUT_USER = "username";
+    public static final String INPUT_FIRST_NAME = "first_name";
+    public static final String INPUT_LAST_NAME = "last_name";
     public static final String INPUT_EMAIL = "email";
     public static final String INPUT_TICKET_DATA = "ticket_data";
     public static final String INPUT_CTICKET_DATA = "cticket_data";

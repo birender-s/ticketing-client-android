@@ -5,6 +5,7 @@ import com.chandigarhadmin.interfaces.ResponseCallback;
 import com.chandigarhadmin.interfaces.RetrofitApiInterface;
 import com.chandigarhadmin.models.CreateTicketModel;
 import com.chandigarhadmin.models.LoginUserModel;
+import com.chandigarhadmin.utils.Constant;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,7 +33,11 @@ public class ApiController {
     //get user by email call
     public void getUserByEmail(ResponseCallback responseCallback, String email, String type) {
         this.responseCallback = responseCallback;
-        call = apiInterface.getUserByEmail(email + "@gmail.com");
+        if (email.matches(Constant.EMAIL_PATTERN)) {
+            call = apiInterface.getUserByEmail(email);
+        } else {
+            call = apiInterface.getUserByEmail(email + "@gmail.com");
+        }
         this.requestType = type;
         userResponse();
     }

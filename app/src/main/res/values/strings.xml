@@ -6,6 +6,8 @@
     <string name="punjabi">ਪੰਜਾਬੀ</string>
     <string name="assistance">Hi, How may i Assist you ?</string>
     <string name="continue_text">Continue</string>
+    <string name="enter_first_name"> First Name</string>
+    <string name="enter_last_name"> Last Name</string>
     <string name="enter_username">Name</string>
     <string name="your_email_address">your email address</string>
     <string name="proceed">Proceed</string>
@@ -17,6 +19,7 @@
     <string name="waiting">waiting</string>
     <string name="second">sec</string>
     <string name="enter_your_phone_number">Enter Your Phone Number</string>
+    <string name="enter_your_email">Enter Your Email</string>
     <string name="phone_number">phone number</string>
     <string name="enter_otp_here">Enter otp here</string>
     <string name="waiting_1_sec">waiting 1 sec</string>
