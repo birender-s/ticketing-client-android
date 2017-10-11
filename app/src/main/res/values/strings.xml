@@ -66,5 +66,6 @@
     <string name="ticketdesc">ticketdesc</string>
     <string name="save_ticket">save ticket</string>
     <string name="here_go">Here you go...</string>
+    <string name="email_not_verified">Your email verification is pending, please check your email and activate account first !</string>
 
 </resources>

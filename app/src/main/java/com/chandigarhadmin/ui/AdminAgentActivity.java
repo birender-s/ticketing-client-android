@@ -93,7 +93,7 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
     private TextToSpeech textToSpeech;
     private CreateTicketResponse createTicketResponse;
     private String branchName;
-    List<BranchesModel> branches;
+    private List<BranchesModel> branches;
 
 
     @OnClick(R.id.btn_chat_search)
@@ -255,38 +255,43 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
 
     //AIRequest should have query OR event
     private void sendRequest(String queryString) {
-        createTicketResponse = null;
-        final AsyncTask<String, Void, AIResponse> task = new AsyncTask<String, Void, AIResponse>() {
-            private AIError aiError;
+        if (sessionManager.getUserActive()) {
+            createTicketResponse = null;
+            final AsyncTask<String, Void, AIResponse> task = new AsyncTask<String, Void, AIResponse>() {
+                private AIError aiError;
 
-            @Override
-            protected AIResponse doInBackground(final String... params) {
-                final AIRequest request = new AIRequest();
-                String query = params[0];
-                if (!TextUtils.isEmpty(query))
-                    request.setQuery(query);
-                try {
-                    return aiService.textRequest(request);
-                } catch (final AIServiceException e) {
-                    aiError = new AIError(e);
-                    return null;
+                @Override
+                protected AIResponse doInBackground(final String... params) {
+                    final AIRequest request = new AIRequest();
+                    String query = params[0];
+                    if (!TextUtils.isEmpty(query))
+                        request.setQuery(query);
+                    try {
+                        return aiService.textRequest(request);
+                    } catch (final AIServiceException e) {
+                        aiError = new AIError(e);
+                        return null;
+                    }
                 }
-            }
 
-            @Override
-            protected void onPostExecute(final AIResponse response) {
-                if (response != null) {
-                    onResult(response);
-                } else {
-                    onError(aiError);
+                @Override
+                protected void onPostExecute(final AIResponse response) {
+                    if (response != null) {
+                        onResult(response);
+                    } else {
+                        onError(aiError);
+                    }
                 }
-            }
-        };
-        task.execute(queryString);
+            };
+            task.execute(queryString);
+        } else {
+            setChatInputs(getString(R.string.email_not_verified), false);
+        }
     }
 
     @Override
     public void onResult(AIResponse response) {
+
         Result result = response.getResult();
         if (Constant.isNetworkAvailable(AdminAgentActivity.this)) {
             if (result.getAction().equalsIgnoreCase(getResources().getString(R.string.createticket))) {
@@ -310,6 +315,7 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
         } else {
             Constant.showToastMessage(AdminAgentActivity.this, getString(R.string.no_internet));
         }
+
     }
 
     @Override
@@ -550,6 +556,9 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
     public void onResponse(Response response, String type) {
         if (response.isSuccessful()) {
             if (type.equalsIgnoreCase(RequestParams.TYPE_GET_BRANCHES)) {
+                if (null != branches) {
+                    branches.clear();
+                }
                 branches = (List<BranchesModel>) response.body();
                 setChatInputs(getResources().getString(R.string.select_department), false);
                 parseBranches(branches);

@@ -136,7 +136,7 @@ public class SessionManager {
         editor.apply();
     }
     // is user is a valid user or email confirmed ?
-    private boolean getUserActive(){
+    public boolean getUserActive(){
         return pref.getBoolean(KEY_USER_ACTIVE, false);
     }
 

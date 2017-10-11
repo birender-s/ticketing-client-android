@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/colorPrimary"
     android:orientation="vertical">
 
@@ -16,6 +17,7 @@
         android:textSize="@dimen/bold_size" />
 
     <RelativeLayout
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/titletv"
@@ -80,9 +82,17 @@
         android:layout_marginEnd="@dimen/fifteen"
         android:layout_marginLeft="@dimen/fifteen"
         android:layout_marginRight="@dimen/fifteen"
+        android:visibility="gone"
         android:layout_marginStart="@dimen/fifteen"
         android:background="@drawable/rounded_button_background"
         android:text="@string/proceed"
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/bold_size" />
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/sign_in_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="visible"
+        tools:visibility="visible" />
 </RelativeLayout>

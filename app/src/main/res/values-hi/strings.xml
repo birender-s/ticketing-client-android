@@ -54,5 +54,6 @@
     <string name="creating_feedback">फ़ीडबैक बनाना ...</string>
 
     <string name="here_go">यहाँ तुम जाओ ...</string>
+    <string name="email_not_verified">आपका ईमेल सत्यापन लंबित है, कृपया अपना ईमेल जांचें और पहले खाता सक्रिय करें!</string>
 
 </resources>

@@ -33,7 +33,7 @@ public class RetrofitApiClient {
                 //adding request headers
                 User user = new User();
                 user.setUsername(Constant.USERNAME);
-                user.setPassword(Constant.PASSWORDH);
+                user.setPassword(Constant.APIKEY);
                 WsseToken token = new WsseToken(user);
                 Request request = original.newBuilder()
                         .header(WsseToken.HEADER_AUTHORIZATION, token.getAuthorizationHeader())
