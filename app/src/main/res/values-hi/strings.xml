@@ -13,6 +13,7 @@
     <string name="your_email_address">आपका ईमेल पता</string>
     <string name="proceed">बढ़ना</string>
     <string name="enter_your_details">आपके विवरण दर्ज करें</string>
+    <string name="login_gplus">Google के साथ लॉगिन करें</string>
     <string name="username_error">उपयोगकर्ता नाम तीन से अधिक वर्ण होना चाहिए</string>
     <string name="email_error">एक वैध ईमेल प्रविष्ट करें</string>
     <string name="submit">जमा करें</string>

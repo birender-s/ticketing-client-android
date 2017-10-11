@@ -12,6 +12,7 @@
     <string name="your_email_address">your email address</string>
     <string name="proceed">Proceed</string>
     <string name="enter_your_details">Enter Your Details</string>
+    <string name="login_gplus">Login with Google </string>
     <string name="username_error">Username should be more three characters</string>
     <string name="email_error">Enter a valid email</string>
     <string name="submit">Submit</string>

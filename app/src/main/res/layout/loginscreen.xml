@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/fifty"
         android:gravity="center"
-        android:text="@string/enter_your_details"
+        android:text="@string/login_gplus"
         android:textColor="@android:color/white"
         android:textSize="@dimen/bold_size" />
 
@@ -90,8 +90,9 @@
         android:textSize="@dimen/bold_size" />
     <com.google.android.gms.common.SignInButton
         android:id="@+id/sign_in_button"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="20dp"
         android:layout_centerInParent="true"
         android:visibility="visible"
         tools:visibility="visible" />

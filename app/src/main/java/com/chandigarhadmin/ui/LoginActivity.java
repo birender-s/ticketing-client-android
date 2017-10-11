@@ -17,7 +17,9 @@ import com.chandigarhadmin.App;
 import com.chandigarhadmin.R;
 import com.chandigarhadmin.interfaces.ResponseCallback;
 import com.chandigarhadmin.models.CreateUserResponse;
+import com.chandigarhadmin.models.LoginUserModel;
 import com.chandigarhadmin.models.RequestParams;
+import com.chandigarhadmin.session.SessionManager;
 import com.chandigarhadmin.utils.Constant;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -54,6 +56,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     private static final int RC_SIGN_IN = 9001;
     private GoogleApiClient mGoogleApiClient;
     private ProgressDialog progressDialog;
+    private SessionManager sessionManager;
+    private String userEmail,userFirstName,userLastname;
 
     @OnClick(R.id.proceedbtn)
     public void clickProceedButton() {
@@ -75,7 +79,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         setContentView(R.layout.loginscreen);
         ButterKnife.bind(this);
         progressDialog=Constant.createDialog(this,null);
-
+        sessionManager=new SessionManager(this);
         // [START configure_signin]
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
@@ -146,10 +150,14 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         if (result.isSuccess()) {
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
-            Log.i("SIGIN SUCCESS",acct.getEmail());
+            userEmail=acct.getEmail();
+            userFirstName=acct.getGivenName();
+            userLastname=acct.getFamilyName();
+            getUserByEmail(userEmail);
+            /*Log.i("SIGIN SUCCESS",acct.getEmail());
             Log.i("DISPLAY NAME",acct.getDisplayName());
             Log.i("GIVE NAME",acct.getGivenName());
-            Log.i("FAMILY NAME",acct.getFamilyName());
+            Log.i("FAMILY NAME",acct.getFamilyName());*/
 
         } else {
             // Signed out, show unauthenticated UI.
@@ -235,18 +243,18 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
 
     @Override
-    public void onResponse(Response response, String type) {
+    public void onResponse(Response result, String type) {
         progressDialog.dismiss();
      //   Log.i("RESPONSE FROM server=", "" + result);
 
-      /*  if (result.isSuccessful()) {
+        if (result.isSuccessful()) {
             if (type.equalsIgnoreCase(RequestParams.TYPE_GET_USER_BY)) {
                 CreateUserResponse response = (CreateUserResponse) result.body();
 
                 //checking whether email returned in response matching with passed email or not
                 if (null != response && Constant.checkString(response.getEmail())
-                        && response.getEmail().contains(etEmail.getText().toString())) {
-                    Constant.showToastMessage(OTPActivity.this, getString(R.string.email_exist));
+                        && response.getEmail().contains(userEmail)) {
+                    Constant.showToastMessage(LoginActivity.this, getString(R.string.email_exist));
                     sessionManager.createLoginSession(response.getFirstName(), response.getLastName(), response.getEmail(), response.getApiUser().getIsActive());
                     sessionManager.setKeyUserId(response.getId());
                     navigateToDashBoard();
@@ -261,16 +269,16 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                             sessionManager.setKeyUserId(response.getId());
                             navigateToDashBoard();
                         } else if (null != response) {
-                            Constant.showToastMessage(OTPActivity.this, response.getError());
+                            Constant.showToastMessage(LoginActivity.this, response.getError());
                         }
                     } else {
                         try {
                             JSONObject jObjError = new JSONObject(result.errorBody().string());
                             if (jObjError.has("error")) {
-                                Constant.showToastMessage(OTPActivity.this, jObjError.getString("error"));
+                                Constant.showToastMessage(LoginActivity.this, jObjError.getString("error"));
                             }
                         } catch (Exception e) {
-                            Constant.showToastMessage(OTPActivity.this, getString(R.string.something_wrong));
+                            Constant.showToastMessage(LoginActivity.this, getString(R.string.something_wrong));
                         }
 
                     }
@@ -286,14 +294,36 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                     }
                 }
             } catch (Exception e) {
-                Constant.showToastMessage(OTPActivity.this, getString(R.string.something_wrong));
+                Constant.showToastMessage(this, getString(R.string.something_wrong));
             }
-        }*/
+        }
 
     }
 
     @Override
     public void onFailure(String message) {
+        Constant.showToastMessage(this, message);
 
+    }
+    private void saveLoginDetail() {
+        if (null != progressDialog && progressDialog.isShowing()) {
+            //already showing progress dialog
+        } else {
+            progressDialog.show();
+        }
+
+        LoginUserModel user = new LoginUserModel(userEmail, userFirstName, userLastname);
+        if (Constant.isNetworkAvailable(this)) {
+            App.getApiController().confirmOtp(this, user, RequestParams.TYPE_CREATE_USER);
+        } else {
+            Constant.showToastMessage(this, getString(R.string.no_internet));
+        }
+    }
+
+    private void navigateToDashBoard() {
+        Intent it = new Intent(this, AdminAgentActivity.class);
+        it.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(it);
+        finish();
     }
 }
