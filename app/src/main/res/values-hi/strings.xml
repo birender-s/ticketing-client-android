@@ -5,8 +5,10 @@
     <string name="hindi">हिंदी</string>
     <string name="punjabi">ਪੰਜਾਬੀ</string>
     <string name="continue_text">जारी रहना</string>
-    <string name="enter_first_name"> First Name</string>
-    <string name="enter_last_name"> Last Name</string>
+    <string name="enter_first_name"> पहला नाम
+</string>
+    <string name="enter_last_name"> अंतिम नाम
+</string>
     <string name="enter_username">नाम</string>
     <string name="your_email_address">आपका ईमेल पता</string>
     <string name="proceed">बढ़ना</string>
