@@ -11,8 +11,10 @@ import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PopupMenu;
@@ -48,6 +50,12 @@ import com.chandigarhadmin.session.SessionManager;
 import com.chandigarhadmin.utils.Constant;
 import com.github.zagum.speechrecognitionview.RecognitionProgressView;
 import com.github.zagum.speechrecognitionview.adapters.RecognitionListenerAdapter;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 
 import org.json.JSONObject;
 
@@ -68,7 +76,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import retrofit2.Response;
 
-public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItemClickListener, AIListener, SelectionCallbacks, ResponseCallback {
+public class AdminAgentActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener, AIListener, SelectionCallbacks, ResponseCallback, GoogleApiClient.OnConnectionFailedListener {
     //Create placeholder for user's consent to record_audio permission.
     //This will be used in handling callback
     private final int MY_PERMISSIONS_RECORD_AUDIO = 1;
@@ -94,6 +102,7 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
     private CreateTicketResponse createTicketResponse;
     private String branchName;
     private List<BranchesModel> branches;
+    private GoogleApiClient mGoogleApiClient;
 
 
     @OnClick(R.id.btn_chat_search)
@@ -150,6 +159,17 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
         sessionManager = new SessionManager(this);
         initializeAI();
         initializeViews();
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+        // [START build_client]
+        // Build a GoogleApiClient with access to the Google Sign-In API and the
+        // options specified by gso.
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
+        // [END build_client]
         setChatInputs(getResources().getString(R.string.assistance), false);
     }
 
@@ -179,6 +199,7 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
                 return true;
             case R.id.logout_menu:
                 sessionManager.logoutUser();
+                signOut();
                 Intent intent = new Intent(AdminAgentActivity.this, LanguageSelectionActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
@@ -255,7 +276,7 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
 
     //AIRequest should have query OR event
     private void sendRequest(String queryString) {
-        if (sessionManager.getUserActive()) {
+       // if (sessionManager.getUserActive()) {
             createTicketResponse = null;
             final AsyncTask<String, Void, AIResponse> task = new AsyncTask<String, Void, AIResponse>() {
                 private AIError aiError;
@@ -284,9 +305,9 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
                 }
             };
             task.execute(queryString);
-        } else {
+        /*} else {
             setChatInputs(getString(R.string.email_not_verified), false);
-        }
+        }*/
     }
 
     @Override
@@ -586,5 +607,23 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
     @Override
     public void onFailure(String message) {
         Constant.showToastMessage(AdminAgentActivity.this, message);
+    }
+
+    // [START signOut]
+    private void signOut() {
+        Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
+                new ResultCallback<Status>() {
+                    @Override
+                    public void onResult(Status status) {
+                        // [START_EXCLUDE]
+                        // updateUI(false);
+                        // [END_EXCLUDE]
+                    }
+                });
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
     }
 }
