@@ -9,6 +9,9 @@ Login to VM instance and creat new shell script (say setup.sh) and add content c
 Switch to sudo user - “sudo su”
 
 run script and provide mysql password 123456
+![alt text](https://github.com/birender-s/ticketing-client-android/blob/master/diamante_setup/1.png)
+
+
 
 Enter root password - 123456
 
