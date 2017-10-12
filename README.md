@@ -32,6 +32,7 @@ You would need to do following steps:
 * Setup DiamanteDesk App as explained [here](https://github.com/birender-s/ticketing-client-android/tree/master/diamante_setup)
 * Setup API.AI App as explained [here](https://github.com/birender-s/ticketing-client-android/tree/master/api.ai_setup)
 * Modify Android app configuration to point to DiamanteDesk and API.AI backends
+  <TODO: add app config settings steps here>
 
 ### Contribution
 As mentioend earlier, this project is the outcome of Hackathon 2017 @ Infosys.com. The team comprised of:
