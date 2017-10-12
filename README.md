@@ -18,7 +18,10 @@ This solution won Hackathon 2017 @ Infosys Chandigarh (India) help in collaborat
 * eCommerce solutions - Magento and Prestashop platforms, Shopify, eBay and Amazon marketplaces
 * Bug-tracking/project management tools - Jira, YouTrack, Redmine, Basecamp…
 
-### Solution components:
+### Solution components
+
+![alt text](https://github.com/birender-s/ticketing-client-android/blob/master/docs/tech_design.png)
+
 * [Diamantedesk](https://diamantedesk.com/getting-started/) : built on latest Technology Stack - PHP, Symfony2, OroPlatform, Bootstrap, HTML5, CSS3, mySQL DB
 * Native Android App (Android Studio IDE)
 * [api.ai](https://api.ai/)  - Google’s NLP (Natural Language Processing/ AI/ ML) engine
