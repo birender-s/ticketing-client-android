@@ -29,8 +29,8 @@ The Android app is ready to install and test but in case you would like to setup
 
 ## Setup Steps
 You would need to do following steps:
-* Setup DiamanteDesk App as explained [here](https://github.com/birender-s/ticketing-client-android/tree/master/diamante_setup)
-* Setup API.AI App as explained [here](https://github.com/birender-s/ticketing-client-android/tree/master/api.ai_setup)
+* Setup DiamanteDesk App as explained [here](https://github.com/birender-s/ticketing-client-android/tree/master/docs/diamante_setup)
+* Setup API.AI App as explained [here](https://github.com/birender-s/ticketing-client-android/tree/master/docs/api.ai_setup)
 * Modify Android app configuration to point to DiamanteDesk and API.AI backends
   <TODO: add app config settings steps here>
 
