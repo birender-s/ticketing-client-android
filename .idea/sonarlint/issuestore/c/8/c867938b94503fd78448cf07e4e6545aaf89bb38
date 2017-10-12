@@ -1,5 +1,0 @@
-
-Isquid:EmptyStatementUsageCheck"Remove this empty statement.(Åñ­õþÿÿÿÿ
-`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ûžôÁ
-isquid:S00116"SRename this field "_context" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(òº€²
-lsquid:S00116"WRename this field "PRIVATE_MODE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Š™èo

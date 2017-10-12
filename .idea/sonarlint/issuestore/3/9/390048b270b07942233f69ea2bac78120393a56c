@@ -1,4 +1,0 @@
-
-Rsquid:UselessImportCheck"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ
-Wsquid:S1948"6Make "createTicketResponse" transient or serializable.(êÚøÿÿÿÿ8Ô»©€ï+
-Tsquid:S1948"3Make "getTicketResponse" transient or serializable.(ÛÑËæüÿÿÿÿ8Ô»©€ï+
