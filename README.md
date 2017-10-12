@@ -33,7 +33,13 @@ You would need to do following steps:
 * Setup API.AI App as explained here
 * Modify Android app configuration to point to DiamanteDesk and API.AI backends
 
-### Contributing  
+### Contribution
+As mentioend earlier, this project is the outcome of Hackathon 2017 @ Infosys.com. The team comprised of:
+Bimal Chawla
+Birender Singh
+Harendra Bisht
+Kamal Vaid
+You're most welcome to contribute by either suggesting new changes, raising issues, merge request.
 Please raise an issue of the requirement so that a discussion can take before any code is written, 
 even if you intend to raise a pull request.
 
