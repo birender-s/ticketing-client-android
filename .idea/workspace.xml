@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dfc1989d-abd2-4a3a-b81a-78ba20dd8114" name="Default" comment="removing unwanted files.">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
     </list>
     <list id="fd69862b-ae23-4d00-8bf7-5ba7a8897ddb" name="New changelist" comment="" />
@@ -3517,7 +3516,14 @@
       <option name="project" value="LOCAL" />
       <updated>1506236866646</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="removing unwanted files.">
+      <created>1507784954372</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1507784954372</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -3610,7 +3616,8 @@
     <MESSAGE value="registrtion" />
     <MESSAGE value="registrtion_done" />
     <MESSAGE value="ticket detail completed&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="ticket detail completed&#10;" />
+    <MESSAGE value="removing unwanted files." />
+    <option name="LAST_COMMIT_MESSAGE" value="removing unwanted files." />
     <option name="PRESELECT_EXISTING_CHANGELIST" value="false" />
   </component>
   <component name="XDebuggerManager">
