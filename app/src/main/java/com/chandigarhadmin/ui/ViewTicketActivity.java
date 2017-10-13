@@ -5,17 +5,21 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.text.format.DateUtils;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.chandigarhadmin.App;
 import com.chandigarhadmin.R;
+import com.chandigarhadmin.interfaces.ResponseCallback;
 import com.chandigarhadmin.models.CreateTicketResponse;
 import com.chandigarhadmin.models.GetTicketResponse;
+import com.chandigarhadmin.models.RequestParams;
 import com.chandigarhadmin.models.SingleTicketResponse;
 import com.chandigarhadmin.utils.Constant;
-import com.google.gson.Gson;
+
+import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -24,12 +28,12 @@ import java.util.Date;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Response;
 
 import static com.chandigarhadmin.utils.Constant.INPUT_CTICKET_DATA;
 import static com.chandigarhadmin.utils.Constant.INPUT_TICKET_DATA;
 
-public class ViewTicketActivity extends AppCompatActivity {
-    //        implements ResponseCallback {
+public class ViewTicketActivity extends AppCompatActivity implements ResponseCallback {
     @BindView(R.id.tvcreated_value)
     TextView textViewCreatedTime;
     @BindView(R.id.text_status)
@@ -49,6 +53,10 @@ public class ViewTicketActivity extends AppCompatActivity {
     private CreateTicketResponse createTicketResponse;
     private String ticketId, ticketAssignee;
 
+    @OnClick(R.id.crossicon)
+    public void submitButtonClick() {
+        finish();
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -65,7 +73,11 @@ public class ViewTicketActivity extends AppCompatActivity {
             ticketAssignee = createTicketResponse.getAsignee();
             ticketId = createTicketResponse.getId();
         }
-        getTicketById(ticketId);
+        if (Constant.isNetworkAvailable(this)) {
+            getTicketById(ticketId);
+        } else {
+            Constant.showToastMessage(this, getString(R.string.no_internet));
+        }
 
     }
 
@@ -85,35 +97,28 @@ public class ViewTicketActivity extends AppCompatActivity {
             }
         }
         if (null == getTicketResponse.getStatus()) {
-            getTicketResponse.setStatus("NA");
+            getTicketResponse.setStatus(getResources().getString(R.string.feedback_na));
         }
 
-        textViewStatus.setText(" Ticket Status :" + getTicketResponse.getStatus());
+        textViewStatus.setText(getResources().getString(R.string.feedback_status) + getTicketResponse.getStatus());
         if (null == getTicketResponse.getId()) {
-            textViewTicketId.setText("Ticket Refrence: NA");
+            textViewTicketId.setText(getResources().getString(R.string.feedback_status)+getResources().getString(R.string.feedback_na));
         } else {
-            textViewTicketId.setText("Ticket Refrence: " + getTicketResponse.getId());
+            textViewTicketId.setText(getResources().getString(R.string.feedback_status) + getTicketResponse.getId());
         }
 
         if (null == ticketAssignee) {
-            ticketAssignee = "NA";
+            ticketAssignee = getResources().getString(R.string.feedback_na);
         }
-        textViewAssignee.setText(ticketAssignee);
+        //  textViewAssignee.setText(ticketAssignee);
         if (null == getTicketResponse.getSubject()) {
-            getTicketResponse.setSubject("NA");
+            getTicketResponse.setSubject(getResources().getString(R.string.feedback_na));
         }
         textViewSubject.setText(getTicketResponse.getSubject());
         if (null == getTicketResponse.getDescription()) {
-            getTicketResponse.setDescription("NA");
+            getTicketResponse.setDescription(getResources().getString(R.string.feedback_na));
         }
-        textViewDescription.setText(getTicketResponse.getDescription());
-    }
-
-    @OnClick(R.id.crossicon)
-    void submitButton(View view) {
-        if (view.getId() == R.id.crossicon) {
-            finish();
-        }
+        textViewDescription.setText(Html.fromHtml(getTicketResponse.getDescription()));
     }
 
     /**
@@ -123,19 +128,32 @@ public class ViewTicketActivity extends AppCompatActivity {
      */
     private void getTicketById(String ticketId) {
         progressDialog.show();
-//        ApiServiceTask apiServiceTask = new ApiServiceTask(this, this, RequestParams.TYPE_GET_TICKET_BY);
-//        apiServiceTask.setRequestParams(null, JSONParser.GET);
-//        apiServiceTask.execute(Constant.BASE + "tickets/" + ticketId);
-
+        App.getApiController().viewTicket(this, ticketId, RequestParams.TYPE_GET_TICKET_BY);
     }
 
-    //    @Override
-    public void onResponse(String result, String type) {
-        progressDialog.hide();
-        if (!result.contains("error") && !result.equalsIgnoreCase("Failed")) {
-            Gson gson = new Gson();
-            SingleTicketResponse singleTicketResponse = gson.fromJson(result, SingleTicketResponse.class);
-            setValues(singleTicketResponse, ticketAssignee);
+    @Override
+    public void onResponse(Response result, String type) {
+        progressDialog.dismiss();
+        if (type.equalsIgnoreCase(RequestParams.TYPE_GET_TICKET_BY)) {
+            if (result.isSuccessful()) {
+                SingleTicketResponse singleTicketResponse = (SingleTicketResponse) result.body();
+                setValues(singleTicketResponse, ticketAssignee);
+            } else {
+                try {
+                    JSONObject jObjError = new JSONObject(result.errorBody().string());
+                    if (jObjError.has("error")) {
+                        Constant.showToastMessage(ViewTicketActivity.this, jObjError.getString("error"));
+                    }
+                } catch (Exception e) {
+                    Constant.showToastMessage(ViewTicketActivity.this, getResources().getString(R.string.something_wrong));
+                }
+
+            }
         }
+    }
+
+    @Override
+    public void onFailure(String message) {
+        Constant.showToastMessage(ViewTicketActivity.this, message);
     }
 }

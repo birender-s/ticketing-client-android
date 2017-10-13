@@ -10,54 +10,76 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/fifty"
         android:gravity="center"
-        android:text="@string/enter_your_phone_number"
+        android:text="@string/enter_your_email"
         android:textColor="@android:color/white"
-        android:textSize="@dimen/bold_size"/>
+        android:textSize="@dimen/bold_size" />
 
 
-        <RelativeLayout
-            android:id="@+id/etphonenumber_wrapper"
+    <RelativeLayout
+        android:id="@+id/etphonenumber_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titletv"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="@dimen/ten"
+        android:layout_marginLeft="@dimen/ten"
+        android:layout_marginRight="@dimen/ten"
+        android:layout_marginStart="@dimen/ten"
+        android:layout_marginTop="@dimen/thirty"
+        android:visibility="gone">
+
+        <EditText
+            android:id="@+id/tvcountrycode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|bottom"
+            android:background="@null"
+            android:editable="false"
+            android:text="+91"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/text_size" />
+
+        <EditText
+            android:id="@+id/etphonenumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/titletv"
-            android:layout_centerHorizontal="true"
-            android:layout_marginEnd="@dimen/ten"
-            android:layout_marginLeft="@dimen/ten"
-            android:layout_marginRight="@dimen/ten"
-            android:layout_marginStart="@dimen/ten"
-            android:layout_marginTop="@dimen/thirty">
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_toRightOf="@id/tvcountrycode"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:hint="@string/phone_number"
+            android:inputType="number"
+            android:maxLength="10"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"
+            android:textSize="@dimen/text_size" />
 
-            <EditText
-                android:id="@+id/tvcountrycode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center|bottom"
-                android:background="@null"
-                android:editable="false"
-                android:text="+91"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/text_size"/>
+    </RelativeLayout>
 
-                <EditText
-                    android:id="@+id/etphonenumber"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    android:layout_marginStart="@dimen/activity_horizontal_margin"
-                    android:layout_toRightOf="@id/tvcountrycode"
-                    android:background="@null"
-                    android:gravity="center_vertical"
-                    android:hint="@string/phone_number"
-                    android:inputType="number"
-                    android:maxLength="10"
-                    android:textColor="@android:color/white"
-                    android:textColorHint="@android:color/white"
-                    android:textSize="@dimen/text_size" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="10dp">
 
-        </RelativeLayout>
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/enter_your_email"
+            android:inputType="text"
+            android:maxLength="30"
+            android:padding="10dp"
+            android:textColor="@android:color/white"
+            android:textColorHint="@android:color/white"
+            android:textSize="@dimen/text_size" />
+
+    </RelativeLayout>
 
 
     <Button

@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/colorPrimary"
     android:orientation="vertical">
 
@@ -11,11 +12,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/fifty"
         android:gravity="center"
-        android:text="@string/enter_your_details"
+        android:text="@string/login_gplus"
         android:textColor="@android:color/white"
         android:textSize="@dimen/bold_size" />
 
     <RelativeLayout
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/titletv"
@@ -34,17 +36,17 @@
             android:layout_marginTop="10dp"
             android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/etusername"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/enter_username"
-                    android:inputType="text"
-                    android:maxLength="30"
-                    android:padding="10dp"
-                    android:textColor="@android:color/white"
-                    android:textColorHint="@android:color/white"
-                    android:textSize="@dimen/text_size" />
+            <EditText
+                android:id="@+id/etusername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/enter_first_name"
+                android:inputType="text"
+                android:maxLength="30"
+                android:padding="10dp"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/white"
+                android:textSize="@dimen/text_size" />
         </LinearLayout>
 
         <LinearLayout
@@ -56,17 +58,16 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/et_email"
+                android:id="@+id/etlastname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/your_email_address"
-                android:inputType="textEmailAddress"
+                android:hint="@string/enter_last_name"
+                android:inputType="text"
                 android:maxLength="30"
                 android:padding="10dp"
                 android:textColor="@android:color/white"
                 android:textColorHint="@android:color/white"
-                android:textSize="20sp"
-                android:visibility="gone" />
+                android:textSize="@dimen/text_size" />
 
         </LinearLayout>
 
@@ -81,9 +82,18 @@
         android:layout_marginEnd="@dimen/fifteen"
         android:layout_marginLeft="@dimen/fifteen"
         android:layout_marginRight="@dimen/fifteen"
+        android:visibility="gone"
         android:layout_marginStart="@dimen/fifteen"
         android:background="@drawable/rounded_button_background"
         android:text="@string/proceed"
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/bold_size" />
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/sign_in_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_centerInParent="true"
+        android:visibility="visible"
+        tools:visibility="visible" />
 </RelativeLayout>

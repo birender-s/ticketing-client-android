@@ -3,6 +3,7 @@ package com.chandigarhadmin.ui;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
@@ -10,28 +11,38 @@ import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.speech.tts.TextToSpeech;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.view.inputmethod.EditorInfo;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.chandigarhadmin.App;
 import com.chandigarhadmin.R;
 import com.chandigarhadmin.adapter.ChatAdapter;
+import com.chandigarhadmin.interfaces.ResponseCallback;
 import com.chandigarhadmin.interfaces.SelectionCallbacks;
 import com.chandigarhadmin.models.BranchesModel;
 import com.chandigarhadmin.models.ChatPojoModel;
+import com.chandigarhadmin.models.CreateTicketModel;
 import com.chandigarhadmin.models.CreateTicketResponse;
 import com.chandigarhadmin.models.GetTicketResponse;
 import com.chandigarhadmin.models.RequestParams;
@@ -39,14 +50,16 @@ import com.chandigarhadmin.session.SessionManager;
 import com.chandigarhadmin.utils.Constant;
 import com.github.zagum.speechrecognitionview.RecognitionProgressView;
 import com.github.zagum.speechrecognitionview.adapters.RecognitionListenerAdapter;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -61,12 +74,9 @@ import ai.api.model.Result;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Response;
 
-import static com.chandigarhadmin.models.RequestParams.TYPE_CREATE_TICKET;
-import static com.chandigarhadmin.models.RequestParams.TYPE_GET_ALL_TICKET;
-import static com.chandigarhadmin.models.RequestParams.TYPE_GET_BRANCHES;
-
-public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItemClickListener, AIListener, SelectionCallbacks {
+public class AdminAgentActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener, AIListener, SelectionCallbacks, ResponseCallback, GoogleApiClient.OnConnectionFailedListener {
     //Create placeholder for user's consent to record_audio permission.
     //This will be used in handling callback
     private final int MY_PERMISSIONS_RECORD_AUDIO = 1;
@@ -90,6 +100,10 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
     private ChatAdapter mAdapter;
     private TextToSpeech textToSpeech;
     private CreateTicketResponse createTicketResponse;
+    private String branchName;
+    private List<BranchesModel> branches;
+    private GoogleApiClient mGoogleApiClient;
+
 
     @OnClick(R.id.btn_chat_search)
     public void sendClick() {
@@ -145,7 +159,18 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
         sessionManager = new SessionManager(this);
         initializeAI();
         initializeViews();
-        setChatInputs("Hi, How may i Assist you ?", false);
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+        // [START build_client]
+        // Build a GoogleApiClient with access to the Google Sign-In API and the
+        // options specified by gso.
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
+        // [END build_client]
+        setChatInputs(getResources().getString(R.string.assistance), false);
     }
 
     public void showPopup(View v) {
@@ -163,6 +188,8 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
                 startActivity(new Intent(this, MyAccountActivity.class));
                 return true;
             case R.id.view_tickets:
+                Intent intent1 = new Intent(AdminAgentActivity.this, AllTicketsActivity.class);
+                startActivity(intent1);
                 return true;
             case R.id.settings:
             case R.id.what_you_do:
@@ -171,7 +198,8 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
                 Constant.showToastMessage(AdminAgentActivity.this, getResources().getString(R.string.out_of_scope));
                 return true;
             case R.id.logout_menu:
-                sessionManager.clearAllData();
+                sessionManager.logoutUser();
+                signOut();
                 Intent intent = new Intent(AdminAgentActivity.this, LanguageSelectionActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
@@ -197,7 +225,7 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
         chatBotResponseList = new ArrayList<>();
         mAdapter = new ChatAdapter(this, chatBotResponseList, this);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        mLayoutManager.setStackFromEnd(true);
+        // mLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
@@ -243,73 +271,64 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
         recognitionProgressView.setBarMaxHeightsInDp(heights);
         recognitionProgressView.play();
 
-        //making code to autoscroll when layout changes
-        recyclerView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
-            @Override
-            public void onLayoutChange(View v,
-                                       int left, int top, int right, int bottom,
-                                       int oldLeft, int oldTop, int oldRight, int oldBottom) {
-                recyclerView.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        recyclerView.scrollToPosition(
-                                recyclerView.getAdapter().getItemCount() - 1);
-                    }
-                }, 1);
-            }
-        });
+
     }
 
     //AIRequest should have query OR event
     private void sendRequest(String queryString) {
-        createTicketResponse = null;
-        final AsyncTask<String, Void, AIResponse> task = new AsyncTask<String, Void, AIResponse>() {
-            private AIError aiError;
+       // if (sessionManager.getUserActive()) {
+            createTicketResponse = null;
+            final AsyncTask<String, Void, AIResponse> task = new AsyncTask<String, Void, AIResponse>() {
+                private AIError aiError;
 
-            @Override
-            protected AIResponse doInBackground(final String... params) {
-                final AIRequest request = new AIRequest();
-                String query = params[0];
-                if (!TextUtils.isEmpty(query))
-                    request.setQuery(query);
-                try {
-                    return aiService.textRequest(request);
-                } catch (final AIServiceException e) {
-                    aiError = new AIError(e);
-                    return null;
+                @Override
+                protected AIResponse doInBackground(final String... params) {
+                    final AIRequest request = new AIRequest();
+                    String query = params[0];
+                    if (!TextUtils.isEmpty(query))
+                        request.setQuery(query);
+                    try {
+                        return aiService.textRequest(request);
+                    } catch (final AIServiceException e) {
+                        aiError = new AIError(e);
+                        return null;
+                    }
                 }
-            }
 
-            @Override
-            protected void onPostExecute(final AIResponse response) {
-                if (response != null) {
-                    onResult(response);
-                } else {
-                    onError(aiError);
+                @Override
+                protected void onPostExecute(final AIResponse response) {
+                    if (response != null) {
+                        onResult(response);
+                    } else {
+                        onError(aiError);
+                    }
                 }
-            }
-        };
-        task.execute(queryString);
+            };
+            task.execute(queryString);
+        /*} else {
+            setChatInputs(getString(R.string.email_not_verified), false);
+        }*/
     }
 
     @Override
     public void onResult(AIResponse response) {
+
         Result result = response.getResult();
         if (Constant.isNetworkAvailable(AdminAgentActivity.this)) {
-            if (result.getAction().equalsIgnoreCase("createticket")) {
+            if (result.getAction().equalsIgnoreCase(getResources().getString(R.string.createticket))) {
 
-                if (result.getParameters().get("department").toString().equalsIgnoreCase("[]")) {
-//                    new ApiServiceTask(AdminAgentActivity.this, this, TYPE_GET_BRANCHES).execute(Constant.BASE + "branches");
-                } else if (result.getParameters().get("ticketsubject").toString().equalsIgnoreCase("[]")) {
+                if (result.getParameters().get(getResources().getString(R.string.department)).toString().equalsIgnoreCase("[]")) {
+                    App.getApiController().getBranches(this, RequestParams.TYPE_GET_BRANCHES);
+                } else if (result.getParameters().get(getResources().getString(R.string.ticketsubject)).toString().equalsIgnoreCase("[]")) {
                     setChatInputs(response.getResult().getFulfillment().getSpeech(), false);
-                } else if (result.getParameters().get("ticketdesc").toString().equalsIgnoreCase("[]")) {
+                } else if (result.getParameters().get(getResources().getString(R.string.ticketdesc)).toString().equalsIgnoreCase("[]")) {
                     setChatInputs(response.getResult().getFulfillment().getSpeech(), false);
-                } else if (result.getFulfillment().getSpeech().equalsIgnoreCase("save ticket")) {
-                    setChatInputs("Creating ticket...", false);
-                    createTicket(result);
-                    Log.e("result", "Saved");
+                } else if (result.getFulfillment().getSpeech().equalsIgnoreCase(getResources().getString(R.string.save_ticket))) {
+                    // TODO: 29/09/17 need to show the preview
+                    previewTicket(result);
+
                 }
-            } else if (result.getAction().equalsIgnoreCase("fetchalltickets")) {
+            } else if (result.getAction().equalsIgnoreCase(getResources().getString(R.string.fetchalltickets))) {
                 getTickets();
             } else {
                 setChatInputs(response.getResult().getFulfillment().getSpeech(), false);
@@ -317,6 +336,7 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
         } else {
             Constant.showToastMessage(AdminAgentActivity.this, getString(R.string.no_internet));
         }
+
     }
 
     @Override
@@ -344,28 +364,6 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
 
     }
 
-    //    @Override
-    public void onResponse(String result, String type) {
-
-        GsonBuilder gsonBuilder = new GsonBuilder();
-        gsonBuilder.setDateFormat("M/d/yy hh:mm a");
-        Gson gson = gsonBuilder.create();
-        if (!result.contains("error") && !result.equalsIgnoreCase("Failed")) {
-
-            if (type.equalsIgnoreCase(TYPE_GET_BRANCHES)) {
-                setChatInputs("Okay!! Please select a department for which you want to create a ticket.", false);
-                parseBranches(result, gson);
-            } else if (type.equalsIgnoreCase(TYPE_CREATE_TICKET)) {
-                createTicketResponse = gson.fromJson(result, CreateTicketResponse.class);
-                setChatInputs("Ticket created " + "with a Reference ID: " + createTicketResponse.getId(), false);
-            } else if (type.contains(TYPE_GET_ALL_TICKET)) {
-                Log.d("TICKETS OF YOURS", result);
-                setChatInputs("Here you go...", false);
-                parseTickets(result, gson);
-            }
-        }
-
-    }
 
     private void setChatInputs(String input, boolean align) {
         ChatPojoModel chatPojoModel = new ChatPojoModel();
@@ -377,25 +375,29 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
         mAdapter.notifyDataSetChanged();
         if (!align)
             textToSpeech.speak(input, TextToSpeech.QUEUE_FLUSH, null);
+        //making code to autoscroll when layout changes
+        recyclerView.smoothScrollToPosition(mAdapter.getItemCount() - 1);
     }
 
-    private void parseBranches(String result, Gson gson) {
-        List<BranchesModel> branchesModels = Arrays.asList(gson.fromJson(result, BranchesModel[].class));
-
+    private void parseBranches(List<BranchesModel> branchesModels) {
         ChatPojoModel chatPojoModel = new ChatPojoModel();
         chatPojoModel.setAlignRight(false);
         chatPojoModel.setDepartmentResponse(branchesModels);
         chatBotResponseList.add(chatPojoModel);
+
         mAdapter.notifyDataSetChanged();
+        //making code to autoscroll when layout changes
+        recyclerView.smoothScrollToPosition(mAdapter.getItemCount() - 1);
     }
 
-    private void parseTickets(String result, Gson gson) {
-        List<GetTicketResponse> ticketResponseList = Arrays.asList(gson.fromJson(result, GetTicketResponse[].class));
+    private void parseTickets(List<GetTicketResponse> ticketResponseList) {
         ChatPojoModel chatPojoModel = new ChatPojoModel();
         chatPojoModel.setAlignRight(false);
         chatPojoModel.setGetTicketResponse(ticketResponseList);
         chatBotResponseList.add(chatPojoModel);
         mAdapter.notifyDataSetChanged();
+        //making code to autoscroll when layout changes
+        recyclerView.smoothScrollToPosition(mAdapter.getItemCount() - 1);
     }
 
     private void showResults(Bundle results) {
@@ -411,43 +413,36 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
 
     @Override
     public void onResultSelection(String id, String branchName) {
+        this.branchName = branchName;
         sendRequest(branchName);
     }
 
     /**
      * saving ticket
      */
-    private void createTicket(Result result) {
-        JSONObject ticketObject = new JSONObject();
-        try {
-            ticketObject.put(RequestParams.BRANCH, result.getParameters().get("department").toString().replaceAll("\"", "").replaceAll("\"", "").replaceAll("\\[", "").replaceAll("\\]", ""));
-            ticketObject.put(RequestParams.SUBJECT, result.getParameters().get("ticketsubject").toString().replaceAll("\"", "").replaceAll("\\[", "").replaceAll("\\]", ""));
-            ticketObject.put(RequestParams.DESCRIPTION, result.getParameters().get("ticketdesc").toString().replaceAll("\"", "").replaceAll("\\[", "").replaceAll("\\]", ""));
-            ticketObject.put(RequestParams.STATUS, "new");
-            ticketObject.put(RequestParams.PRIORITY, "high");
-            ticketObject.put(RequestParams.SOURCE, "email");
-            ticketObject.put(RequestParams.REPORTER, "diamante_" + sessionManager.getKeyUserId());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-//        ApiServiceTask apiServiceTask = new ApiServiceTask(this, this, TYPE_CREATE_TICKET);
-//        apiServiceTask.setRequestParams(ticketObject, JSONParser.POST);
-//        apiServiceTask.execute(Constant.BASE + "tickets");
+    private void createTicket(String branchId, String subject, String description) {
+        CreateTicketModel model = new CreateTicketModel();
+        model.setBranch(branchId);
+        model.setSubject(subject);
+        model.setDescription(description);
+        model.setStatus("new");
+        model.setPriority("high");
+        model.setSource("email");
+        model.setReporter("diamante_" + sessionManager.getKeyUserId());
+        App.getApiController().createTicket(this, model, RequestParams.TYPE_CREATE_TICKET);
     }
 
     /**
      * getting all tickets
      */
     private void getTickets() {
-//        ApiServiceTask apiServiceTask = new ApiServiceTask(this, this, TYPE_GET_ALL_TICKET);
-//        apiServiceTask.setRequestParams(null, GET);
-//        apiServiceTask.execute(Constant.BASE + "tickets");
+        App.getApiController().getAllTickets(this, sessionManager.getKeyUserId(), RequestParams.TYPE_GET_ALL_TICKET);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-            AIService.getService(this, aiConfiguration).cancel();
+        AIService.getService(this, aiConfiguration).cancel();
     }
 
     private void startRecognition() {
@@ -493,13 +488,142 @@ public class AdminAgentActivity extends Activity implements PopupMenu.OnMenuItem
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
         if (requestCode == MY_PERMISSIONS_RECORD_AUDIO) {
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // permission was granted, yay!
-                } else {
-                    // permission denied, boo! Disable the
-                    // functionality that depends on this permission.
+            if (grantResults.length > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // permission was granted, yay!
+            } else {
+                // permission denied, boo! Disable the
+                // functionality that depends on this permission.
+            }
+        }
+    }
+
+    private void previewTicket(final Result result) {
+        if (null != branches && !branches.isEmpty()) {
+            final Dialog dialog = new Dialog(this);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setCancelable(false);
+            dialog.setContentView(R.layout.ticket_preview);
+            DisplayMetrics metrics = new DisplayMetrics(); //get metrics of screen
+            getWindowManager().getDefaultDisplay().getMetrics(metrics);
+            int height = (int) (metrics.heightPixels * 0.8); //set height to 80% of total
+            int width = (int) (metrics.widthPixels * 0.9); //set width to 90% of total
+            dialog.getWindow().setLayout(width, height);
+            final Spinner spinnerBranches = (Spinner) dialog.findViewById(R.id.spdepartment);
+            List<String> branchNames = new ArrayList<>();
+            final List<String> branchId = new ArrayList<>();
+            int indexbranch = -1;
+
+            for (int i = 0; i < branches.size(); i++) {
+                if (!branches.get(i).getName().trim().equalsIgnoreCase("Default branch")) {
+                    if (result.getParameters().get("department").toString().replaceAll("\"", "").replaceAll("\"", "").replaceAll("\\[", "").replaceAll("\\]", "").equals(branches.get(i).getId())) {
+                        indexbranch = i;
+                    }
+                    branchNames.add(branches.get(i).getName());
+                    branchId.add(branches.get(i).getId());
                 }
             }
+            // Creating adapter for spinner
+            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, branchNames);
+
+            // Drop down layout style - list view with radio button
+            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+            // attaching data adapter to spinner
+            spinnerBranches.setAdapter(dataAdapter);
+            spinnerBranches.setSelection(indexbranch - 1);
+            final EditText textViewSubject = (EditText) dialog.findViewById(R.id.tvsubject_value);
+            textViewSubject.setText(result.getParameters().get(getResources().getString(R.string.ticketsubject)).toString().replaceAll("\"", "").replaceAll("\"", "").replaceAll("\\[", "").replaceAll("\\]", ""));
+            final EditText textViewDescription = (EditText) dialog.findViewById(R.id.tvdescription_value);
+            textViewDescription.setText(result.getParameters().get(getResources().getString(R.string.ticketdesc)).toString().replaceAll("\"", "").replaceAll("\"", "").replaceAll("\\[", "").replaceAll("\\]", ""));
+
+            Button okButton = (Button) dialog.findViewById(R.id.createbtn);
+            ImageView crossImg = (ImageView) dialog.findViewById(R.id.crossicon);
+            okButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    if (textViewSubject.getText().toString().length() > 0) {
+                        if (textViewDescription.getText().toString().length() > 0) {
+                            dialog.dismiss();
+                            setChatInputs(getResources().getString(R.string.creating_feedback), false);
+                            createTicket(branchId.get(spinnerBranches.getSelectedItemPosition()), textViewSubject.getText().toString(), textViewDescription.getText().toString());
+                            Log.e("result", "Saved");
+                        } else {
+                            textViewDescription.setError(getResources().getString(R.string.error_desc));
+                        }
+
+                    } else {
+                        textViewSubject.setError(getResources().getString(R.string.error_subject));
+                    }
+
+                }
+            });
+            crossImg.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+
+            dialog.show();
+        } else {
+            App.getApiController().getBranches(this, RequestParams.TYPE_GET_BRANCHES);
+        }
+
+    }
+
+    @Override
+    public void onResponse(Response response, String type) {
+        if (response.isSuccessful()) {
+            if (type.equalsIgnoreCase(RequestParams.TYPE_GET_BRANCHES)) {
+                if (null != branches) {
+                    branches.clear();
+                }
+                branches = (List<BranchesModel>) response.body();
+                setChatInputs(getResources().getString(R.string.select_department), false);
+                parseBranches(branches);
+            } else if (type.equalsIgnoreCase(RequestParams.TYPE_GET_ALL_TICKET)) {
+                List<GetTicketResponse> tickets = (List<GetTicketResponse>) response.body();
+                setChatInputs(getResources().getString(R.string.here_go), false);
+                parseTickets(tickets);
+            } else if (type.equalsIgnoreCase(RequestParams.TYPE_CREATE_TICKET)) {
+                createTicketResponse = (CreateTicketResponse) response.body();
+                setChatInputs(getResources().getString(R.string.feedback_created) + createTicketResponse.getId(), false);
+            }
+        } else {
+            try {
+                JSONObject jObjError = new JSONObject(response.errorBody().string());
+                if (jObjError.has("error")) {
+                    Constant.showToastMessage(AdminAgentActivity.this, jObjError.getString("error"));
+                }
+            } catch (Exception e) {
+                Constant.showToastMessage(AdminAgentActivity.this, getResources().getString(R.string.something_wrong));
+            }
+        }
+
+    }
+
+    @Override
+    public void onFailure(String message) {
+        Constant.showToastMessage(AdminAgentActivity.this, message);
+    }
+
+    // [START signOut]
+    private void signOut() {
+        Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
+                new ResultCallback<Status>() {
+                    @Override
+                    public void onResult(Status status) {
+                        // [START_EXCLUDE]
+                        // updateUI(false);
+                        // [END_EXCLUDE]
+                    }
+                });
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
     }
 }

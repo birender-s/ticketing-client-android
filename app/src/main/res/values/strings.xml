@@ -1,14 +1,18 @@
 <resources>
-    <string name="app_name">Ticketing Client</string>
+    <string name="app_name">Feedback Client</string>
     <string name="choose_from">Choose language</string>
     <string name="english">English</string>
     <string name="hindi">हिंदी</string>
     <string name="punjabi">ਪੰਜਾਬੀ</string>
+    <string name="assistance">Hi, How may i Assist you ?</string>
     <string name="continue_text">Continue</string>
+    <string name="enter_first_name"> First Name</string>
+    <string name="enter_last_name"> Last Name</string>
     <string name="enter_username">Name</string>
     <string name="your_email_address">your email address</string>
     <string name="proceed">Proceed</string>
     <string name="enter_your_details">Enter Your Details</string>
+    <string name="login_gplus">Login with Google </string>
     <string name="username_error">Username should be more three characters</string>
     <string name="email_error">Enter a valid email</string>
     <string name="submit">Submit</string>
@@ -16,6 +20,7 @@
     <string name="waiting">waiting</string>
     <string name="second">sec</string>
     <string name="enter_your_phone_number">Enter Your Phone Number</string>
+    <string name="enter_your_email">Enter Your Email</string>
     <string name="phone_number">phone number</string>
     <string name="enter_otp_here">Enter otp here</string>
     <string name="waiting_1_sec">waiting 1 sec</string>
@@ -32,10 +37,36 @@
     <string name="what_you_do">What can you do</string>
     <string name="help">Help</string>
     <string name="send_feedback">Send Feedback</string>
+    <string name="feedback_details">Feedback Details</string>
+    <string name="feedbacks">All Feedbacks</string>
+    <string name="feedback_status">Feedback Status :</string>
+    <string name="feedback_ref">Feedback Refrence :</string>
+    <string name="feedback_na"> NA</string>
     <string name="enter_your_otp">Enter your OTP</string>
     <string name="verify">Verify</string>
     <string name="resend_otp">Resend OTP</string>
     <string name="out_of_scope">Out of scope for Hackathon 2017</string>
-    <string name="view_tickets">View Tickets</string>
+    <string name="view_tickets">View Feedback</string>
+    <string name="ok_btn"> Create Feedback</string>
+    <string name="cancel_btn">Cancel</string>
+    <string name="ticket_preview">Feedback Preview</string>
+    <string name="email_exist">Email already exists</string>
+    <string name="something_wrong">Something went wrong</string>
+    <string name="error_subject">Enter Subject</string>
+    <string name="error_desc">Enter Description</string>
+    <string name="select_department">Okay!! Please select a department for which you want to create a feedback.</string>
+    <string name="feedback_created">Feedback created with a Reference ID:  </string>
+    <string name="creating_feedback">Creating feedback...</string>
+
+
+    /* AI Actions and Events and parameters*/
+    <string name="createticket">createticket</string>
+    <string name="fetchalltickets">fetchalltickets</string>
+    <string name="department">department</string>
+    <string name="ticketsubject">ticketsubject</string>
+    <string name="ticketdesc">ticketdesc</string>
+    <string name="save_ticket">save ticket</string>
+    <string name="here_go">Here you go...</string>
+    <string name="email_not_verified">Your email verification is pending, please check your email and activate account first !</string>
 
 </resources>

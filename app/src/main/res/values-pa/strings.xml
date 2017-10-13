@@ -5,10 +5,13 @@
     <string name="hindi">हिंदी</string>
     <string name="punjabi">ਪੰਜਾਬੀ</string>
     <string name="continue_text">ਜਾਰੀ ਰੱਖੋ</string>
+    <string name="enter_first_name"> ਪਹਿਲਾ ਨਾਂ</string>
+    <string name="enter_last_name"> ਆਖਰੀ ਨਾਂਮ</string>
     <string name="enter_username">ਨਾਮ</string>
     <string name="your_email_address">ਤੁਹਾਡਾ ਈਮੇਲ ਪਤਾ</string>
     <string name="proceed">ਅੱਗੇ ਵਧੋ</string>
     <string name="enter_your_details">ਤੁਹਾਡੇ ਵੇਰਵੇ ਦਰਜ ਕਰੋ</string>
+    <string name="login_gplus">Google ਦੇ ਨਾਲ ਲੌਗ ਇਨ ਕਰੋ</string>
     <string name="username_error">ਉਪਭੋਗਤਾ ਨਾਂ ਹੋਰ ਤਿੰਨ ਅੱਖਰ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ</string>
     <string name="email_error">ਇੱਕ ਵੈਧ ਈਮੇਲ ਦਰਜ ਕਰੋ</string>
     <string name="submit">ਜਮ੍ਹਾਂ ਕਰੋ</string>
@@ -16,6 +19,7 @@
     <string name="phone_error">ਸਹੀ ਫੋਨ ਨੰਬਰ ਦਾਖਲ ਕਰੋ</string>
     <string name="second">ਸਕਿੰਟ</string>
     <string name="enter_your_phone_number">ਆਪਣਾ ਫੋਨ ਨੰਬਰ ਦਰਜ ਕਰੋ</string>
+    <string name="enter_your_email">ਆਪਣਾ ਈ - ਮੇਲ ਭਰੋ</string>
     <string name="phone_number">ਫੋਨ ਨੰਬਰ</string>
     <string name="enter_otp_here">ਇੱਥੇ ਓ ਟੀ ਪੀ ਐਂਟਰ ਕਰੋ</string>
     <string name="waiting_1_sec">1 ਸਕਿੰਟ ਦੀ ਉਡੀਕ ਕਰ ਰਿਹਾ ਹੈ</string>
@@ -37,5 +41,18 @@
     <string name="resend_otp">OTP ਦੁਬਾਰਾ ਭੇਜੋ</string>
     <string name="out_of_scope">ਹੈਕਟੇਨ 2017 ਲਈ ਸਕੋਪ ਤੋਂ ਬਾਹਰ</string>
     <string name="view_tickets">ਵੇਖੋ ਟਿਕਟ</string>
+    <string name="ok_btn">ਫੀਡਬੈਕ ਬਣਾਓ</string>
+    <string name="cancel_btn">ਰੱਦ ਕਰੋ</string>
+    <string name="ticket_preview">ਫੀਡਬੈਕ ਪ੍ਰੀਵਿਊ</string>
+    <string name="email_exist">ਈਮੇਲ ਪਹਿਲਾਂ ਤੋਂ ਮੌਜੂਦ ਹੈ</string>
+    <string name="something_wrong">ਕੁਝ ਗਲਤ ਹੋ ਗਿਆ</string>
+    <string name="error_subject">ਵਿਸ਼ਾ ਦਿਓ</string>
+    <string name="error_desc">ਵੇਰਵਾ ਦਿਓ</string>
+    <string name="select_department">ਠੀਕ ਹੈ !! ਕਿਰਪਾ ਕਰਕੇ ਉਸ ਵਿਭਾਗ ਦਾ ਚੋਣ ਕਰੋ ਜਿਸ ਲਈ ਤੁਸੀਂ ਕੋਈ ਫੀਡਬੈਕ ਬਣਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ.</string>
+    <string name="feedback_created">ਇੱਕ ਸੰਦਰਭ ID ਨਾਲ ਪ੍ਰਤੀਕਰਮ ਬਣਾਇਆ ਗਿਆ:</string>
+    <string name="creating_feedback">ਫੀਡਬੈਕ ਬਣਾ ਰਿਹਾ ਹੈ ...</string>
+
+    <string name="here_go">ਜਾਓ...</string>
+    <string name="email_not_verified">ਤੁਹਾਡੀ ਈਮੇਲ ਜਾਂਚ ਬਕਾਇਆ ਹੈ, ਕਿਰਪਾ ਕਰਕੇ ਆਪਣਾ ਈਮੇਲ ਦੇਖੋ ਅਤੇ ਪਹਿਲਾਂ ਖਾਤਾ ਐਕਟੀਵੇਟ ਕਰੋ!</string>
 
 </resources>

@@ -5,10 +5,15 @@
     <string name="hindi">हिंदी</string>
     <string name="punjabi">ਪੰਜਾਬੀ</string>
     <string name="continue_text">जारी रहना</string>
+    <string name="enter_first_name"> पहला नाम
+</string>
+    <string name="enter_last_name"> अंतिम नाम
+</string>
     <string name="enter_username">नाम</string>
     <string name="your_email_address">आपका ईमेल पता</string>
     <string name="proceed">बढ़ना</string>
     <string name="enter_your_details">आपके विवरण दर्ज करें</string>
+    <string name="login_gplus">Google के साथ लॉगिन करें</string>
     <string name="username_error">उपयोगकर्ता नाम तीन से अधिक वर्ण होना चाहिए</string>
     <string name="email_error">एक वैध ईमेल प्रविष्ट करें</string>
     <string name="submit">जमा करें</string>
@@ -16,6 +21,7 @@
     <string name="second">सेकंड</string>
     <string name="phone_error">सही फ़ोन नंबर दर्ज करें</string>
     <string name="enter_your_phone_number">अपना दूरभाष क्रमांक दर्ज करें</string>
+    <string name="enter_your_email">अपना ईमेल दर्ज करें</string>
     <string name="phone_number">फ़ोन नंबर</string>
     <string name="enter_otp_here">ओटीपी यहां दर्ज करें</string>
     <string name="waiting_1_sec">1 सेकंड प्रतीक्षा कर रहा है</string>
@@ -37,5 +43,18 @@
     <string name="resend_otp">ओटीपी पुनः भेजें</string>
     <string name="out_of_scope">हैकथॉन 2017 के लिए दायरे से बाहर</string>
     <string name="view_tickets">टिकट देखें</string>
+    <string name="ok_btn">प्रतिक्रिया बनाएँ</string>
+    <string name="cancel_btn">रद्द करना</string>
+    <string name="ticket_preview">फ़ीडबैक पूर्वावलोकन</string>
+    <string name="email_exist">ईमेल पहले से मौजूद है</string>
+    <string name="something_wrong">कुछ गलत हो गया</string>
+    <string name="error_subject">विषय दर्ज करें</string>
+    <string name="error_desc">विवरण दर्ज करें</string>
+    <string name="select_department">ठीक है!! कृपया एक ऐसा विभाग चुनें, जिसके लिए आप एक फीडबैक बनाना चाहते हैं।</string>
+    <string name="feedback_created">संदर्भ आईडी के साथ बनाया गया फ़ीडबैक:</string>
+    <string name="creating_feedback">फ़ीडबैक बनाना ...</string>
+
+    <string name="here_go">यहाँ तुम जाओ ...</string>
+    <string name="email_not_verified">आपका ईमेल सत्यापन लंबित है, कृपया अपना ईमेल जांचें और पहले खाता सक्रिय करें!</string>
 
 </resources>
