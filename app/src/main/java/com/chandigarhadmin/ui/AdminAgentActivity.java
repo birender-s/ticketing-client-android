@@ -2,7 +2,6 @@ package com.chandigarhadmin.ui;
 
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -194,7 +193,6 @@ public class AdminAgentActivity extends AppCompatActivity implements PopupMenu.O
             case R.id.settings:
             case R.id.what_you_do:
             case R.id.help:
-            case R.id.send_feedback:
                 Constant.showToastMessage(AdminAgentActivity.this, getResources().getString(R.string.out_of_scope));
                 return true;
             case R.id.logout_menu:

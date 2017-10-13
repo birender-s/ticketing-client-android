@@ -11,8 +11,6 @@
         android:title="@string/what_you_do" />
     <item android:id="@+id/help"
         android:title="@string/help" />
-    <item android:id="@+id/send_feedback"
-        android:title="@string/send_feedback" />
     <item android:id="@+id/logout_menu"
         android:title="@string/logout" />
 </menu>

@@ -35,24 +35,29 @@
     <string name="settings">ਸੈਟਿੰਗਾਂ</string>
     <string name="what_you_do">ਤੁਸੀਂ ਕੀ ਕਰਦੇ ਹੋ</string>
     <string name="help">ਮਦਦ</string>
-    <string name="send_feedback">ਫੀਡਬੈਕ ਭੇਜੋ</string>
+    <string name="send_feedback">ਟਿਕਟ ਭੇਜੋ</string>
     <string name="enter_your_otp">ਆਪਣੇ OTP ਦਰਜ ਕਰੋ</string>
     <string name="verify">ਜਾਂਚ ਕਰੋ</string>
     <string name="resend_otp">OTP ਦੁਬਾਰਾ ਭੇਜੋ</string>
     <string name="out_of_scope">ਹੈਕਟੇਨ 2017 ਲਈ ਸਕੋਪ ਤੋਂ ਬਾਹਰ</string>
     <string name="view_tickets">ਵੇਖੋ ਟਿਕਟ</string>
-    <string name="ok_btn">ਫੀਡਬੈਕ ਬਣਾਓ</string>
+    <string name="ok_btn">ਟਿਕਟ ਬਣਾਉ</string>
     <string name="cancel_btn">ਰੱਦ ਕਰੋ</string>
-    <string name="ticket_preview">ਫੀਡਬੈਕ ਪ੍ਰੀਵਿਊ</string>
+    <string name="ticket_preview">ਟਿਕਟ ਪੂਰਵ ਦਰਸ਼ਨ</string>
     <string name="email_exist">ਈਮੇਲ ਪਹਿਲਾਂ ਤੋਂ ਮੌਜੂਦ ਹੈ</string>
     <string name="something_wrong">ਕੁਝ ਗਲਤ ਹੋ ਗਿਆ</string>
     <string name="error_subject">ਵਿਸ਼ਾ ਦਿਓ</string>
     <string name="error_desc">ਵੇਰਵਾ ਦਿਓ</string>
-    <string name="select_department">ਠੀਕ ਹੈ !! ਕਿਰਪਾ ਕਰਕੇ ਉਸ ਵਿਭਾਗ ਦਾ ਚੋਣ ਕਰੋ ਜਿਸ ਲਈ ਤੁਸੀਂ ਕੋਈ ਫੀਡਬੈਕ ਬਣਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ.</string>
-    <string name="feedback_created">ਇੱਕ ਸੰਦਰਭ ID ਨਾਲ ਪ੍ਰਤੀਕਰਮ ਬਣਾਇਆ ਗਿਆ:</string>
-    <string name="creating_feedback">ਫੀਡਬੈਕ ਬਣਾ ਰਿਹਾ ਹੈ ...</string>
+    <string name="select_department">ਠੀਕ ਹੈ !! ਕਿਰਪਾ ਕਰਕੇ ਉਹ ਵਿਭਾਗ ਚੁਣੋ ਜਿਸ ਲਈ ਤੁਸੀਂ ਟਿਕਟ ਬਣਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ.</string>
+    <string name="feedback_created">ਹਵਾਲਾ ਆਈਡੀ ਨਾਲ ਬਣੇ ਟਿਕਟ:</string>
+    <string name="creating_feedback">ਟਿਕਟ ਬਣਾ ਰਿਹਾ ਹੈ ...</string>
 
     <string name="here_go">ਜਾਓ...</string>
     <string name="email_not_verified">ਤੁਹਾਡੀ ਈਮੇਲ ਜਾਂਚ ਬਕਾਇਆ ਹੈ, ਕਿਰਪਾ ਕਰਕੇ ਆਪਣਾ ਈਮੇਲ ਦੇਖੋ ਅਤੇ ਪਹਿਲਾਂ ਖਾਤਾ ਐਕਟੀਵੇਟ ਕਰੋ!</string>
+    <string name="feedback_details">ਟਿਕਟ ਵੇਰਵਾ</string>
+    <string name="feedbacks">ਸਾਰੇ ਟਿਕਟ</string>
+    <string name="feedback_status">ਟਿਕਟ ਸਥਿਤੀ:</string>
+    <string name="feedback_ref">ਟਿਕਟ ਸੰਦਰਭ:</string>
+    <string name="feedback_na"> NA</string>
 
 </resources>
