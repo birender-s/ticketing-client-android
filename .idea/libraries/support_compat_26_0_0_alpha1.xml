@@ -1,17 +1,12 @@
 <component name="libraryTable">
   <library name="support-compat-26.0.0-alpha1">
-    <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/.android/build-cache/99c6f6f15f47174ab3334a2468cf3b95e21ff48d/output/annotations.zip!/" />
-      <root url="jar://$USER_HOME$/.android/build-cache/99c6f6f15f47174ab3334a2468cf3b95e21ff48d/output/annotations.zip!/" />
-    </ANNOTATIONS>
     <CLASSES>
       <root url="jar://$USER_HOME$/.android/build-cache/e72c7f12fb091355c8bb87d4a3eddcee7e4b424d/output/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.android/build-cache/e72c7f12fb091355c8bb87d4a3eddcee7e4b424d/output/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/AppData/Local/Android/sdk/extras/android/m2repository/com/android/support/support-compat/26.0.0-alpha1/support-compat-26.0.0-alpha1-sources.jar!/" />
-      <root url="jar://$USER_HOME$/AppData/Local/Android/sdk/extras/android/m2repository/com/android/support/support-compat/26.0.0-alpha1/support-compat-26.0.0-alpha1-sources.jar!/" />
+      <root url="jar://$USER_HOME$/Library/Android/sdk/extras/android/m2repository/com/android/support/support-compat/26.0.0-alpha1/support-compat-26.0.0-alpha1-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

@@ -1,21 +1,0 @@
-
-ssquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(Ô«ı°úÿÿÿÿ8­ó³Šğ+
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(éåõÃûÿÿÿÿ8«Ş¸€ñ+
-gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¦Ã³8«Ş¸€ñ+
-Ssquid:S1135"2Complete the task associated to this TODO comment.(ãÅ­öùÿÿÿÿ8Õ»©€ï+
-–squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ĞïÁ
-6squid:S1170"!Make this final field static too.(Ü›Ä
-usquid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(¼Æ€•8öÿŞÿï+
-usquid:S3923"[Remove this conditional structure or edit its code blocks so that they're not all the same.(Ø’µ•şÿÿÿÿ
-squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(½ë¿í8«Ş¸€ñ+
-zsquid:S1450"YRemove the "branchName" field and declare it as a local variable in the relevant methods.(ÁÆƒÀÿÿÿÿÿ8öÿŞÿï+
-jsquid:MaximumInheritanceDepth"<This class has 7 parents which is greater than 5 authorized.(‘«¿«8«Ş¸€ñ+
-Osquid:S1068".Remove this unused "branchName" private field.(ÁÆƒÀÿÿÿÿÿ8öÿŞÿï+
-›squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¯¨ìüÿÿÿÿ
-gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ÆùŠØ8ÙÅ¥ğ+
-–squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ëøÛù
-–squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(öÆÒ¯
-›squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Óª‚Òşÿÿÿÿ
-Rsquid:S1197"8Move the array designator from the variable to the type.(ÿÃ²şÿÿÿÿ
-gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(‹ìŒá8«Ş¸€ñ+
-|squid:S00116"fRename this field "MY_PERMISSIONS_RECORD_AUDIO" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ü›Ä
