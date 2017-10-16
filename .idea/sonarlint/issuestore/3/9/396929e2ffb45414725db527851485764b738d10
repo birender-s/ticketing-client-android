@@ -1,0 +1,17 @@
+
+Osquid:S1068".Remove this unused "branchName" private field.(ÁÆƒÀÿÿÿÿÿ8öÿÞÿï+
+jsquid:MaximumInheritanceDepth"<This class has 7 parents which is greater than 5 authorized.(‘«¿«8«Þ¸€ñ+
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(éåõÃûÿÿÿÿ8«Þ¸€ñ+
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ÆùŠØ8žÙÅ¥ð+
+zsquid:S1450"YRemove the "branchName" field and declare it as a local variable in the relevant methods.(ÁÆƒÀÿÿÿÿÿ8öÿÞÿï+
+Rsquid:S1197"8Move the array designator from the variable to the type.(ÿÃ²þÿÿÿÿ
+usquid:S3923"[Remove this conditional structure or edit its code blocks so that they're not all the same.(Ø’µ•þÿÿÿÿ
+Ssquid:S1135"2Complete the task associated to this TODO comment.(ãÅ­öùÿÿÿÿ8Õ»©€ï+
+squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(½ë¿í8«Þ¸€ñ+
+[squid:UnusedPrivateMethod"1Remove this unused private "createTicket" method.(©ÎŒ8å†ú™ò+
+osquid:ModifiersOrderCheck"EReorder the modifiers to comply with the Java Language Specification.(­Ùª¹8å†ú™ò+
+Ksquid:S1066"/Merge this if statement with the enclosing one.(ÍÜÈÓ8å†ú™ò+
+fsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(³¨ü08å†ú™ò+
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(í±øÈ8å†ú™ò+
+gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ŽžáË8å†ú™ò+
+Fsquid:S00108")Either remove or fill this block of code.(å¥ž‡8å†ú™ò+

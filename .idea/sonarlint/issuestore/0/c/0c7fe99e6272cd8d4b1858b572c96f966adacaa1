@@ -1,0 +1,20 @@
+
+Osquid:UnusedPrivateMethod",Remove this unused private "signOut" method.(ìÉÓÌ
+Tsquid:UnusedPrivateMethod"1Remove this unused private "revokeAccess" method.(ß¼Ş¾
+Esquid:S1659"+Declare "userFirstName" on a separate line.(ÆáÓ¾ùÿÿÿÿ
+Dsquid:S1659"*Declare "userLastname" on a separate line.(ÆáÓ¾ùÿÿÿÿ
+`squid:S1192"FDefine a constant instead of duplicating this literal "error" 3 times.(›ˆœºúÿÿÿÿ
+Isquid:S1066"/Merge this if statement with the enclosing one.(ÉàĞ§øÿÿÿÿ
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(»ò¯·
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(å†ò˜
+esquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ƒèªüüÿÿÿÿ
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(« ÅÊ
+esquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(éåõÃûÿÿÿÿ
+esquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(éåõÃûÿÿÿÿ
+esquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(éåõÃûÿÿÿÿ
+_squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(»>
+`squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(À‚ûé
+lsquid:S3776"RRefactor this method to reduce its Cognitive Complexity from 41 to the 15 allowed.(Æ‹Ä£ıÿÿÿÿ
+esquid:S2259"KA "NullPointerException" could be thrown; "progressDialog" is nullable here(âš²äùÿÿÿÿ
+–squid:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(½ë¿í
+hsquid:MaximumInheritanceDepth"<This class has 7 parents which is greater than 5 authorized.(÷ÁØ·úÿÿÿÿ
