@@ -1,10 +1,9 @@
 
 lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¥«ëÝüÿÿÿÿ8®ó³Šð+
-lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ÈÚ¨ãùÿÿÿÿ8®ó³Šð+
-Asquid:S2068" Remove this hard-coded password.(Ø¼‹šüÿÿÿÿ8®ó³Šð+
-Tsquid:S1118":Add a private constructor to hide the implicit public one.(Ø¡²›ÿÿÿÿÿ
-Vsquid:S1126"AReplace this if-then-else statement by a single return statement.(å¡Ðê
 Msquid:S2589"8Remove this expression which always evaluates to "false"(å¡Ðê
-squid:S2159"zRemove this call to "equals"; comparisons against null always return false; consider using '== null' to check for nullity.(å¡Ðê
-Psquid:S1313"4Make this IP "104.154.217.246" address configurable.(Â¤“í8®ó³Šð+
 gsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(íç¤Ï8®ó³Šð+
+Vsquid:S1126"AReplace this if-then-else statement by a single return statement.(å¡Ðê
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ÈÚ¨ãùÿÿÿÿ8®ó³Šð+
+Psquid:S1313"4Make this IP "104.154.217.246" address configurable.(Â¤“í8®ó³Šð+
+Tsquid:S1118":Add a private constructor to hide the implicit public one.(Ø¡²›ÿÿÿÿÿ
+squid:S2159"zRemove this call to "equals"; comparisons against null always return false; consider using '== null' to check for nullity.(å¡Ðê
