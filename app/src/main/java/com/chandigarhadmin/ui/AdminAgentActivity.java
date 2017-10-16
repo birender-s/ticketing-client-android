@@ -2,8 +2,6 @@ package com.chandigarhadmin.ui;
 
 
 import android.Manifest;
-import android.app.Activity;
-import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
@@ -20,19 +18,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.chandigarhadmin.App;
@@ -79,7 +71,7 @@ import retrofit2.Response;
 public class AdminAgentActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener, AIListener, SelectionCallbacks, ResponseCallback, GoogleApiClient.OnConnectionFailedListener {
     //Create placeholder for user's consent to record_audio permission.
     //This will be used in handling callback
-    private final int MY_PERMISSIONS_RECORD_AUDIO = 1;
+    private final static int MY_PERMISSIONS_RECORD_AUDIO = 1;
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
     @BindView(R.id.querystringet)
@@ -187,6 +179,9 @@ public class AdminAgentActivity extends AppCompatActivity implements PopupMenu.O
             case R.id.account:
                 startActivity(new Intent(this, MyAccountActivity.class));
                 return true;
+            case R.id.createticket:
+                previewCreateTicket(null);
+                return true;
             case R.id.view_tickets:
                 Intent intent1 = new Intent(AdminAgentActivity.this, AllTicketsActivity.class);
                 startActivity(intent1);
@@ -276,38 +271,34 @@ public class AdminAgentActivity extends AppCompatActivity implements PopupMenu.O
 
     //AIRequest should have query OR event
     private void sendRequest(String queryString) {
-       // if (sessionManager.getUserActive()) {
-            createTicketResponse = null;
-            final AsyncTask<String, Void, AIResponse> task = new AsyncTask<String, Void, AIResponse>() {
-                private AIError aiError;
+       // createTicketResponse = null;
+        final AsyncTask<String, Void, AIResponse> task = new AsyncTask<String, Void, AIResponse>() {
+            private AIError aiError;
 
-                @Override
-                protected AIResponse doInBackground(final String... params) {
-                    final AIRequest request = new AIRequest();
-                    String query = params[0];
-                    if (!TextUtils.isEmpty(query))
-                        request.setQuery(query);
-                    try {
-                        return aiService.textRequest(request);
-                    } catch (final AIServiceException e) {
-                        aiError = new AIError(e);
-                        return null;
-                    }
+            @Override
+            protected AIResponse doInBackground(final String... params) {
+                final AIRequest request = new AIRequest();
+                String query = params[0];
+                if (!TextUtils.isEmpty(query))
+                    request.setQuery(query);
+                try {
+                    return aiService.textRequest(request);
+                } catch (final AIServiceException e) {
+                    aiError = new AIError(e);
+                    return null;
                 }
+            }
 
-                @Override
-                protected void onPostExecute(final AIResponse response) {
-                    if (response != null) {
-                        onResult(response);
-                    } else {
-                        onError(aiError);
-                    }
+            @Override
+            protected void onPostExecute(final AIResponse response) {
+                if (response != null) {
+                    onResult(response);
+                } else {
+                    onError(aiError);
                 }
-            };
-            task.execute(queryString);
-        /*} else {
-            setChatInputs(getString(R.string.email_not_verified), false);
-        }*/
+            }
+        };
+        task.execute(queryString);
     }
 
     @Override
@@ -325,7 +316,8 @@ public class AdminAgentActivity extends AppCompatActivity implements PopupMenu.O
                     setChatInputs(response.getResult().getFulfillment().getSpeech(), false);
                 } else if (result.getFulfillment().getSpeech().equalsIgnoreCase(getResources().getString(R.string.save_ticket))) {
                     // TODO: 29/09/17 need to show the preview
-                    previewTicket(result);
+                    //previewTicket(result);
+                    previewCreateTicket(result);
 
                 }
             } else if (result.getAction().equalsIgnoreCase(getResources().getString(R.string.fetchalltickets))) {
@@ -341,27 +333,28 @@ public class AdminAgentActivity extends AppCompatActivity implements PopupMenu.O
 
     @Override
     public void onError(AIError error) {
-
+        // do nothing
     }
 
     @Override
     public void onAudioLevel(float level) {
-
+        // do nothing
     }
 
     @Override
     public void onListeningStarted() {
-
+        // do nothing
     }
 
     @Override
     public void onListeningCanceled() {
+        // do nothing
 
     }
 
     @Override
     public void onListeningFinished() {
-
+        // do nothing
     }
 
 
@@ -492,85 +485,21 @@ public class AdminAgentActivity extends AppCompatActivity implements PopupMenu.O
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // permission was granted, yay!
             } else {
-                // permission denied, boo! Disable the
-                // functionality that depends on this permission.
+
             }
         }
     }
 
-    private void previewTicket(final Result result) {
-        if (null != branches && !branches.isEmpty()) {
-            final Dialog dialog = new Dialog(this);
-            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            dialog.setCancelable(false);
-            dialog.setContentView(R.layout.ticket_preview);
-            DisplayMetrics metrics = new DisplayMetrics(); //get metrics of screen
-            getWindowManager().getDefaultDisplay().getMetrics(metrics);
-            int height = (int) (metrics.heightPixels * 0.8); //set height to 80% of total
-            int width = (int) (metrics.widthPixels * 0.9); //set width to 90% of total
-            dialog.getWindow().setLayout(width, height);
-            final Spinner spinnerBranches = (Spinner) dialog.findViewById(R.id.spdepartment);
-            List<String> branchNames = new ArrayList<>();
-            final List<String> branchId = new ArrayList<>();
-            int indexbranch = -1;
 
-            for (int i = 0; i < branches.size(); i++) {
-                if (!branches.get(i).getName().trim().equalsIgnoreCase("Default branch")) {
-                    if (result.getParameters().get("department").toString().replaceAll("\"", "").replaceAll("\"", "").replaceAll("\\[", "").replaceAll("\\]", "").equals(branches.get(i).getId())) {
-                        indexbranch = i;
-                    }
-                    branchNames.add(branches.get(i).getName());
-                    branchId.add(branches.get(i).getId());
-                }
-            }
-            // Creating adapter for spinner
-            ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, branchNames);
 
-            // Drop down layout style - list view with radio button
-            dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-            // attaching data adapter to spinner
-            spinnerBranches.setAdapter(dataAdapter);
-            spinnerBranches.setSelection(indexbranch - 1);
-            final EditText textViewSubject = (EditText) dialog.findViewById(R.id.tvsubject_value);
-            textViewSubject.setText(result.getParameters().get(getResources().getString(R.string.ticketsubject)).toString().replaceAll("\"", "").replaceAll("\"", "").replaceAll("\\[", "").replaceAll("\\]", ""));
-            final EditText textViewDescription = (EditText) dialog.findViewById(R.id.tvdescription_value);
-            textViewDescription.setText(result.getParameters().get(getResources().getString(R.string.ticketdesc)).toString().replaceAll("\"", "").replaceAll("\"", "").replaceAll("\\[", "").replaceAll("\\]", ""));
-
-            Button okButton = (Button) dialog.findViewById(R.id.createbtn);
-            ImageView crossImg = (ImageView) dialog.findViewById(R.id.crossicon);
-            okButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    if (textViewSubject.getText().toString().length() > 0) {
-                        if (textViewDescription.getText().toString().length() > 0) {
-                            dialog.dismiss();
-                            setChatInputs(getResources().getString(R.string.creating_feedback), false);
-                            createTicket(branchId.get(spinnerBranches.getSelectedItemPosition()), textViewSubject.getText().toString(), textViewDescription.getText().toString());
-                            Log.e("result", "Saved");
-                        } else {
-                            textViewDescription.setError(getResources().getString(R.string.error_desc));
-                        }
-
-                    } else {
-                        textViewSubject.setError(getResources().getString(R.string.error_subject));
-                    }
-
-                }
-            });
-            crossImg.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    dialog.dismiss();
-                }
-            });
-
-            dialog.show();
-        } else {
-            App.getApiController().getBranches(this, RequestParams.TYPE_GET_BRANCHES);
+    private void previewCreateTicket(final Result result) {
+        Intent intent = new Intent(AdminAgentActivity.this, PreviewCreateActivity.class);
+        if (null != result) {
+            intent.putExtra(Constant.INPUT_TICKET_ID, result.getParameters().get(getResources().getString(R.string.department)).toString().replaceAll("\"", "").replaceAll("\"", "").replaceAll("\\[", "").replaceAll("\\]", ""));
+            intent.putExtra(Constant.INPUT_TICKET_SUBJECT, result.getParameters().get(getResources().getString(R.string.ticketsubject)).toString().replaceAll("\"", "").replaceAll("\"", "").replaceAll("\\[", "").replaceAll("\\]", ""));
+            intent.putExtra(Constant.INPUT_TICKET_DESC, result.getParameters().get(getResources().getString(R.string.ticketdesc)).toString().replaceAll("\"", "").replaceAll("\"", "").replaceAll("\\[", "").replaceAll("\\]", ""));
         }
-
+        startActivityForResult(intent, Constant.PC_REQUEST_CODE);
     }
 
     @Override
@@ -588,8 +517,8 @@ public class AdminAgentActivity extends AppCompatActivity implements PopupMenu.O
                 setChatInputs(getResources().getString(R.string.here_go), false);
                 parseTickets(tickets);
             } else if (type.equalsIgnoreCase(RequestParams.TYPE_CREATE_TICKET)) {
-                createTicketResponse = (CreateTicketResponse) response.body();
-                setChatInputs(getResources().getString(R.string.feedback_created) + createTicketResponse.getId(), false);
+              //  createTicketResponse = (CreateTicketResponse) response.body();
+              //  setChatInputs(getResources().getString(R.string.feedback_created) + createTicketResponse.getId(), false);
             }
         } else {
             try {
@@ -625,5 +554,17 @@ public class AdminAgentActivity extends AppCompatActivity implements PopupMenu.O
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == Constant.PC_REQUEST_CODE) {
+            if (resultCode == Constant.PC_REQUEST_CODE && null != data && data.hasExtra(Constant.INPUT_TICKET_CREATE)) {
+                createTicketResponse=data.getParcelableExtra(Constant.INPUT_TICKET_CREATE);
+                setChatInputs(getResources().getString(R.string.feedback_created), false);
+            }
+
+        }
     }
 }

@@ -9,12 +9,16 @@ import android.widget.Toast;
 
 public class Constant {
     public static final String USERNAME = "diamantedesk";
-  //  public static final String USERNAME = "admin";
+  public static final int PC_REQUEST_CODE = 101;
     public static final String WHITE_SPACE = " ";
     public static final String INPUT_FIRST_NAME = "first_name";
     public static final String INPUT_LAST_NAME = "last_name";
     public static final String INPUT_EMAIL = "email";
     public static final String INPUT_TICKET_DATA = "ticket_data";
+    public static final String INPUT_TICKET_ID = "ticket_id";
+    public static final String INPUT_TICKET_SUBJECT = "ticket_subject";
+    public static final String INPUT_TICKET_DESC = "ticket_desc";
+    public static final String INPUT_TICKET_CREATE = "ticket_create";
     public static final String INPUT_CTICKET_DATA = "cticket_data";
     public static final String SELECTED_LOCALE = "selected_locale";
     public static final String SELECTED_LOCALE_LANGUAGE = "selected_locale_language";
