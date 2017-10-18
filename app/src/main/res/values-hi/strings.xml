@@ -51,7 +51,7 @@
     <string name="error_subject">विषय दर्ज करें</string>
     <string name="error_desc">विवरण दर्ज करें</string>
     <string name="select_department">ठीक है!! कृपया एक ऐसा विभाग चुनें, जिसके लिए आप एक फीडबैक बनाना चाहते हैं।</string>
-    <string name="feedback_created">संदर्भ आईडी के साथ बनाया गया फ़ीडबैक:</string>
+    <string name="feedback_created"> फ़ीडबैक बनाया गया </string>
     <string name="creating_feedback">फ़ीडबैक बनाना ...</string>
 
     <string name="here_go">यहाँ तुम जाओ ...</string>

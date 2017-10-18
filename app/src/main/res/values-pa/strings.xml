@@ -49,7 +49,7 @@
     <string name="error_subject">ਵਿਸ਼ਾ ਦਿਓ</string>
     <string name="error_desc">ਵੇਰਵਾ ਦਿਓ</string>
     <string name="select_department">ਠੀਕ ਹੈ !! ਕਿਰਪਾ ਕਰਕੇ ਉਸ ਵਿਭਾਗ ਦਾ ਚੋਣ ਕਰੋ ਜਿਸ ਲਈ ਤੁਸੀਂ ਕੋਈ ਫੀਡਬੈਕ ਬਣਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ.</string>
-    <string name="feedback_created">ਇੱਕ ਸੰਦਰਭ ID ਨਾਲ ਪ੍ਰਤੀਕਰਮ ਬਣਾਇਆ ਗਿਆ:</string>
+    <string name="feedback_created">ਫੀਡਬੈਕ ਬਣਾਇਆ ਗਿਆ</string>
     <string name="creating_feedback">ਫੀਡਬੈਕ ਬਣਾ ਰਿਹਾ ਹੈ ...</string>
 
     <string name="here_go">ਜਾਓ...</string>

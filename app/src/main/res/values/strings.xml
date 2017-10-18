@@ -56,7 +56,7 @@
     <string name="error_subject">Enter Subject</string>
     <string name="error_desc">Enter Description</string>
     <string name="select_department">Okay!! Please select a department for which you want to create a feedback.</string>
-    <string name="feedback_created">Feedback created with a Reference ID:  </string>
+    <string name="feedback_created">Feedback created  </string>
     <string name="creating_feedback">Creating feedback...</string>
 
 
