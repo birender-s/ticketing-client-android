@@ -59,5 +59,8 @@
     <string name="feedback_status">ਟਿਕਟ ਸਥਿਤੀ:</string>
     <string name="feedback_ref">ਟਿਕਟ ਸੰਦਰਭ:</string>
     <string name="feedback_na"> NA</string>
+    <string name="department_text">Department:</string>
+    <string name="subject_text">Subject:</string>
+    <string name="description_text">Description:</string>
 
 </resources>

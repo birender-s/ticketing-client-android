@@ -8,30 +8,29 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center"
-            android:padding="10dp"
-            android:text="@string/ticket_preview"
-            android:textColor="@color/aidialog_background"
-            android:textSize="25sp" />
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/crossicon"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_margin="15dp"
             android:padding="5dp"
-            android:src="@drawable/white_cross" />
+            android:src="@drawable/closeicon" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/image"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/ticket_preview"
+            android:textColor="@color/aidialog_background"
+            android:textSize="25sp" />
 
     </RelativeLayout>
 
@@ -56,7 +55,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:text="Department:"
+                android:text="@string/department_text"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -66,7 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"></Spinner>
+                android:layout_marginRight="10dp" />
 
 
             <TextView
@@ -75,7 +74,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_marginLeft="10dp"
-                android:text="Subject:"
+                android:layout_marginStart="10dp"
+                android:text="@string/subject_text"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -85,6 +85,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:textSize="14sp"
                 android:textStyle="normal" />
 
@@ -94,7 +95,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:layout_marginLeft="10dp"
-                android:text="Description:"
+                android:layout_marginStart="10dp"
+                android:text="@string/description_text"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -104,6 +106,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
                 android:textSize="14sp"
                 android:textStyle="italic" />
 

@@ -6,13 +6,19 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
 
-/**
- * Created by harendrasinghbisht on 23/09/17.
- */
+public class UniqueId implements Parcelable {
+    public static final Creator<UniqueId> CREATOR = new Creator<UniqueId>() {
+        @Override
+        public UniqueId createFromParcel(Parcel in) {
+            return new UniqueId(in);
+        }
 
-public class UniqueId  implements Parcelable{
+        @Override
+        public UniqueId[] newArray(int size) {
+            return new UniqueId[size];
+        }
+    };
     @SerializedName("id")
     @Expose
     private String id;
@@ -30,18 +36,6 @@ public class UniqueId  implements Parcelable{
     public int describeContents() {
         return 0;
     }
-
-    public static final Creator<UniqueId> CREATOR = new Creator<UniqueId>() {
-        @Override
-        public UniqueId createFromParcel(Parcel in) {
-            return new UniqueId(in);
-        }
-
-        @Override
-        public UniqueId[] newArray(int size) {
-            return new UniqueId[size];
-        }
-    };
 
     public String getId() {
         return id;

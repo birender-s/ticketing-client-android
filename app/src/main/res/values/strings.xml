@@ -69,6 +69,10 @@
     <string name="ticketsubject">ticketsubject</string>
     <string name="ticketdesc">ticketdesc</string>
     <string name="save_ticket">save ticket</string>
+    <string name="image">image</string>
+    <string name="department_text">Department:</string>
+    <string name="subject_text">Subject:</string>
+    <string name="description_text">Description:</string>
 
 
 </resources>

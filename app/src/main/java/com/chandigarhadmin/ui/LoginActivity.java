@@ -1,7 +1,6 @@
 package com.chandigarhadmin.ui;
 
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -42,18 +41,17 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, ResponseCallback {
 
+    private static final int RC_SIGN_IN = 9001;
     @BindView(R.id.titletv)
     TextView tvTitle;
     @BindView(R.id.proceedbtn)
     Button btnProceed;
-
     @BindView(R.id.etlastname)
     EditText etlastname;
     @BindView(R.id.etusername)
     EditText etUserName;
     @BindView(R.id.sign_in_button)
     SignInButton signInButton;
-    private static final int RC_SIGN_IN = 9001;
     private GoogleApiClient mGoogleApiClient;
     private ProgressDialog progressDialog;
     private SessionManager sessionManager;
@@ -306,9 +304,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
     }
     private void saveLoginDetail() {
-        if (null != progressDialog && progressDialog.isShowing()) {
-            //already showing progress dialog
-        } else {
+        if (null == progressDialog) {
             progressDialog.show();
         }
 
