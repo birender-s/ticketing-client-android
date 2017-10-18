@@ -34,7 +34,7 @@ public class CustomPagerAdapter extends PagerAdapter {
         ArrayList<BranchesModel> branchesModelArrayList = new ArrayList<>();
         branchesModelArrayList.addAll(dataObjectList);
         //removing default branch from list of departments
-        branchesModelArrayList.remove(0);
+      //  branchesModelArrayList.remove(0);
         this.dataObjectList = branchesModelArrayList;
         imageLoader = ImageLoader.getInstance();
         imageLoader.init(ImageLoaderConfiguration.createDefault(context));
