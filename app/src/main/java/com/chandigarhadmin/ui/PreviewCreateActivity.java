@@ -165,7 +165,7 @@ public class PreviewCreateActivity extends AppCompatActivity implements Response
         // attaching data adapter to spinner
         spDeparment.setAdapter(dataAdapter);
         if (indexbranch != -1) {
-            spDeparment.setSelection(indexbranch - 1);
+            spDeparment.setSelection(indexbranch);
         }
 
     }
