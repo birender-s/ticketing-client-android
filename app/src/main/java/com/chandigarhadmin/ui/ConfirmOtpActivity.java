@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -16,19 +15,17 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.chandigarhadmin.App;
 import com.chandigarhadmin.R;
 import com.chandigarhadmin.interfaces.ResponseCallback;
 import com.chandigarhadmin.models.CreateUserResponse;
+import com.chandigarhadmin.models.LoginUserModel;
 import com.chandigarhadmin.models.RequestParams;
-import com.chandigarhadmin.service.ApiServiceTask;
-import com.chandigarhadmin.service.JSONParser;
 import com.chandigarhadmin.session.SessionManager;
 import com.chandigarhadmin.utils.Constant;
-import com.google.gson.Gson;
 import com.stfalcon.smsverifycatcher.OnSmsCatchListener;
 import com.stfalcon.smsverifycatcher.SmsVerifyCatcher;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Timer;
@@ -39,9 +36,7 @@ import java.util.regex.Pattern;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
-import static com.chandigarhadmin.R.id.timer;
-import static com.chandigarhadmin.R.string.resend_otp;
+import retrofit2.Response;
 
 public class ConfirmOtpActivity extends Activity implements ResponseCallback {
     @BindView(R.id.et_readotp)
@@ -50,37 +45,49 @@ public class ConfirmOtpActivity extends Activity implements ResponseCallback {
     LinearLayout llOtp;
     @BindView(R.id.btn_confirm_otp)
     Button submitBtn;
+    @BindView(R.id.timer)
+    TextView timerText;
     Timer t = new Timer();
     TimerTask task, timerTask;
-    private boolean isOtpReceived;
     private SmsVerifyCatcher smsVerifyCatcher;
     private ProgressDialog progressDialog;
     private SessionManager sessionManager;
     private int time=0;
+    private boolean isOtpRecived;
     private MyCountDownTimer myCountDownTimer;
 
+    @OnClick(R.id.btn_confirm_otp)
+    public void submitButton() {
+        if (submitBtn.getText().toString().trim().equalsIgnoreCase(getResources().getString(R.string.resend_otp))) {
+            myCountDownTimer = new MyCountDownTimer(15000, 1000);
+            myCountDownTimer.start();
+        } else if (Constant.checkString(etOptRecevier.getText().toString())) {
+            saveLoginDetail();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirm_otp);
         ButterKnife.bind(this);
+
+        submitBtn.setAlpha(0.4f);// diming the brightness of button
         submitBtn.setEnabled(false);
+        myCountDownTimer = new MyCountDownTimer(15000, 1000);
+        myCountDownTimer.start();       //starting the timer
         sessionManager = new SessionManager(this);
         progressDialog = Constant.createDialog(this, null);
-        if (getIntent().hasExtra("phone")) {
-            getUserByEmail(getIntent().getStringExtra("phone"));
-        }
-
         smsVerifyCatcher = new SmsVerifyCatcher(this, new OnSmsCatchListener<String>() {
             @Override
             public void onSmsCatch(String message) {
 
                 String code = parseCode(message);//Parse verification code
-                if(null!=code&&!code.isEmpty()) {
-                    isOtpReceived = true;
+                if (null != code && !code.isEmpty()) {
                     progressDialog.hide();
+                    isOtpRecived = true;
                     etOptRecevier.setText(code);//set code in edit text
+                    llOtp.setVisibility(View.INVISIBLE);
                     //then you can send verification code to server
                     if (myCountDownTimer != null) {
                         myCountDownTimer.onFinish();
@@ -99,10 +106,14 @@ public class ConfirmOtpActivity extends Activity implements ResponseCallback {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (charSequence.length() == 4) {
-                    isOtpReceived = true;
+                    submitBtn.setAlpha(1.0f);
                     submitBtn.setEnabled(true);
-                    submitBtn.setText(R.string.submit);
-                    llOtp.setVisibility(View.GONE);
+                    submitBtn.setText(getResources().getString(R.string.verify));
+                    llOtp.setVisibility(View.INVISIBLE);
+                } else if ((charSequence.length() == 0) && !isOtpRecived) {
+                    submitBtn.setAlpha(1.0f);
+                    submitBtn.setEnabled(true);
+                    submitBtn.setText(getResources().getString(R.string.resend_otp));
                 }
             }
 
@@ -112,21 +123,6 @@ public class ConfirmOtpActivity extends Activity implements ResponseCallback {
             }
         });
     }
-    @OnClick(R.id.btn_confirm_otp)
-    void submitButton(View view) {
-        if (view.getId() == R.id.btn_confirm_otp) {
-           if(submitBtn.getText().toString().trim().equalsIgnoreCase("resend_otp")){
-               myCountDownTimer.start();
-
-           }
-           else{
-               if (!TextUtils.isEmpty(etOptRecevier.getText())) {
-                   saveLoginDetail();
-               }
-           }
-        }
-    }
-
 
     /**
      * Parse verification code
@@ -165,92 +161,54 @@ public class ConfirmOtpActivity extends Activity implements ResponseCallback {
         smsVerifyCatcher.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
-    private void checkClickAction() {
-        if (!isOtpReceived) {
-            if (getIntent().hasExtra("phone")) {
-                getUserByEmail(getIntent().getStringExtra("phone"));
-            } else {
-                myCountDownTimer.start();
-            }
-        } else if (isOtpReceived) {
-            if (!TextUtils.isEmpty(etOptRecevier.getText())) {
-                saveLoginDetail();
-            }
-        }
-    }
-
     /**
      * create a user if not exist
      */
     private void saveLoginDetail() {
-        progressDialog.show();
-        JSONObject jsonObject = new JSONObject();
-        try {
-            if (getIntent().hasExtra(Constant.INPUT_EMAIL)) {
-                jsonObject.put(RequestParams.EMAIL, getIntent().getStringExtra(Constant.INPUT_EMAIL));
-            } else {
-                jsonObject.put(RequestParams.EMAIL, getIntent().getStringExtra("phone").trim() + "@gmail.com");
-            }
-            jsonObject.put(RequestParams.NAME, getIntent().getStringExtra(Constant.INPUT_USER));
-            jsonObject.put(RequestParams.PHONE, getIntent().getStringExtra("phone").trim());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        if(Constant.isNetworkAvailable(ConfirmOtpActivity.this)) {
-            ApiServiceTask task = new ApiServiceTask(this, this, RequestParams.TYPE_CREATE_USER);
-            task.setRequestParams(jsonObject, JSONParser.POST);
-            task.execute(Constant.BASE + "users");
+        if (null != progressDialog && progressDialog.isShowing()) {
+            //already showing progress dialog
         } else {
-            Constant.showToastMessage(ConfirmOtpActivity.this, getString(R.string.no_internet));
-        }
-    }
-
-    private void getUserByEmail(String email) {
-        if(Constant.isNetworkAvailable(ConfirmOtpActivity.this)) {
             progressDialog.show();
-            ApiServiceTask task = new ApiServiceTask(this, this, RequestParams.TYPE_GET_USER_BY);
-            task.setRequestParams(null, JSONParser.GET);
-            task.execute(Constant.BASE + "users" + "/" + email+"@gmail.com/");
+        }
+        String email = null;
+            if (getIntent().hasExtra(Constant.INPUT_EMAIL)) {
+                email = getIntent().getStringExtra(Constant.INPUT_EMAIL);
+            } else {
+                email = getIntent().getStringExtra("phone").trim() + "@gmail.com";
+            }
+        LoginUserModel user = new LoginUserModel(email, getIntent().getStringExtra(Constant.INPUT_FIRST_NAME), getIntent().getStringExtra("phone").trim());
+        if(Constant.isNetworkAvailable(ConfirmOtpActivity.this)) {
+            App.getApiController().confirmOtp(this, user, RequestParams.TYPE_CREATE_USER);
         } else {
             Constant.showToastMessage(ConfirmOtpActivity.this, getString(R.string.no_internet));
         }
-
     }
 
     @Override
-    public void onResponse(String result, String type) {
+    public void onResponse(Response result, String type) {
         progressDialog.dismiss();
-        Log.i("RESPONSE FROM server=", "" + result);
         if (type.equalsIgnoreCase(RequestParams.TYPE_CREATE_USER)) {
-
-            if (!result.contains("error") && !result.equals("Failed")) {
-                Gson gson = new Gson();
-                CreateUserResponse createUserResponse = gson.fromJson(result, CreateUserResponse.class);
-                sessionManager.createLoginSession(createUserResponse.getFirstName(), createUserResponse.getLastName(), createUserResponse.getEmail());
-                sessionManager.setKeyUserId(createUserResponse.getId());
-                navigateToDashBoard();
-            }
-        } else if (type.equalsIgnoreCase(RequestParams.TYPE_GET_USER_BY)) {
-
-            try {
-                JSONObject response = new JSONObject(result);
-
-                if (response.has("error") && response.getString("error").equalsIgnoreCase("User not found.")) {
-                    //send otp on mobile number
-                    llOtp.setVisibility(View.VISIBLE);
-                    //isOtpReceived=true;
-                    myCountDownTimer = new MyCountDownTimer(20000, 1000);
-                    myCountDownTimer.start();
-
-                } else if (response.has(RequestParams.EMAIL) && !result.equals("Failed")) {
-                    sessionManager.createLoginSession(response.getString("first_name"), response.getString("last_name"), response.getString("email"));
-                    sessionManager.setKeyUserId(response.getString("id"));
+            Log.i("RESPONSE FROM server=", "TYPE_CREATE_USER   " + result.body());
+            if (result.isSuccessful()) {
+                CreateUserResponse response = (CreateUserResponse) result.body();
+                if (null != response && !Constant.checkString(response.getError())) {
+                    sessionManager.createLoginSession(response.getFirstName(), response.getLastName(), response.getEmail(),response.getApiUser().getIsActive());
+                    sessionManager.setKeyUserId(response.getId());
                     navigateToDashBoard();
+                } else if (null != response) {
+                    Constant.showToastMessage(ConfirmOtpActivity.this, response.getError());
                 }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+            } else {
+                try {
+                    JSONObject jObjError = new JSONObject(result.errorBody().string());
+                    if (jObjError.has("error")) {
+                        Constant.showToastMessage(ConfirmOtpActivity.this, jObjError.getString("error"));
+                    }
+                } catch (Exception e) {
+                    Constant.showToastMessage(ConfirmOtpActivity.this, "Something went wrong");
+                }
 
+            }
         }
 
     }
@@ -262,38 +220,38 @@ public class ConfirmOtpActivity extends Activity implements ResponseCallback {
         finish();
     }
 
+    @Override
+    public void onFailure(String message) {
+        Constant.showToastMessage(ConfirmOtpActivity.this, message);
+    }
 
     public class MyCountDownTimer extends CountDownTimer {
 
         public MyCountDownTimer(long millisInFuture, long countDownInterval) {
             super(millisInFuture, countDownInterval);
+            llOtp.setVisibility(View.VISIBLE);
+            submitBtn.setAlpha(0.4f);// diming the brightness of button
+            submitBtn.setEnabled(false);
+            submitBtn.setText(getResources().getString(R.string.verify));
         }
 
         @Override
         public void onTick(long millisUntilFinished) {
             int progress = (int) (millisUntilFinished / 1000);
-            TextView tv1 = (TextView) findViewById(timer);
-            tv1.setText("waiting " + progress + "sec");
-            if (progress == 0) {
-                llOtp.setVisibility(View.GONE);
-                submitBtn.setText(resend_otp);
-            }
+            timerText.setText(getResources().getString(R.string.waiting) + Constant.WHITE_SPACE + progress +
+                    Constant.WHITE_SPACE + getResources().getString(R.string.second));
         }
 
         @Override
         public void onFinish() {
-            llOtp.setVisibility(View.GONE);
-            submitBtn.setText(resend_otp);
-        }
-    }
-    private void getallUsers(){
-        if(Constant.isNetworkAvailable(ConfirmOtpActivity.this)) {
-            progressDialog.show();
-            ApiServiceTask task = new ApiServiceTask(this, this, RequestParams.TYPE_GET_USER_BY);
-            task.setRequestParams(null, JSONParser.GET);
-            task.execute(Constant.BASE + "users");
-        } else {
-            Constant.showToastMessage(ConfirmOtpActivity.this, getString(R.string.no_internet));
+            submitBtn.setAlpha(1.0f);
+            submitBtn.setEnabled(true);
+            llOtp.setVisibility(View.INVISIBLE);
+            if (Constant.checkString(etOptRecevier.getText().toString()) || isOtpRecived) {
+                submitBtn.setText(getResources().getString(R.string.verify));
+            } else {
+                submitBtn.setText(getResources().getString(R.string.resend_otp));
+            }
         }
     }
 }

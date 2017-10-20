@@ -6,14 +6,20 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
 import java.util.List;
 
-/**
- * Created by harendrasinghbisht on 23/09/17.
- */
-
 public class GetTicketResponse implements Parcelable {
+    public static final Creator<GetTicketResponse> CREATOR = new Creator<GetTicketResponse>() {
+        @Override
+        public GetTicketResponse createFromParcel(Parcel in) {
+            return new GetTicketResponse(in);
+        }
+
+        @Override
+        public GetTicketResponse[] newArray(int size) {
+            return new GetTicketResponse[size];
+        }
+    };
     @SerializedName("assigned_since")
     @Expose
     private String assignedSince;
@@ -99,18 +105,6 @@ public class GetTicketResponse implements Parcelable {
     public int describeContents() {
         return 0;
     }
-
-    public static final Creator<GetTicketResponse> CREATOR = new Creator<GetTicketResponse>() {
-        @Override
-        public GetTicketResponse createFromParcel(Parcel in) {
-            return new GetTicketResponse(in);
-        }
-
-        @Override
-        public GetTicketResponse[] newArray(int size) {
-            return new GetTicketResponse[size];
-        }
-    };
 
     public String getAssignedSince() {
         return assignedSince;

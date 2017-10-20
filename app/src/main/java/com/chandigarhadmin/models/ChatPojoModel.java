@@ -2,13 +2,17 @@ package com.chandigarhadmin.models;
 
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 
 public class ChatPojoModel implements Serializable{
     private List<BranchesModel> departmentModelResponse;
     private List<GetTicketResponse> getTicketResponse;
+    private CreateTicketResponse createTicketResponse;
+    private boolean alignRight;
+    private String type;
+    private String input;
+
     public CreateTicketResponse getCreateTicketResponse() {
         return createTicketResponse;
     }
@@ -16,8 +20,6 @@ public class ChatPojoModel implements Serializable{
     public void setCreateTicketResponse(CreateTicketResponse createTicketResponse) {
         this.createTicketResponse = createTicketResponse;
     }
-
-    private CreateTicketResponse createTicketResponse;
 
     public boolean isAlignRight() {
         return alignRight;
@@ -27,14 +29,9 @@ public class ChatPojoModel implements Serializable{
         this.alignRight = alignRight;
     }
 
-    private boolean alignRight;
-
-    private String type;
-
     public List<BranchesModel> getDepartmentResponse() {
         return departmentModelResponse;
     }
-
 
     public void setDepartmentResponse(List<BranchesModel> departmentModelResponse) {
         this.departmentModelResponse = departmentModelResponse;
@@ -63,6 +60,4 @@ public class ChatPojoModel implements Serializable{
     public void setInput(String input) {
         this.input = input;
     }
-
-    private String input;
 }

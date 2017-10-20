@@ -3,7 +3,14 @@ Android Chatbot application (looks pretty much like Google Assistant App) which 
 
 <embed short VIDEO HERE>
 
-This solution won Hackathon 2017 @ Infosys Chandigarh (India) help in collaboration with Chandigarh Administration.
+This solution won [Hackathon September 2017](http://punjabnewsexpress.com/chandigarh/news/infosys-chandigarh-successfully-concludes-hackathon-september-2017-66632.aspx) @ Infosys Chandigarh (India) in collaboration with Chandigarh Administration.
+
+
+## Presentation
+[![Grievance Reporting Chatbot](/img/screencast.png)](https://www.youtube.com/watch?v=uDar3aLdM_M)
+
+
+The presentation is available @ Slideshare [here](https://www.slideshare.net/BirenderSingh2/android-chatbot-grievancereportinghackathonsept2017)
 
 ## Features
 ### Android App
@@ -18,7 +25,10 @@ This solution won Hackathon 2017 @ Infosys Chandigarh (India) help in collaborat
 * eCommerce solutions - Magento and Prestashop platforms, Shopify, eBay and Amazon marketplaces
 * Bug-tracking/project management tools - Jira, YouTrack, Redmine, Basecamp…
 
-### Solution components:
+### Solution components
+
+![alt text](https://github.com/birender-s/ticketing-client-android/blob/master/docs/tech_design.png)
+
 * [Diamantedesk](https://diamantedesk.com/getting-started/) : built on latest Technology Stack - PHP, Symfony2, OroPlatform, Bootstrap, HTML5, CSS3, mySQL DB
 * Native Android App (Android Studio IDE)
 * [api.ai](https://api.ai/)  - Google’s NLP (Natural Language Processing/ AI/ ML) engine
@@ -36,10 +46,10 @@ You would need to do following steps:
 
 ### Contribution
 As mentioend earlier, this project is the outcome of Hackathon 2017 @ Infosys.com. The team comprised of:
-Bimal Chawla
-Birender Singh
-Harendra Bisht
-Kamal Vaid
+⋅⋅* **Bimal Chawla**, 
+⋅⋅* **Birender Singh**, 
+⋅⋅* **Harendra Bisht**, 
+⋅⋅* **Kamal Vaid**
 You're most welcome to contribute by either suggesting new changes, raising issues, merge request.
 Please raise an issue of the requirement so that a discussion can take before any code is written, 
 even if you intend to raise a pull request.

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:layout_width="160dp"
     android:id="@+id/ll_mainrow"
+    android:layout_width="160dp"
     android:layout_height="160dp"
     android:orientation="vertical">
 
@@ -24,8 +24,8 @@
 
             <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/departmentiv"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="2dp"
                 android:src="@drawable/maleicon"
@@ -36,14 +36,16 @@
                 android:id="@+id/branchnametv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/departmentiv"
+                android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="2dp"
-                android:gravity="center"
-                android:padding="10dp"
+                android:ellipsize="end"
+                android:gravity="center_horizontal"
+                android:maxLines="2"
+                android:padding="5dp"
                 android:text="asdsad"
                 android:textColor="@android:color/black"
-                android:textSize="10sp" />
+                android:textSize="12sp" />
 
         </RelativeLayout>
     </android.support.v7.widget.CardView>
