@@ -3,7 +3,7 @@ Android Chatbot application (looks pretty much like Google Assistant App) which 
 
 <embed short VIDEO HERE>
 
-This solution won Hackathon 2017 @ Infosys Chandigarh (India) help in collaboration with Chandigarh Administration.
+This solution won [Hackathon September 2017](http://punjabnewsexpress.com/chandigarh/news/infosys-chandigarh-successfully-concludes-hackathon-september-2017-66632.aspx) @ Infosys Chandigarh (India) in collaboration with Chandigarh Administration.
 
 ## Features
 ### Android App
