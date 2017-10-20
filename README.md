@@ -5,6 +5,8 @@ Android Chatbot application (looks pretty much like Google Assistant App) which 
 
 This solution won [Hackathon September 2017](http://punjabnewsexpress.com/chandigarh/news/infosys-chandigarh-successfully-concludes-hackathon-september-2017-66632.aspx) @ Infosys Chandigarh (India) in collaboration with Chandigarh Administration.
 
+The presentation is available @ Slideshare [here](https://www.slideshare.net/BirenderSingh2/android-chatbot-grievancereportinghackathonsept2017)
+
 ## Features
 ### Android App
 * Take's input from user via voice as well as text to resolve user's query related to tickets.
