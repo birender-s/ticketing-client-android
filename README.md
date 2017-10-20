@@ -45,19 +45,21 @@ You would need to do following steps:
 
 ### Contribution
 As mentioend earlier, this project is the outcome of Hackathon 2017 @ Infosys.com. The team comprised of:
-1. **Bimal Chawla**
-2. **Birender Singh**
-3. **Harendra Bisht**
-4. **Kamal Vaid**
+1. [**Bimal Chawla**](https://www.linkedin.com/in/bimalchawla89)
+2. [**Birender Singh**](https://www.linkedin.com/in/birenders)
+3. [**Harendra Bisht**](https://www.linkedin.com/in/harendra-singh-bisht-87a69484)
+4. [**Kamal Vaid**](https://www.linkedin.com/in/kamal-vaid-4620693b)
 
-...You're most welcome to contribute by either suggesting new changes, raising issues, merge request.
+You're most welcome to contribute by either suggesting new changes, raising issues, merge request.
 Please raise an issue of the requirement so that a discussion can take before any code is written, 
 even if you intend to raise a pull request.
 
 ## To-Do
 
-* The app currently doesn't support OTP verification so requires SMS gateway and backend integration
+* The app currently doesn't support offline support to capture input in offline and sync later
+* PUSH notifications (email notifications only are supported currently)
 * The bot is currently not multi-lingual
+* Reopen existing tickets
 
 ## License
 
