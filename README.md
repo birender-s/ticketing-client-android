@@ -7,8 +7,7 @@ This solution won [Hackathon September 2017](http://punjabnewsexpress.com/chandi
 
 
 ## Presentation
-[![Grievance Reporting Chatbot](/img/screencast.png)](https://www.youtube.com/watch?v=uDar3aLdM_M)
-
+[![Grievance Reporting Chatbot](/docs/about_app.png)](https://www.slideshare.net/BirenderSingh2/android-chatbot-grievancereportinghackathonsept2017)
 
 The presentation is available @ Slideshare [here](https://www.slideshare.net/BirenderSingh2/android-chatbot-grievancereportinghackathonsept2017)
 
