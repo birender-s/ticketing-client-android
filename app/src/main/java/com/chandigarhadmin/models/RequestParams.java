@@ -8,6 +8,7 @@ public class RequestParams {
     public static final String TYPE_GET_USER_BY = "get_users_filter";
     public static final String TYPE_GET_ALL_USER = "all_users";
     public static final String TYPE_CREATE_USER = "create_user";
+    public static final String TYPE_WELCOME_INTENT = "welcome_intent";
 
 
 }

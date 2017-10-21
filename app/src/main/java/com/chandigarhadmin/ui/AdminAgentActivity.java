@@ -163,6 +163,8 @@ public class AdminAgentActivity extends AppCompatActivity implements PopupMenu.O
                 .build();
         // [END build_client]
         setChatInputs(getResources().getString(R.string.assistance), false);
+
+        App.getApiController().getWelcomeIntent(this, RequestParams.TYPE_WELCOME_INTENT);
     }
 
     public void showPopup(View v) {

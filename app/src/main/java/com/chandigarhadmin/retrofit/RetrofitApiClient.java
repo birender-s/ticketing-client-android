@@ -21,6 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitApiClient {
 
     private static Retrofit retrofit = null;
+    private static Retrofit anotherRetrofit = null;
 
     public static Retrofit getClient() {
         //logging request response header
@@ -55,5 +56,35 @@ public class RetrofitApiClient {
         }
 
         return retrofit;
+    }
+
+    public static Retrofit getAnotherClient() {
+        //logging request response header
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient httpClient = new OkHttpClient.Builder().addInterceptor(new Interceptor() {
+            @Override
+            public Response intercept(Interceptor.Chain chain) throws IOException {
+                Request original = chain.request();
+                //adding request headers
+                Request request = original.newBuilder()
+                        .header(WsseToken.HEADER_AUTHORIZATION, "Bearer 04fcf37688c1491bbc1aa39128923365")
+                        .method(original.method(), original.body())
+                        .build();
+
+                return chain.proceed(request);
+            }
+        })
+                .addInterceptor(interceptor).build();
+
+        if (null == anotherRetrofit) {
+            anotherRetrofit = new Retrofit.Builder()
+                    .baseUrl(Constant.BASE)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .client(httpClient)
+                    .build();
+        }
+
+        return anotherRetrofit;
     }
 }

@@ -16,10 +16,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
-
-/**
- * Created by bimalchawla on 29/9/17.
- */
+import retrofit2.http.Url;
 
 public interface RetrofitApiInterface {
 
@@ -41,4 +38,6 @@ public interface RetrofitApiInterface {
     @GET("tickets/search")
     Call<List<GetTicketResponse>> getAllTickets(@Query("reporter") String id);
 
+    @GET
+    Call<String> getWelcomeIntent(@Url String url);
 }

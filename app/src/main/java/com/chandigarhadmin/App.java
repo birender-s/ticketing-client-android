@@ -14,6 +14,7 @@ import com.chandigarhadmin.retrofit.RetrofitApiClient;
 public class App extends Application {
 
     private static RetrofitApiInterface apiInterface;
+    private static RetrofitApiInterface anotherApiInterface;
     private static ApiController apiController;
     private static App mInstance;
 
@@ -31,6 +32,14 @@ public class App extends Application {
             apiInterface = RetrofitApiClient.getClient().create(RetrofitApiInterface.class);
         }
         return apiInterface;
+    }
+
+    //creating and returning instance of Retrofit Api interface
+    public static RetrofitApiInterface getAnotherInterface() {
+        if (null == anotherApiInterface) {
+            anotherApiInterface = RetrofitApiClient.getAnotherClient().create(RetrofitApiInterface.class);
+        }
+        return anotherApiInterface;
     }
 
     //creating and returning instance of Retrofit Api interface

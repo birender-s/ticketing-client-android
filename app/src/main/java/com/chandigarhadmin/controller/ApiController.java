@@ -18,6 +18,7 @@ import retrofit2.Response;
 public class ApiController {
 
     private RetrofitApiInterface apiInterface = App.getInterface();
+    private RetrofitApiInterface anotherApiInterface = App.getAnotherInterface();
     private ResponseCallback responseCallback;
     private String requestType = null;
     private Call call = null;
@@ -70,6 +71,14 @@ public class ApiController {
     public void viewTicket(ResponseCallback responseCallback, String id, String type) {
         this.responseCallback = responseCallback;
         call = apiInterface.viewTicket(id);
+        this.requestType = type;
+        userResponse();
+    }
+
+    //view ticket by providing the ticket id
+    public void getWelcomeIntent(ResponseCallback responseCallback, String type) {
+        this.responseCallback = responseCallback;
+        call = anotherApiInterface.getWelcomeIntent("https://api.dialogflow.com/v1/query?v=20170712&query=what%20can%20you%20do&sessionId=32260517-3578-410f-af73-4942bebaf7d1");
         this.requestType = type;
         userResponse();
     }
