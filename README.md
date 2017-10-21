@@ -4,7 +4,7 @@ Android Chatbot application (looks pretty much like Google Assistant App) which 
 
 ## Video
 
-[![Grievance Reporting Chatbot Video](/docs/about_app.png)](https://youtu.be/ek_nXzSPhhs)
+[![Grievance Reporting Chatbot Video](/docs/video.png)](https://youtu.be/ek_nXzSPhhs)
 
 This solution won [Hackathon September 2017](http://punjabnewsexpress.com/chandigarh/news/infosys-chandigarh-successfully-concludes-hackathon-september-2017-66632.aspx) @ Infosys Chandigarh (India) in collaboration with Chandigarh Administration.
 
