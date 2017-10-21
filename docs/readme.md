@@ -26,16 +26,11 @@ To set up AIService and AIConfiguration
 
 ## Step 3. Implement AIListener interface and overide callback methods to handle response received from Dialogflow
 
-... Implement AIListener and overide methods public class AdminAgentActivity extends AppCompatActivity implements AIListener{
-
+...
+Implement AIListener and overide methods public class AdminAgentActivity extends AppCompatActivity implements AIListener{
   @Override
-    
     public void onResult(AIResponse response) {
-     // Add functionality
      
-  
   }
-
 }
-
 ...  
