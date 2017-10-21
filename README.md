@@ -39,7 +39,7 @@ The Android app is ready to install and test but in case you would like to setup
 You would need to do following steps:
 * Setup DiamanteDesk App as explained [here](https://github.com/birender-s/ticketing-client-android/tree/master/docs/diamante_setup)
 * Setup API.AI App as explained [here](https://github.com/birender-s/ticketing-client-android/tree/master/docs/api.ai_setup)
-* Modify Android app configuration to point to API.AI backends[here](https://github.com/birender-s/ticketing-client-android/tree/master/docs) 
+* Modify Android app configuration to point to API.AI backends [here](https://github.com/birender-s/ticketing-client-android/tree/master/docs) 
 
 ### Contribution
 As mentioend earlier, this project is the outcome of Hackathon 2017 @ Infosys.com. The team comprised of:
