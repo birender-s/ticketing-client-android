@@ -29,7 +29,7 @@ The presentation is available @ Slideshare [here](https://www.slideshare.net/Bir
 ![alt text](https://github.com/birender-s/ticketing-client-android/blob/master/docs/tech_design.png)
 
 * [Diamantedesk](https://diamantedesk.com/getting-started/) : built on latest Technology Stack - PHP, Symfony2, OroPlatform, Bootstrap, HTML5, CSS3, mySQL DB
-* Native Android App (Android Studio IDE)
+* Native Android App ([Android Studio IDE](https://developer.android.com/studio/index.html))
 * [api.ai](https://api.ai/)  - Google’s NLP (Natural Language Processing/ AI/ ML) engine
 * Speech Recognition API (Google)
 
