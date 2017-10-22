@@ -1,9 +1,11 @@
 # Grievance Reporting Android App 
 Android Chatbot application (looks pretty much like Google Assistant App) which interacts with user using natural language /voice interaction by leveraging Google’s [api.ai](https://api.ai/) NLP platform to auto populate request attributes and then asks users to provide missing details using speech /chat interaction and finally creates ticket into [Diamantedesk](https://diamantedesk.com/getting-started/) Ticketing system. 
 
+This solution won [Hackathon September 2017](http://punjabnewsexpress.com/chandigarh/news/infosys-chandigarh-successfully-concludes-hackathon-september-2017-66632.aspx) @ Infosys Chandigarh (India) in collaboration with Chandigarh Administration.
+
 ## Video Recording of App
 [![Grievance Reporting Chatbot Video](/docs/video.png)](https://youtu.be/ek_nXzSPhhs)
-This solution won [Hackathon September 2017](http://punjabnewsexpress.com/chandigarh/news/infosys-chandigarh-successfully-concludes-hackathon-september-2017-66632.aspx) @ Infosys Chandigarh (India) in collaboration with Chandigarh Administration.
+
 
 ## Presentation covering solution details
 [![Grievance Reporting Chatbot](/docs/about_app.png)](https://www.slideshare.net/BirenderSingh2/android-chatbot-grievancereportinghackathonsept2017)
