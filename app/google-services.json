@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "475249600691",
+    "project_id": "firebase-feedback-client"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:475249600691:android:7f3525f29ed8c5d9",
+        "android_client_info": {
+          "package_name": "com.chandigarhadmin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "475249600691-aeifsisbmaedvgn8mufieajia321ojod.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.chandigarhadmin",
+            "certificate_hash": "0cf7d313aeacd50e4f7f963d2752acbf69a11e41"
+          }
+        },
+        {
+          "client_id": "475249600691-02tkkh6e0iti05ef730ucu4ck12dnelj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARkuk1vYS-HaNTprZvaB0jdIdx4tsHIgU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
