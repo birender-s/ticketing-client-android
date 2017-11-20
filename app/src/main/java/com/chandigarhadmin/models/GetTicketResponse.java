@@ -2,6 +2,7 @@ package com.chandigarhadmin.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -13,7 +14,7 @@ import java.util.List;
  * Created by harendrasinghbisht on 23/09/17.
  */
 
-public class GetTicketResponse implements Parcelable {
+public class GetTicketResponse implements Parcelable ,Comparable<GetTicketResponse>{
     @SerializedName("assigned_since")
     @Expose
     private String assignedSince;
@@ -230,5 +231,10 @@ public class GetTicketResponse implements Parcelable {
 
     public void setWatcherList(List<Object> watcherList) {
         this.watcherList = watcherList;
+    }
+
+    @Override
+    public int compareTo(@NonNull GetTicketResponse getTicketResponse) {
+        return 0;
     }
 }

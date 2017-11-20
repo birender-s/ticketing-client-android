@@ -254,7 +254,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 //checking whether email returned in response matching with passed email or not
                 if (null != response && Constant.checkString(response.getEmail())
                         && response.getEmail().contains(userEmail)) {
-                    Constant.showToastMessage(LoginActivity.this, getString(R.string.email_exist));
+                    //Constant.showToastMessage(LoginActivity.this, getString(R.string.email_exist));
                     sessionManager.createLoginSession(response.getFirstName(), response.getLastName(), response.getEmail(), response.getApiUser().getIsActive());
                     sessionManager.setKeyUserId(response.getId());
                     navigateToDashBoard();
