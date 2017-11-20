@@ -22,7 +22,7 @@
       </configuration>
     </facet>
   </component>
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_7" inherit-compiler-output="false">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_7">
     <output url="file://$MODULE_DIR$/build/intermediates/classes/debug" />
     <output-test url="file://$MODULE_DIR$/build/intermediates/classes/test/debug" />
     <exclude-output />
@@ -33,6 +33,7 @@
       <sourceFolder url="file://$MODULE_DIR$/build/generated/source/rs/debug" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/build/generated/source/apt/debug" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/build/generated/fabric/res/debug" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/build/generated/res/google-services/debug" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/build/generated/res/rs/debug" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/build/generated/res/resValues/debug" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/build/generated/source/r/androidTest/debug" isTestSource="true" generated="true" />
@@ -85,60 +86,69 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/jniLibs" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/manifests" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/multi-dex" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/pre-dexed" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/res" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/rs" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/shaders" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/symbols" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/transforms" />
       <excludeFolder url="file://$MODULE_DIR$/build/outputs" />
+      <excludeFolder url="file://$MODULE_DIR$/build/reports" />
       <excludeFolder url="file://$MODULE_DIR$/build/tmp" />
     </content>
     <orderEntry type="jdk" jdkName="Android API 26 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="okio-1.9.0" level="project" />
-    <orderEntry type="library" exported="" name="play-services-base-9.8.0" level="project" />
-    <orderEntry type="library" exported="" name="support-core-ui-26.0.0-alpha1" level="project" />
-    <orderEntry type="library" exported="" name="commons-io-2.4" level="project" />
-    <orderEntry type="library" exported="" name="support-fragment-26.0.0-alpha1" level="project" />
-    <orderEntry type="library" exported="" name="support-v4-26.0.0-alpha1" level="project" />
-    <orderEntry type="library" exported="" name="support-media-compat-26.0.0-alpha1" level="project" />
-    <orderEntry type="library" exported="" name="SpeechRecognitionView-1.1" level="project" />
-    <orderEntry type="library" exported="" name="crashlytics-core-2.3.17" level="project" />
-    <orderEntry type="library" exported="" name="CircularReveal-1.1.1" level="project" />
-    <orderEntry type="library" exported="" name="cardview-v7-26.0.0-alpha1" level="project" />
-    <orderEntry type="library" exported="" name="universal-image-loader-1.9.5 (2)" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="multidex-instrumentation-1.0.1" level="project" />
-    <orderEntry type="library" exported="" name="butterknife-annotations-8.8.1" level="project" />
-    <orderEntry type="library" exported="" name="support-core-utils-26.0.0-alpha1" level="project" />
-    <orderEntry type="library" exported="" name="fabric-1.3.17" level="project" />
-    <orderEntry type="library" exported="" name="support-vector-drawable-26.0.0-alpha1" level="project" />
-    <orderEntry type="library" exported="" name="sdk-2.0.6" level="project" />
-    <orderEntry type="library" exported="" name="smsverifycatcher-0.3.1" level="project" />
-    <orderEntry type="library" exported="" name="play-services-auth-base-9.8.0" level="project" />
-    <orderEntry type="library" exported="" name="gson-2.7" level="project" />
-    <orderEntry type="library" exported="" name="retrofit-2.1.0" level="project" />
-    <orderEntry type="library" exported="" name="beta-1.2.5" level="project" />
-    <orderEntry type="library" exported="" name="converter-gson-2.1.0" level="project" />
-    <orderEntry type="library" exported="" name="circleimageview-2.1.0" level="project" />
-    <orderEntry type="library" exported="" name="play-services-basement-9.8.0" level="project" />
-    <orderEntry type="library" exported="" name="log4j-api-2.2" level="project" />
-    <orderEntry type="library" exported="" name="log4j-core-2.2" level="project" />
-    <orderEntry type="library" exported="" name="appcompat-v7-26.0.0-alpha1" level="project" />
-    <orderEntry type="library" exported="" name="answers-1.3.13" level="project" />
-    <orderEntry type="library" exported="" name="play-services-tasks-9.8.0" level="project" />
-    <orderEntry type="library" exported="" name="library-2.3" level="project" />
-    <orderEntry type="library" exported="" name="multidex-1.0.1" level="project" />
-    <orderEntry type="library" exported="" name="library-2.0" level="project" />
-    <orderEntry type="library" exported="" name="play-services-auth-9.8.0" level="project" />
-    <orderEntry type="library" exported="" name="okhttp-3.4.1" level="project" />
-    <orderEntry type="library" exported="" name="logging-interceptor-3.4.1" level="project" />
-    <orderEntry type="library" exported="" name="recyclerview-v7-26.0.0-alpha1" level="project" />
-    <orderEntry type="library" exported="" name="crashlytics-2.6.8" level="project" />
-    <orderEntry type="library" exported="" name="support-compat-26.0.0-alpha1" level="project" />
-    <orderEntry type="library" exported="" name="support-annotations-26.0.0-alpha1" level="project" />
-    <orderEntry type="library" exported="" name="animated-vector-drawable-26.0.0-alpha1" level="project" />
-    <orderEntry type="library" exported="" name="libai-1.4.8" level="project" />
-    <orderEntry type="library" exported="" name="butterknife-8.8.1" level="project" />
+    <orderEntry type="library" exported="" name="com.android.support:multidex-1.0.1" level="project" />
+    <orderEntry type="library" exported="" name="com.crashlytics.sdk.android:answers-1.3.13" level="project" />
+    <orderEntry type="library" exported="" name="com.google.android.gms:play-services-base-9.8.0" level="project" />
+    <orderEntry type="library" exported="" name="com.android.support:appcompat-v7-26.0.0-alpha1" level="project" />
+    <orderEntry type="library" exported="" name="com.squareup.okhttp3:logging-interceptor:3.4.1@jar" level="project" />
+    <orderEntry type="library" exported="" name="org.apache.logging.log4j:log4j-core:2.2@jar" level="project" />
+    <orderEntry type="library" exported="" name="com.android.support:support-media-compat-26.0.0-alpha1" level="project" />
+    <orderEntry type="library" exported="" name="com.squareup.retrofit2:retrofit:2.1.0@jar" level="project" />
+    <orderEntry type="library" exported="" name="com.google.firebase:firebase-core-9.8.0" level="project" />
+    <orderEntry type="library" exported="" name="com.github.ozodrukh:CircularReveal-1.1.1" level="project" />
+    <orderEntry type="library" exported="" name="com.google.android.gms:play-services-basement-9.8.0" level="project" />
+    <orderEntry type="library" exported="" name="io.fabric.sdk.android:fabric-1.3.17" level="project" />
+    <orderEntry type="library" exported="" name="com.android.support:support-compat-26.0.0-alpha1" level="project" />
+    <orderEntry type="library" exported="" name="com.android.support:support-core-utils-26.0.0-alpha1" level="project" />
+    <orderEntry type="library" exported="" name="org.apache.logging.log4j:log4j-api:2.2@jar" level="project" />
+    <orderEntry type="library" exported="" name="com.google.firebase:firebase-iid-9.8.0" level="project" />
+    <orderEntry type="library" exported="" name="__local_jars__:/Users/harendrasinghbisht/Desktop/grievance-android/app/libs/universal-image-loader-1.9.5 (2).jar:unspecified@jar" level="project" />
+    <orderEntry type="library" exported="" name="com.google.android.gms:play-services-auth-9.8.0" level="project" />
+    <orderEntry type="library" exported="" name="com.android.support:support-vector-drawable-26.0.0-alpha1" level="project" />
+    <orderEntry type="library" exported="" name="com.android.support:animated-vector-drawable-26.0.0-alpha1" level="project" />
+    <orderEntry type="library" exported="" name="com.android.support:support-annotations:26.0.0-alpha1@jar" level="project" />
+    <orderEntry type="library" exported="" name="com.jakewharton:butterknife-annotations:8.8.1@jar" level="project" />
+    <orderEntry type="library" exported="" name="com.squareup.okhttp3:okhttp:3.4.1@jar" level="project" />
+    <orderEntry type="library" exported="" name="ai.api:libai:1.4.8@jar" level="project" />
+    <orderEntry type="library" exported="" name="com.daimajia.easing:library-2.0" level="project" />
+    <orderEntry type="library" exported="" name="com.github.zagum:SpeechRecognitionView-1.1" level="project" />
+    <orderEntry type="library" exported="" name="com.github.stfalcon:smsverifycatcher-0.3.1" level="project" />
+    <orderEntry type="library" exported="" name="com.google.firebase:firebase-common-9.8.0" level="project" />
+    <orderEntry type="library" exported="" name="com.google.android.gms:play-services-tasks-9.8.0" level="project" />
+    <orderEntry type="library" exported="" name="com.google.firebase:firebase-analytics-9.8.0" level="project" />
+    <orderEntry type="library" exported="" name="ai.api:sdk-2.0.6" level="project" />
+    <orderEntry type="library" exported="" name="de.hdodenhof:circleimageview-2.1.0" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="com.android.support:multidex-instrumentation-1.0.1" level="project" />
+    <orderEntry type="library" exported="" name="com.google.android.gms:play-services-auth-base-9.8.0" level="project" />
+    <orderEntry type="library" exported="" name="com.android.support:recyclerview-v7-26.0.0-alpha1" level="project" />
+    <orderEntry type="library" exported="" name="com.android.support:cardview-v7-26.0.0-alpha1" level="project" />
+    <orderEntry type="library" exported="" name="com.google.firebase:firebase-analytics-impl-9.8.0" level="project" />
+    <orderEntry type="library" exported="" name="com.android.support:support-v4-26.0.0-alpha1" level="project" />
+    <orderEntry type="library" exported="" name="com.google.code.gson:gson:2.7@jar" level="project" />
+    <orderEntry type="library" exported="" name="com.squareup.retrofit2:converter-gson:2.1.0@jar" level="project" />
+    <orderEntry type="library" exported="" name="commons-io:commons-io:2.4@jar" level="project" />
+    <orderEntry type="library" exported="" name="com.jakewharton:butterknife-8.8.1" level="project" />
+    <orderEntry type="library" exported="" name="com.android.support:support-core-ui-26.0.0-alpha1" level="project" />
+    <orderEntry type="library" exported="" name="com.crashlytics.sdk.android:crashlytics-2.6.8" level="project" />
+    <orderEntry type="library" exported="" name="com.crashlytics.sdk.android:beta-1.2.5" level="project" />
+    <orderEntry type="library" exported="" name="com.daimajia.androidanimations:library-2.3" level="project" />
+    <orderEntry type="library" exported="" name="com.android.support:support-fragment-26.0.0-alpha1" level="project" />
+    <orderEntry type="library" exported="" name="com.crashlytics.sdk.android:crashlytics-core-2.3.17" level="project" />
+    <orderEntry type="library" exported="" name="com.squareup.okio:okio:1.9.0@jar" level="project" />
+    <orderEntry type="module" module-name="splasher" exported="" />
+    <orderEntry type="module" module-name="splasher" exported="" />
     <orderEntry type="module" module-name="splasher" exported="" />
   </component>
 </module>
