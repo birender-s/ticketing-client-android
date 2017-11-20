@@ -27,10 +27,19 @@ android {
         // Enabling multidex support.
         multiDexEnabled true
     }
+    signingConfigs {
+        release {
+            storeFile file("chd_admin")
+            storePassword "chd_admin"
+            keyAlias "Chd_Admin"
+            keyPassword "chd_admin"
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     packagingOptions {
