@@ -4,6 +4,8 @@
     <string name="english">English</string>
     <string name="hindi">हिंदी</string>
     <string name="punjabi">ਪੰਜਾਬੀ</string>
+    <string name="assistance">
+ਹੈਲੋ, ਮੈਂ ਤੁਹਾਡੀ ਮਦਦ ਕਿਵੇਂ ਕਰ ਸਕਦਾ ਹਾਂ?</string>
     <string name="continue_text">ਜਾਰੀ ਰੱਖੋ</string>
     <string name="enter_first_name"> ਪਹਿਲਾ ਨਾਂ</string>
     <string name="enter_last_name"> ਆਖਰੀ ਨਾਂਮ</string>
@@ -32,10 +34,17 @@
     <string name="logout">ਲਾੱਗ ਆਊਟ</string>
     <string name="grant_audio">ਕਿਰਪਾ ਕਰਕੇ ਔਡੀਓ ਰਿਕਾਰਡ ਕਰਨ ਦੀ ਅਨੁਮਤੀ ਦੇ ਦਿਓ</string>
     <string name="account">ਖਾਤਾ</string>
+    <string name="ticket_form">ਟਿਕਟ ਫਾਰਮ ਬਣਾਓ</string>
     <string name="settings">ਸੈਟਿੰਗਾਂ</string>
     <string name="what_you_do">ਤੁਸੀਂ ਕੀ ਕਰਦੇ ਹੋ</string>
     <string name="help">ਮਦਦ</string>
     <string name="send_feedback">ਫੀਡਬੈਕ ਭੇਜੋ</string>
+    <string name="feedback_details">ਫੀਡਬੈਕ ਵੇਰਵਾ</string>
+    <string name="feedback_ref">ਫੀਡਬੈਕ ਰਿਫਰੈਂਸ:</string>
+    <string name="feedback_na"> NA</string>
+    <string name="feedbacks">ਸਾਰੇ ਫੀਡਬੈਕ</string>
+    <string name="feedback_status">
+ਫੀਡਬੈਕ ਸਥਿਤੀ:</string>
     <string name="enter_your_otp">ਆਪਣੇ OTP ਦਰਜ ਕਰੋ</string>
     <string name="verify">ਜਾਂਚ ਕਰੋ</string>
     <string name="resend_otp">OTP ਦੁਬਾਰਾ ਭੇਜੋ</string>
@@ -51,6 +60,13 @@
     <string name="select_department">ਠੀਕ ਹੈ !! ਕਿਰਪਾ ਕਰਕੇ ਉਸ ਵਿਭਾਗ ਦਾ ਚੋਣ ਕਰੋ ਜਿਸ ਲਈ ਤੁਸੀਂ ਕੋਈ ਫੀਡਬੈਕ ਬਣਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ.</string>
     <string name="feedback_created">ਫੀਡਬੈਕ ਬਣਾਇਆ ਗਿਆ</string>
     <string name="creating_feedback">ਫੀਡਬੈਕ ਬਣਾ ਰਿਹਾ ਹੈ ...</string>
+    /* AI Actions and Events and parameters*/
+    <string name="createticket">createticket</string>
+    <string name="fetchalltickets">fetchalltickets</string>
+    <string name="department">department</string>
+    <string name="ticketsubject">ticketsubject</string>
+    <string name="ticketdesc">ticketdesc</string>
+    <string name="save_ticket">save ticket</string>
 
     <string name="here_go">ਜਾਓ...</string>
     <string name="email_not_verified">ਤੁਹਾਡੀ ਈਮੇਲ ਜਾਂਚ ਬਕਾਇਆ ਹੈ, ਕਿਰਪਾ ਕਰਕੇ ਆਪਣਾ ਈਮੇਲ ਦੇਖੋ ਅਤੇ ਪਹਿਲਾਂ ਖਾਤਾ ਐਕਟੀਵੇਟ ਕਰੋ!</string>

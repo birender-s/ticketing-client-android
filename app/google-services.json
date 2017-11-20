@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "475249600691",
-    "project_id": "firebase-feedback-client"
+    "project_number": "456234589829",
+    "project_id": "feedback-client-186411"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:475249600691:android:7f3525f29ed8c5d9",
+        "mobilesdk_app_id": "1:456234589829:android:7f3525f29ed8c5d9",
         "android_client_info": {
           "package_name": "com.chandigarhadmin"
         }
       },
       "oauth_client": [
         {
-          "client_id": "475249600691-aeifsisbmaedvgn8mufieajia321ojod.apps.googleusercontent.com",
+          "client_id": "456234589829-nh31rkfmfn3odi2bsccbqntqokputc2n.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "456234589829-ndha5vsb0s15f0v1bee037ir99o927hj.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.chandigarhadmin",
-            "certificate_hash": "0cf7d313aeacd50e4f7f963d2752acbf69a11e41"
+            "certificate_hash": "c49433f35ceebd4a9aee3b05f2a25b011cb01d84"
           }
-        },
-        {
-          "client_id": "475249600691-02tkkh6e0iti05ef730ucu4ck12dnelj.apps.googleusercontent.com",
-          "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyARkuk1vYS-HaNTprZvaB0jdIdx4tsHIgU"
+          "current_key": "AIzaSyCm3_qHNFSe3whQN1Ym31wP3jSm_3VZvQw"
         }
       ],
       "services": {

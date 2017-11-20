@@ -4,6 +4,7 @@
     <string name="english">English</string>
     <string name="hindi">हिंदी</string>
     <string name="punjabi">ਪੰਜਾਬੀ</string>
+    <string name="assistance">नमस्ते, मैं आपकी सहायता कैसे करूं?</string>
     <string name="continue_text">जारी रहना</string>
     <string name="enter_first_name"> पहला नाम
 </string>
@@ -34,10 +35,19 @@
     <string name="logout">लोग आउट</string>
     <string name="grant_audio">कृपया ऑडियो रिकॉर्ड करने की अनुमति दें</string>
     <string name="account">खाता</string>
+    <string name="ticket_form">
+टिकट फ़ॉर्म बनाएं</string>
     <string name="settings">सेटिंग</string>
     <string name="what_you_do">तुम क्या करते हो</string>
     <string name="help">मदद</string>
     <string name="send_feedback">फ़ीडबैक भेजें</string>
+    <string name="feedback_details">
+फ़ीडबैक विवरण</string>
+    <string name="feedbacks">सभी फ़ीडबैक</string>
+    <string name="feedback_status">
+फ़ीडबैक स्थिति:</string>
+    <string name="feedback_ref">फीडबैक रिफरेंस:</string>
+    <string name="feedback_na"> NA</string>
     <string name="enter_your_otp">अपना ओटीपी दर्ज करें</string>
     <string name="verify">सत्यापित करें</string>
     <string name="resend_otp">ओटीपी पुनः भेजें</string>
@@ -53,6 +63,13 @@
     <string name="select_department">ठीक है!! कृपया एक ऐसा विभाग चुनें, जिसके लिए आप एक फीडबैक बनाना चाहते हैं।</string>
     <string name="feedback_created"> फ़ीडबैक बनाया गया </string>
     <string name="creating_feedback">फ़ीडबैक बनाना ...</string>
+    /* AI Actions and Events and parameters*/
+    <string name="createticket">createticket</string>
+    <string name="fetchalltickets">fetchalltickets</string>
+    <string name="department">department</string>
+    <string name="ticketsubject">ticketsubject</string>
+    <string name="ticketdesc">ticketdesc</string>
+    <string name="save_ticket">save ticket</string>
 
     <string name="here_go">यहाँ तुम जाओ ...</string>
     <string name="email_not_verified">आपका ईमेल सत्यापन लंबित है, कृपया अपना ईमेल जांचें और पहले खाता सक्रिय करें!</string>
