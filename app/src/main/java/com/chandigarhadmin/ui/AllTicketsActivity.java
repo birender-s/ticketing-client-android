@@ -20,6 +20,7 @@ import com.chandigarhadmin.utils.Constant;
 
 import org.json.JSONObject;
 
+import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
@@ -82,6 +83,9 @@ public class AllTicketsActivity extends AppCompatActivity implements ResponseCal
         if (response.isSuccessful()) {
             if (type.equalsIgnoreCase(RequestParams.TYPE_GET_ALL_TICKET)) {
                 List<GetTicketResponse> tickets = (List<GetTicketResponse>) response.body();
+                GetTicketResponse ticketResponse=new GetTicketResponse();
+                Collections.sort(tickets,ticketResponse);
+                Collections.reverse(tickets);
                 parseTickets(tickets);
             }
         } else {

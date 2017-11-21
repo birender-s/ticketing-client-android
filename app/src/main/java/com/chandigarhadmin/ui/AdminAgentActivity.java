@@ -52,6 +52,7 @@ import com.google.android.gms.common.api.Status;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -516,6 +517,9 @@ public class AdminAgentActivity extends AppCompatActivity implements PopupMenu.O
                 parseBranches(branches);
             } else if (type.equalsIgnoreCase(RequestParams.TYPE_GET_ALL_TICKET)) {
                 List<GetTicketResponse> tickets = (List<GetTicketResponse>) response.body();
+                GetTicketResponse ticketResponse=new GetTicketResponse();
+                Collections.sort(tickets,ticketResponse);
+                Collections.reverse(tickets);
                 setChatInputs(getResources().getString(R.string.here_go), false);
                 parseTickets(tickets);
             } else if (type.equalsIgnoreCase(RequestParams.TYPE_CREATE_TICKET)) {

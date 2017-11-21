@@ -4,17 +4,19 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
+import com.chandigarhadmin.utils.Constant;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.Comparator;
 import java.util.List;
 
 /**
  * Created by harendrasinghbisht on 23/09/17.
  */
 
-public class GetTicketResponse implements Parcelable ,Comparable<GetTicketResponse>{
+public class GetTicketResponse implements Parcelable, Comparator<GetTicketResponse> {
     @SerializedName("assigned_since")
     @Expose
     private String assignedSince;
@@ -60,6 +62,10 @@ public class GetTicketResponse implements Parcelable ,Comparable<GetTicketRespon
     @SerializedName("watcher_list")
     @Expose
     private List<Object> watcherList = null;
+
+    public GetTicketResponse() {
+
+    }
 
     protected GetTicketResponse(Parcel in) {
         assignedSince = in.readString();
@@ -233,8 +239,34 @@ public class GetTicketResponse implements Parcelable ,Comparable<GetTicketRespon
         this.watcherList = watcherList;
     }
 
-    @Override
+    /*@Override
     public int compareTo(@NonNull GetTicketResponse getTicketResponse) {
+
+    }*/
+
+    @Override
+    public int compare(GetTicketResponse t1, GetTicketResponse t2) {
+        //if both tickets are updated
+        if (null != t1.getUpdatedAt() && null != t2.getUpdatedAt()) {
+            String updatedDate1 = t1.getUpdatedAt().substring(0, t1.getUpdatedAt().lastIndexOf("+"));
+            String updatedDate2 = t2.getUpdatedAt().substring(0, t1.getUpdatedAt().lastIndexOf("+"));
+            if (Constant.getDate(updatedDate1).after(Constant.getDate(updatedDate2))) {
+                return 1;
+            } else {
+                return -1;
+            }
+            //if only first ticket updated
+        } else if (null != t1.getUpdatedAt() && null == t2.getUpdatedAt()) {
+            return 1;
+//if only second ticket updated
+        } else if (null == t1.getUpdatedAt() && null != t2.getUpdatedAt()) {
+            return -1;
+//if only both ticket not updated
+        } else {
+            if (Integer.parseInt(t1.getId()) > Integer.parseInt(t2.getId())) {
+                return 1;
+            }
+        }
         return 0;
     }
 }
