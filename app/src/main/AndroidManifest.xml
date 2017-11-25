@@ -37,6 +37,8 @@
         <activity
             android:name="com.chandigarhadmin.ui.AdminAgentActivity"
             android:screenOrientation="portrait" />
+        <meta-data android:name="com.chandigarhadmin.utils.GlideConfiguration"
+            android:value="GlideModule"/>
         <activity
             android:name=".ui.OTPActivity"
             android:screenOrientation="portrait"

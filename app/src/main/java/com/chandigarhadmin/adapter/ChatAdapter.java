@@ -71,7 +71,7 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MyViewHolder> 
                 holder.llOutputLayout.setVisibility(View.GONE);
                 holder.llInputLayout.setVisibility(View.GONE);
                 holder.ticketCreatedCardview.setVisibility(View.GONE);
-            }else if (chatPojoModel.getInput()!=null &&chatPojoModel.getInput().contains("Reference")) {
+            }else if (chatPojoModel.getInput()!=null &&chatPojoModel.getInput().contains(context.getResources().getString(R.string.feedback_created))) {
                 holder.llOutputLayout.setVisibility(View.GONE);
                 holder.llInputLayout.setVisibility(View.GONE);
                 holder.branchesViewPager.setVisibility(View.GONE);

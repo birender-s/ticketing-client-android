@@ -7,11 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.chandigarhadmin.R;
 import com.chandigarhadmin.interfaces.SelectionCallbacks;
 import com.chandigarhadmin.models.BranchesModel;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +22,6 @@ public class CustomPagerAdapter extends PagerAdapter {
     private Context context;
     private List<BranchesModel> dataObjectList;
     private LayoutInflater layoutInflater;
-    private ImageLoader imageLoader;
     private SelectionCallbacks selectionCallbacks;
 
     public CustomPagerAdapter(Context context, List<BranchesModel> dataObjectList, SelectionCallbacks selectionCallbacks) {
@@ -36,8 +34,6 @@ public class CustomPagerAdapter extends PagerAdapter {
         //removing default branch from list of departments
       //  branchesModelArrayList.remove(0);
         this.dataObjectList = branchesModelArrayList;
-        imageLoader = ImageLoader.getInstance();
-        imageLoader.init(ImageLoaderConfiguration.createDefault(context));
     }
 
     @Override
@@ -62,7 +58,9 @@ public class CustomPagerAdapter extends PagerAdapter {
         CircleImageView circleImageView = (CircleImageView) view.findViewById(R.id.departmentiv);
         tvBranchName.setText(dataObjectList.get(position).getName());
         if (dataObjectList.get(position).getLogo() != null && dataObjectList.get(position).getLogo().getPathname() != null)
-            imageLoader.displayImage("http://104.154.217.246" + dataObjectList.get(position).getLogo().getPathname(), circleImageView);
+           // imageLoader.displayImage("http://104.154.217.246" + dataObjectList.get(position).getLogo().getPathname(), circleImageView);
+            Glide.with(context).load("http://104.154.217.246" + dataObjectList.get(position).getLogo().getPathname()).into(circleImageView);
+
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
