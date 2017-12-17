@@ -1,15 +1,13 @@
 <resources>
-    <string name="app_name">टिकटिंग क्लाइंट</string>
+    <string name="app_name">सुझाव क्लाइंट</string>
     <string name="choose_from">नाषा चुनें</string>
     <string name="english">English</string>
     <string name="hindi">हिंदी</string>
     <string name="punjabi">ਪੰਜਾਬੀ</string>
     <string name="assistance">नमस्ते, मैं आपकी सहायता कैसे करूं?</string>
     <string name="continue_text">जारी रहना</string>
-    <string name="enter_first_name"> पहला नाम
-</string>
-    <string name="enter_last_name"> अंतिम नाम
-</string>
+    <string name="enter_first_name"> पहला नाम</string>
+    <string name="enter_last_name"> अंतिम नाम</string>
     <string name="enter_username">नाम</string>
     <string name="your_email_address">आपका ईमेल पता</string>
     <string name="proceed">बढ़ना</string>
@@ -35,34 +33,31 @@
     <string name="logout">लोग आउट</string>
     <string name="grant_audio">कृपया ऑडियो रिकॉर्ड करने की अनुमति दें</string>
     <string name="account">खाता</string>
-    <string name="ticket_form">
-टिकट फ़ॉर्म बनाएं</string>
+    <string name="ticket_form">टिकट फ़ॉर्म बनाएं</string>
     <string name="settings">सेटिंग</string>
     <string name="what_you_do">तुम क्या करते हो</string>
     <string name="help">मदद</string>
-    <string name="send_feedback">फ़ीडबैक भेजें</string>
-    <string name="feedback_details">
-फ़ीडबैक विवरण</string>
-    <string name="feedbacks">सभी फ़ीडबैक</string>
-    <string name="feedback_status">
-फ़ीडबैक स्थिति:</string>
-    <string name="feedback_ref">फीडबैक रिफरेंस:</string>
+    <string name="send_feedback">सुझाव भेजें</string>
+    <string name="feedback_details">सुझाव विवरण</string>
+    <string name="feedbacks">सभी सुझाव</string>
+    <string name="feedback_status">स्थिति:</string>
+    <string name="feedback_ref">संदर्भ:</string>
     <string name="feedback_na"> NA</string>
     <string name="enter_your_otp">अपना ओटीपी दर्ज करें</string>
     <string name="verify">सत्यापित करें</string>
     <string name="resend_otp">ओटीपी पुनः भेजें</string>
     <string name="out_of_scope">हैकथॉन 2017 के लिए दायरे से बाहर</string>
-    <string name="view_tickets">टिकट देखें</string>
-    <string name="ok_btn">प्रतिक्रिया बनाएँ</string>
+    <string name="view_tickets">सुझाव देखें</string>
+    <string name="ok_btn">सुझाव बनाएं</string>
     <string name="cancel_btn">रद्द करना</string>
-    <string name="ticket_preview">फ़ीडबैक पूर्वावलोकन</string>
+    <string name="ticket_preview">सुझाव पूर्वावलोकन</string>
     <string name="email_exist">ईमेल पहले से मौजूद है</string>
     <string name="something_wrong">कुछ गलत हो गया</string>
     <string name="error_subject">विषय दर्ज करें</string>
     <string name="error_desc">विवरण दर्ज करें</string>
-    <string name="select_department">ठीक है!! कृपया एक ऐसा विभाग चुनें, जिसके लिए आप एक फीडबैक बनाना चाहते हैं।</string>
-    <string name="feedback_created"> फ़ीडबैक बनाया गया </string>
-    <string name="creating_feedback">फ़ीडबैक बनाना ...</string>
+    <string name="select_department">ठीक है !! कृपया एक ऐसा विभाग चुनें, जिसके लिए आप कोई सुझाव बनाना चाहते हैं।</string>
+    <string name="feedback_created">सुझाव बनाया</string>
+    <string name="creating_feedback">सुझाव बना रहा है ...</string>
     /* AI Actions and Events and parameters*/
     <string name="createticket">createticket</string>
     <string name="fetchalltickets">fetchalltickets</string>

@@ -84,7 +84,7 @@
                         android:id="@+id/text_status"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Status:"
+                        android:text="@string/feedback_status"
                         android:textSize="10sp" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
@@ -118,7 +118,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:text="Ticket Id"
+                        android:text="@string/feedback_ref"
                         android:textSize="12sp" />
 
                     <TextView
@@ -127,7 +127,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
-                        android:text="Assigned to: Birender Singh"
+                        android:text="Assigned to: "
                         android:textSize="12sp" />
 
                     <TextView

@@ -1,11 +1,10 @@
 <resources>
-    <string name="app_name">ਟਿਕਟ ਕਲਾਇੰਟ</string>
+    <string name="app_name">ਸੁਝਾਅ ਗਾਹਕ</string>
     <string name="choose_from">ਹਭਾਸ਼ਾ ਚੁਣੋ</string>
     <string name="english">English</string>
     <string name="hindi">हिंदी</string>
     <string name="punjabi">ਪੰਜਾਬੀ</string>
-    <string name="assistance">
-ਹੈਲੋ, ਮੈਂ ਤੁਹਾਡੀ ਮਦਦ ਕਿਵੇਂ ਕਰ ਸਕਦਾ ਹਾਂ?</string>
+    <string name="assistance">ਹੈਲੋ, ਮੈਂ ਤੁਹਾਡੀ ਮਦਦ ਕਿਵੇਂ ਕਰ ਸਕਦਾ ਹਾਂ?</string>
     <string name="continue_text">ਜਾਰੀ ਰੱਖੋ</string>
     <string name="enter_first_name"> ਪਹਿਲਾ ਨਾਂ</string>
     <string name="enter_last_name"> ਆਖਰੀ ਨਾਂਮ</string>
@@ -38,28 +37,27 @@
     <string name="settings">ਸੈਟਿੰਗਾਂ</string>
     <string name="what_you_do">ਤੁਸੀਂ ਕੀ ਕਰਦੇ ਹੋ</string>
     <string name="help">ਮਦਦ</string>
-    <string name="send_feedback">ਫੀਡਬੈਕ ਭੇਜੋ</string>
-    <string name="feedback_details">ਫੀਡਬੈਕ ਵੇਰਵਾ</string>
-    <string name="feedback_ref">ਫੀਡਬੈਕ ਰਿਫਰੈਂਸ:</string>
+    <string name="send_feedback">ਸੁਝਾਅ ਭੇਜੋ</string>
+    <string name="feedback_details">ਸੁਝਾਅ ਦੇ ਵੇਰਵੇ</string>
+    <string name="feedback_ref">ਹਵਾਲਾ:</string>
     <string name="feedback_na"> NA</string>
-    <string name="feedbacks">ਸਾਰੇ ਫੀਡਬੈਕ</string>
-    <string name="feedback_status">
-ਫੀਡਬੈਕ ਸਥਿਤੀ:</string>
+    <string name="feedbacks">ਸਾਰੇ ਸੁਝਾਅ</string>
+    <string name="feedback_status">ਸਥਿਤੀ:</string>
     <string name="enter_your_otp">ਆਪਣੇ OTP ਦਰਜ ਕਰੋ</string>
     <string name="verify">ਜਾਂਚ ਕਰੋ</string>
     <string name="resend_otp">OTP ਦੁਬਾਰਾ ਭੇਜੋ</string>
     <string name="out_of_scope">ਹੈਕਟੇਨ 2017 ਲਈ ਸਕੋਪ ਤੋਂ ਬਾਹਰ</string>
-    <string name="view_tickets">ਵੇਖੋ ਟਿਕਟ</string>
-    <string name="ok_btn">ਫੀਡਬੈਕ ਬਣਾਓ</string>
+    <string name="view_tickets">ਸੁਝਾਅ ਦੇਖੋ</string>
+    <string name="ok_btn">ਸੁਝਾਅ ਬਣਾਓ</string>
     <string name="cancel_btn">ਰੱਦ ਕਰੋ</string>
-    <string name="ticket_preview">ਫੀਡਬੈਕ ਪ੍ਰੀਵਿਊ</string>
+    <string name="ticket_preview">ਸੁਝਾਅ ਪ੍ਰੀਵਿਊ</string>
     <string name="email_exist">ਈਮੇਲ ਪਹਿਲਾਂ ਤੋਂ ਮੌਜੂਦ ਹੈ</string>
     <string name="something_wrong">ਕੁਝ ਗਲਤ ਹੋ ਗਿਆ</string>
     <string name="error_subject">ਵਿਸ਼ਾ ਦਿਓ</string>
     <string name="error_desc">ਵੇਰਵਾ ਦਿਓ</string>
-    <string name="select_department">ਠੀਕ ਹੈ !! ਕਿਰਪਾ ਕਰਕੇ ਉਸ ਵਿਭਾਗ ਦਾ ਚੋਣ ਕਰੋ ਜਿਸ ਲਈ ਤੁਸੀਂ ਕੋਈ ਫੀਡਬੈਕ ਬਣਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ.</string>
-    <string name="feedback_created">ਫੀਡਬੈਕ ਬਣਾਇਆ ਗਿਆ</string>
-    <string name="creating_feedback">ਫੀਡਬੈਕ ਬਣਾ ਰਿਹਾ ਹੈ ...</string>
+    <string name="select_department">ਠੀਕ ਹੈ !! ਕਿਰਪਾ ਕਰਕੇ ਉਹ ਵਿਭਾਗ ਚੁਣੋ ਜਿਸ ਲਈ ਤੁਸੀਂ ਕੋਈ ਸੁਝਾਅ ਬਣਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ.</string>
+    <string name="feedback_created">ਸੁਝਾਅ ਬਣਾਇਆ ਗਿਆ</string>
+    <string name="creating_feedback">ਸੁਝਾਅ ਬਣਾ ਰਿਹਾ ਹੈ ...</string>
     /* AI Actions and Events and parameters*/
     <string name="createticket">createticket</string>
     <string name="fetchalltickets">fetchalltickets</string>

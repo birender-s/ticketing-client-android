@@ -55,6 +55,9 @@ public class SingleTicketResponse {
     @SerializedName("updated_at")
     @Expose
     private String updatedAt;
+    @SerializedName("assignee")
+    @Expose
+    private String assignee;
     @SerializedName("watcher_list")
     @Expose
     private List<WatcherList> watcherList = null;
@@ -187,4 +190,11 @@ public class SingleTicketResponse {
         this.watcherList = watcherList;
     }
 
+    public String getAssignee() {
+        return assignee;
+    }
+
+    public void setAssignee(String assignee) {
+        this.assignee = assignee;
+    }
 }

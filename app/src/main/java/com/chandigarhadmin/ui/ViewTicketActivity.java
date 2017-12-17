@@ -110,7 +110,7 @@ public class ViewTicketActivity extends AppCompatActivity implements ResponseCal
         if (null == ticketAssignee) {
             ticketAssignee = getResources().getString(R.string.feedback_na);
         }
-        //  textViewAssignee.setText(ticketAssignee);
+          textViewAssignee.setText(textViewAssignee.getText() + getTicketResponse.getAssignee());
         if (null == getTicketResponse.getSubject()) {
             getTicketResponse.setSubject(getResources().getString(R.string.feedback_na));
         }
