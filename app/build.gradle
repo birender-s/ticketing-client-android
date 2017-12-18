@@ -38,6 +38,12 @@ android {
             keyAlias "Chd_Admin"
             keyPassword "chd_admin"
         }
+        debug{
+            storeFile file("chd_admin")
+            storePassword "chd_admin"
+            keyAlias "Chd_Admin"
+            keyPassword "chd_admin"
+        }
     }
     buildTypes {
         release {
@@ -45,6 +51,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
+        }
+        debug {
+            debuggable true
         }
     }
     packagingOptions {
