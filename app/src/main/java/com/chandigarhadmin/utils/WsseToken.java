@@ -52,7 +52,7 @@ public class WsseToken {
 
     private String generateTimestamp() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
-        sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
+        sdf.setTimeZone(TimeZone.getDefault());
         return sdf.format(new Date());
     }
 

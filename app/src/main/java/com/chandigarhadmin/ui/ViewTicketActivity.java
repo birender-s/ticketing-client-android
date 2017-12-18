@@ -17,6 +17,7 @@ import com.chandigarhadmin.models.CreateTicketResponse;
 import com.chandigarhadmin.models.GetTicketResponse;
 import com.chandigarhadmin.models.RequestParams;
 import com.chandigarhadmin.models.SingleTicketResponse;
+import com.chandigarhadmin.session.SessionManager;
 import com.chandigarhadmin.utils.Constant;
 
 import org.json.JSONObject;
@@ -24,6 +25,7 @@ import org.json.JSONObject;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -52,6 +54,8 @@ public class ViewTicketActivity extends AppCompatActivity implements ResponseCal
     private GetTicketResponse getTicketResponse;
     private CreateTicketResponse createTicketResponse;
     private String ticketId, ticketAssignee;
+    private SessionManager sessionManager;
+    private SingleTicketResponse singleTicketResponse;
 
     @OnClick(R.id.crossicon)
     public void submitButtonClick() {
@@ -63,6 +67,7 @@ public class ViewTicketActivity extends AppCompatActivity implements ResponseCal
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_ticket);
         ButterKnife.bind(this);
+        sessionManager = new SessionManager(this);
         progressDialog = Constant.createDialog(this, null);
         if (getIntent().hasExtra(INPUT_TICKET_DATA)) {
             getTicketResponse = getIntent().getExtras().getParcelable(INPUT_TICKET_DATA);
@@ -83,11 +88,12 @@ public class ViewTicketActivity extends AppCompatActivity implements ResponseCal
 
 
     private void setValues(SingleTicketResponse getTicketResponse, String ticketAssignee) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ssZ");
         if (null != getTicketResponse.getCreatedAt() && getTicketResponse.getCreatedAt().contains("T")) {
             String[] date_split = getTicketResponse.getCreatedAt().split("T");
             try {
-                Date date = sdf.parse(date_split[0] + " " + date_split[1].split("\\+")[0]);
+                sdf.setTimeZone(TimeZone.getDefault());
+                Date date = sdf.parse(date_split[0] + " " + date_split[1]);
                 CharSequence dateCreation = DateUtils.getRelativeTimeSpanString(date.getTime(), new Date().getTime(),
                         DateUtils.MINUTE_IN_MILLIS,
                         DateUtils.FORMAT_NO_NOON);
@@ -102,7 +108,7 @@ public class ViewTicketActivity extends AppCompatActivity implements ResponseCal
 
         textViewStatus.setText(getResources().getString(R.string.feedback_status) + getTicketResponse.getStatus());
         if (null == getTicketResponse.getId()) {
-            textViewTicketId.setText(getResources().getString(R.string.feedback_ref)+getResources().getString(R.string.feedback_na));
+            textViewTicketId.setText(getResources().getString(R.string.feedback_ref) + getResources().getString(R.string.feedback_na));
         } else {
             textViewTicketId.setText(getResources().getString(R.string.feedback_ref) + getTicketResponse.getId());
         }
@@ -110,7 +116,7 @@ public class ViewTicketActivity extends AppCompatActivity implements ResponseCal
         if (null == ticketAssignee) {
             ticketAssignee = getResources().getString(R.string.feedback_na);
         }
-          textViewAssignee.setText(textViewAssignee.getText() + getTicketResponse.getAssignee());
+        textViewAssignee.setText(textViewAssignee.getText() + getTicketResponse.getAssignee());
         if (null == getTicketResponse.getSubject()) {
             getTicketResponse.setSubject(getResources().getString(R.string.feedback_na));
         }
@@ -131,12 +137,18 @@ public class ViewTicketActivity extends AppCompatActivity implements ResponseCal
         App.getApiController().viewTicket(this, ticketId, RequestParams.TYPE_GET_TICKET_BY);
     }
 
+    private void getAllUsers(String ticketId) {
+        progressDialog.show();
+        App.getApiController().viewTicket(this, ticketId, RequestParams.TYPE_GET_TICKET_BY);
+    }
+
     @Override
     public void onResponse(Response result, String type) {
         progressDialog.dismiss();
         if (type.equalsIgnoreCase(RequestParams.TYPE_GET_TICKET_BY)) {
             if (result.isSuccessful()) {
-                SingleTicketResponse singleTicketResponse = (SingleTicketResponse) result.body();
+                singleTicketResponse = (SingleTicketResponse) result.body();
+                // if (sessionManager.getKeyUsers() != null) {
                 setValues(singleTicketResponse, ticketAssignee);
             } else {
                 try {
