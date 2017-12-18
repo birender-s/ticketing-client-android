@@ -48,7 +48,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="1.2"
             android:orientation="vertical">
 
             <android.support.v7.widget.CardView
@@ -60,7 +60,7 @@
                 card_view:cardCornerRadius="5dp"
                 card_view:cardElevation="2sp"
                 card_view:cardUseCompatPadding="true"
-                card_view:contentPadding="10dp">
+                card_view:contentPadding="5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -85,7 +85,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/feedback_status"
-                        android:textSize="10sp" />
+                        android:textSize="12sp" />
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
@@ -94,7 +94,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight=".8"
             android:orientation="vertical">
 
             <android.support.v7.widget.CardView
@@ -106,7 +106,7 @@
                 card_view:cardCornerRadius="5dp"
                 card_view:cardElevation="2sp"
                 card_view:cardUseCompatPadding="true"
-                card_view:contentPadding="10dp">
+                card_view:contentPadding="5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -158,7 +158,7 @@
         card_view:cardCornerRadius="5dp"
         card_view:cardElevation="2sp"
         card_view:cardUseCompatPadding="true"
-        card_view:contentPadding="10dp">
+        card_view:contentPadding="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
