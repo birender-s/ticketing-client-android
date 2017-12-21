@@ -8,7 +8,6 @@ import android.widget.TextView;
 
 import com.chandigarhadmin.R;
 import com.chandigarhadmin.session.SessionManager;
-import com.chandigarhadmin.utils.Constant;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,15 +36,15 @@ public class MyAccountActivity extends AppCompatActivity {
         sessionManager = new SessionManager(this);
         tvUserName.setText(sessionManager.getUsername());
         String lang = "";
-        if (sessionManager.getLanguage(Constant.SELECTED_LOCALE_LANGUAGE).equalsIgnoreCase("en")) {
+//        if (sessionManager.getLanguage(Constant.SELECTED_LOCALE_LANGUAGE).equalsIgnoreCase("en")) {
+//            lang = "English";
+//        } else if (sessionManager.getLanguage(Constant.SELECTED_LOCALE_LANGUAGE).equalsIgnoreCase("pa")) {
+//            lang = "Punjabi";
+//        } else if (sessionManager.getLanguage(Constant.SELECTED_LOCALE_LANGUAGE).equalsIgnoreCase("hi")) {
+//            lang = "Hindi";
+//        } else {
             lang = "English";
-        } else if (sessionManager.getLanguage(Constant.SELECTED_LOCALE_LANGUAGE).equalsIgnoreCase("pa")) {
-            lang = "Punjabi";
-        } else if (sessionManager.getLanguage(Constant.SELECTED_LOCALE_LANGUAGE).equalsIgnoreCase("hi")) {
-            lang = "Hindi";
-        } else {
-            lang = "English";
-        }
+//        }
         tvLang.setText(lang);
     }
 }

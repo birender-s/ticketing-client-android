@@ -23,8 +23,8 @@ public class Constant {
     public static final String INPUT_TICKET_DESC = "ticket_desc";
     public static final String INPUT_TICKET_CREATE = "ticket_create";
     public static final String INPUT_CTICKET_DATA = "cticket_data";
-    public static final String SELECTED_LOCALE = "selected_locale";
-    public static final String SELECTED_LOCALE_LANGUAGE = "selected_locale_language";
+//    public static final String SELECTED_LOCALE = "selected_locale";
+//    public static final String SELECTED_LOCALE_LANGUAGE = "selected_locale_language";
     //  public static final String BASE = "http://35.202.56.111/api/rest/latest/desk/";
     public static final String BASE = "http://104.154.217.246/api/rest/latest/desk/";
     //  public static final String PASSWORD = "ee47ba573ef6205fa11b0bcb5e0d959db02f36a5";

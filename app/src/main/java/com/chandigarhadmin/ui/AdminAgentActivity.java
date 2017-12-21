@@ -198,7 +198,8 @@ public class AdminAgentActivity extends AppCompatActivity implements PopupMenu.O
             case R.id.logout_menu:
                 sessionManager.logoutUser();
                 signOut();
-                Intent intent = new Intent(AdminAgentActivity.this, LanguageSelectionActivity.class);
+//                Intent intent = new Intent(AdminAgentActivity.this, LanguageSelectionActivity.class);
+                Intent intent = new Intent(AdminAgentActivity.this, MainActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);
                 finish();

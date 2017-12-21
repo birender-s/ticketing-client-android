@@ -20,16 +20,22 @@
         <activity
             android:name="com.chandigarhadmin.ui.MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
 
 
-        <activity android:name=".ui.LanguageSelectionActivity">
+      <!--  <activity android:name=".ui.LanguageSelectionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+        </activity>-->
         <activity
             android:name="com.chandigarhadmin.ui.LoginActivity"
             android:screenOrientation="portrait"
