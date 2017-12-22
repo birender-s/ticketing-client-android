@@ -46,7 +46,7 @@
     <string name="enter_your_otp">ਆਪਣੇ OTP ਦਰਜ ਕਰੋ</string>
     <string name="verify">ਜਾਂਚ ਕਰੋ</string>
     <string name="resend_otp">OTP ਦੁਬਾਰਾ ਭੇਜੋ</string>
-    <string name="out_of_scope">ਹੈਕਟੇਨ 2017 ਲਈ ਸਕੋਪ ਤੋਂ ਬਾਹਰ</string>
+    <string name="out_of_scope">ਕੰਮ ਚੱਲ ਰਿਹਾ ਹੈ</string>
     <string name="view_tickets">ਸੁਝਾਅ ਦੇਖੋ</string>
     <string name="ok_btn">ਸੁਝਾਅ ਬਣਾਓ</string>
     <string name="cancel_btn">ਰੱਦ ਕਰੋ</string>

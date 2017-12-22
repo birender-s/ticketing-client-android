@@ -46,7 +46,7 @@
     <string name="enter_your_otp">Enter your OTP</string>
     <string name="verify">Verify</string>
     <string name="resend_otp">Resend OTP</string>
-    <string name="out_of_scope">Out of scope for Hackathon 2017</string>
+    <string name="out_of_scope">Work in progress</string>
     <string name="view_tickets">View Suggestion</string>
     <string name="ok_btn"> Create Suggestion</string>
     <string name="cancel_btn">Cancel</string>
