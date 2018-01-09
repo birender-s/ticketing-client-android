@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/account"
         android:title="@string/account" />
@@ -9,17 +10,21 @@
     <item
         android:id="@+id/view_tickets"
         android:title="@string/view_tickets" />
-    <item
-        android:id="@+id/settings"
+    <item0
+        android:id="@+id0./settings"
+        android:visible="false"
         android:title="@string/settings" />
     <item
         android:id="@+id/what_you_do"
+        android:visible="false"
         android:title="@string/what_you_do" />
     <item
         android:id="@+id/help"
+        android:visible="false"
         android:title="@string/help" />
     <item
         android:id="@+id/send_feedback"
+        android:visible="false"
         android:title="@string/send_feedback" />
     <item
         android:id="@+id/logout_menu"
