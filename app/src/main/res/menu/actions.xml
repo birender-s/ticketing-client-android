@@ -11,7 +11,7 @@
         android:id="@+id/view_tickets"
         android:title="@string/view_tickets" />
     <item0
-        android:id="@+id0./settings"
+        android:id="@+id/settings"
         android:visible="false"
         android:title="@string/settings" />
     <item
